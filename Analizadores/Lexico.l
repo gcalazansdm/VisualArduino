@@ -36,9 +36,7 @@
 		OP_MUL,
 		OP_POW,
 		A_LPAR,
-		A_RPAR,
-		A_LINECOM,
-		A_BLOCKCOM
+		A_RPAR
 	};
    string literal;
 %}
@@ -77,6 +75,7 @@
 "para" { return T_FOR;}
 [A-Za-z][A-Za-z0-9_-] {return L_ID}
 [\r\n ] {}
+"\\"[.]* {}
 [']([.^"]|"\\\"")['] { printf("[%s]", yytext); return L_CHAR}
 (0|[+-]?[1-9][0-9]*) { printf("[%s]", yytext); return L_INT;}
 [+-]?(0|[1-9][0-9]*)?\.[0-9]+ { printf("[%s]", yytext); return L_DOUBLE;}
