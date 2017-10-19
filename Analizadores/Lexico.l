@@ -36,7 +36,8 @@
 		OP_MUL,
 		OP_POW,
 		A_LPAR,
-		A_RPAR
+		A_RPAR,
+		A_SEMICOLON
 	};
    string literal;
 %}
@@ -90,6 +91,7 @@
 "\*" {BEGIN(COMMENT);}
 <COMMENT> "*\" {BEGIN(INITIAL);}
 <COMMENT> . {}
+";" {return A_SEMICOLON;}
 . { printf("caractere invalido [%s] \n", yytext); return 0;}
 
 %%
