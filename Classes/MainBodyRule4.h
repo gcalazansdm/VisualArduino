@@ -1,5 +1,5 @@
-#ifndef MAINBODYRULE1_H
-#define MAINBODYRULE1_H
+#ifndef MAINBODYRULE4_H
+#define MAINBODYRULE4_H
 
 #include "MainBody.h"
 #include "Var.h"

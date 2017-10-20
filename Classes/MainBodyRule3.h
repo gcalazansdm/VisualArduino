@@ -1,5 +1,5 @@
-#ifndef MAINBODYRULE1_H
-#define MAINBODYRULE1_H
+#ifndef MAINBODYRULE3_H
+#define MAINBODYRULE3_H
 
 #include "MainBody.h"
 #include "Function.h"

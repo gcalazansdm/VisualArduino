@@ -1,5 +1,5 @@
-#ifndef MAINBODYRULE1_H
-#define MAINBODYRULE1_H
+#ifndef MAINBODY_H
+#define MAINBODY_H
 
 #include "Node.h"
 
