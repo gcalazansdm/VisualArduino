@@ -38,6 +38,10 @@
 		A_SEMICOLON,
 		A_RPAR,
 		A_LPAR,
+		A_RKEY,
+		A_LKEY,
+		A_COMMA,
+		A_SEMICOLON
 	};
    string literal;
 %}
@@ -52,6 +56,10 @@
 "^" { return OP_POT;}
 \( { return A_RPAR;}
 \) { return A_LPAR;}
+"{" { return A_RKEY;}
+"}" { return A_LKEY;}
+"," { return A_COMMA;}
+";" {return A_SEMICOLON;}
 "=" { return OP_EQ; }
 "==" {return OP_BOOL_EQUAL;}
 "!=" {return OP_BOOL_DIF;}
@@ -74,11 +82,10 @@
 "se nao mas" { return T_IFELSE;}
 "enquanto" { return T_WHI;}
 "para" { return T_FOR;}
-";" {return A_SEMICOLON;}
 [A-Za-z][A-Za-z0-9_-] {return L_ID}
 [\r\n ] {}
 "\\"[.]* {}
-[']([.^"]|"\\\"")['] { printf("[%s]", yytext); return L_CHAR}
+[']([^"]|"\\\"")['] { printf("[%s]", yytext); return L_CHAR}
 (0|[+-]?[1-9][0-9]*) { printf("[%s]", yytext); return L_INT;}
 [+-]?(0|[1-9][0-9]*)?\.[0-9]+ { printf("[%s]", yytext); return L_DOUBLE;}
 [+-]?(0|[1-9][0-9]*)?\.[0-9]+[fF] { printf("[%s]", yytext); return L_FLOAT;}
