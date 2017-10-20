@@ -13,7 +13,7 @@ class MainBodyRule4 : public MainBody
 		MainBodyRule4():v_(NULL){}
 		MainBodyRule4(Var* v): v_(v){}
 		virtual	~MainBodyRule4(){}
-		MainBodyRule4(const MainBodyRule2& t): v_(t.v)
+		MainBodyRule4(const MainBodyRule4& t): v_(t.v)
 		{}
 		void set_V_(Var& v)
 		{

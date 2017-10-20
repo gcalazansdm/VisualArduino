@@ -14,9 +14,9 @@ class FunctionRule1 : public Function
 		FunctionRule1(){}
 		FunctionRule1(std::string id, Parameters& parametros,VariablesTypes& variablesType, LocalBody& localBody):Function(id,parametros,variablesType), localBody_(localBody){}
 		virtual	~FunctionRule1(){
-			delete localBody_;]
+			delete localBody_;
 		}
-		FunctionRule1(const FunctionRule1& t): f_(t.f_)
+		FunctionRule1(const FunctionRule1& t): Function(t) f_(t.f_)
 		{}
 		void set_localBody_(LocalBody& localBody_)
 		{

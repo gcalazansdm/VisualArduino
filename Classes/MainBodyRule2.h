@@ -18,7 +18,7 @@ class MainBodyRule2 : public MainBody
 			delete v_;
 			delete mainBody_;
 		}
-		MainBodyRule2(const MainBodyRule2& t): v_(t.v_), mainBody_(t.mainBody_)
+		MainBodyRule2(const MainBodyRule2& t): v_(t.v_), mainBody_(t.mainBody_), MainBody(t)
 		{}
 		void set_V_(Var& v)
 		{

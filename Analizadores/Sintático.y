@@ -44,16 +44,20 @@
 
 %union{
   	int64_t integer;
-  std::string str;
-  bool logic;
-  	double float_point
+    std::string str;
+    bool logic;
+  	float float_point;
+    double double_point;
+    char caractere;
 }
 
+%type <caractere> L_CHAR
 %type <integer> L_INT
 %type <logic> L_BOOL
 %type <str> L_STRING
 %type <str> L_ID
 %type <float_point> L_FLOAT
+%type <double_point> double_point
 %%
 
 MainBody : Function MainBody

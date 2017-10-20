@@ -16,7 +16,7 @@ class MainBodyRule1 : public MainBody
 			delete f_;
 			delete mainBody_;
 		}
-		MainBodyRule1(const MainBodyRule1& t): f_(t.f_), mainBody_(t.mainBody_)
+		MainBodyRule1(const MainBodyRule1& t): f_(t.f_), mainBody_(t->mainBody_), MainBody(t)
 		{}
 		void set_F_(Function& f)
 		{

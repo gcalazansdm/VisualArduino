@@ -14,7 +14,7 @@ class MainBodyRule3 : public MainBody
 		virtual	~MainBodyRule3(){
 			delete f_;
 		}
-		MainBodyRule3(const MainBodyRule3& t): f_(t.f_)
+		MainBodyRule3(const MainBodyRule3& t): f_(t.f_), MainBody(t)
 		{}
 		void set_F_(Function& f)
 		{
