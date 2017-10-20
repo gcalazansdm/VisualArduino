@@ -12,11 +12,11 @@ class teste{
 		teste():
 			a_(0),b_(0.0f){}
 		teste(int a,float b):
-			a_(a),b_(b),c(new double[8])){}
+			a_(a),b_(b),c(new double[8]){}
 		virtual	~teste(){
 				delete[] c;
 			}
-		teste(const TESTE& t): a_(t.a_), b_(t.b),c_(t.c_){}
+		teste(const TESTE& t): a_(t.a_), b_(t.b_),c_(t.c_){}
         void set_a(int a){
             a_ = a;
 		int a() const /*não modifica a instancia da classe*/ {
