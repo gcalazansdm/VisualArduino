@@ -1,5 +1,7 @@
 %{
-	#include<string>
+  #include<string>
+  #include<stdint.h>
+  #include<stdbool.h>
 %}
 %token L_INT
 %token L_DOUBLE
@@ -57,30 +59,33 @@
 %type <str> L_STRING
 %type <str> L_ID
 %type <float_point> L_FLOAT
-%type <double_point> double_point
+%type <double_point> L_DOUBLE
 %%
-
 MainBody : Function MainBody
          | Var A_SEMICOLON MainBody
          | Function
          | Var A_SEMICOLON 
-
-
-Function : T_FUNC VariablesTypes L_ID A_LPAR Parameters A_RPAR A_LKEY LocalBody A_RKEY
-         | T_FUNC VariablesTypes L_ID A_LPAR Parameters A_RPAR A_SEMICOLON
          ;
+
+Function : T_FUNC VariablesTypes L_ID Parameters Body
+         | T_FUNC VariablesTypes L_ID Parameters A_SEMICOLON
+         ;
+
+Parameter : A_LPAR Parameters A_RPAR
+          | A_LPAR A_RPAR
+          ;
 
 Parameters : Var A_COMMA Parameters
            | Var
            ;
 
-LocalBody : Lines A_SEMICOLON LocalBody
-          | Lines A_SEMICOLON
-          ;
-
-Lines: Line Lines
-     | Line
+Body : A_LKEY LocalBody A_RKEY
+     | A_LKEY A_RKEY
      ;
+
+LocalBody : Line A_SEMICOLON LocalBody
+          | Line A_SEMICOLON
+          ;
 
 Line : Operation 
      | Var 
@@ -96,11 +101,11 @@ SelectionClause : IfClause
                 | IfClause ElseClauses
                 ;
 
-ElseClauses : IfElseClauses ElseClauses
+ElseClauses : IfElseClauses ElseClause
             | ElseClause
             ;
 
-IfElseClauses : IfElseClause ElseClauses
+IfElseClauses : IfElseClause IfElseClauses
               | IfElseClause
               ;
 
@@ -112,41 +117,47 @@ IfElseClause  : T_IFELSE A_LPAR LogicOperation A_RPAR Command;
 
 WhileClause : T_WHI A_LPAR LogicOperation A_RPAR Command;
 
-ForClause : T_WHI A_LPAR VarFor A_SEMICOLON Operation A_SEMICOLON UnitaryOperators A_RPAR Command;
+ForClause : T_FOR VarFor LogicOperation A_SEMICOLON UnitaryOperators A_RPAR Command;
 
 Command : A_LKEY LocalBody A_RKEY 
-        | Lines A_SEMICOLON
+        | Line A_SEMICOLON
         ;
 
-VarFor : VariablesTypes L_ID
-       : VariablesTypes L_ID
-       : VariablesTypes L_ID OP_EQ Operation
-       | VariablesTypes L_ID OP_EQ Operation
+VarFor : A_LPAR VariablesTypes L_ID OP_EQ Operation A_SEMICOLON
+       | A_LPAR L_ID OP_EQ Operation A_SEMICOLON
+       | A_LPAR A_SEMICOLON
        ;
 
 LogicOperation : LogicOP
                | LogicComp
+               ;
 
 Operation : Eq 
           | LogicOperation 
           | UnitaryOperators
           ;
 
+//FIXME FAZER += -= \= e *=
 UnitaryOperators : Values L_INC
                  | Values L_DEC
                  ;
 
 LogicComp : Eq BinaryCompOperator Eq
-          | UnitaryCompOperator Eq
           | A_LPAR LogicComp A_RPAR
           ;
+
+BinaryCompOperator : OP_BOOL_GRE
+                   | OP_BOOL_LESS
+                   | OP_BOOL_EQGRE
+                   | OP_BOOL_EQLESS
+                   ;
 
 LogicOP : LogicOP BinaryLogicalOperator LogicOP
         | UnitaryLogicalOperator LogicOP
         | L_BOOL 
         | A_LPAR LogicOP A_RPAR
         ;
-
+        
 BinaryLogicalOperator : OP_BOOL_AND
                       | OP_BOOL_OR
                       ;

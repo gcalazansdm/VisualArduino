@@ -65,5 +65,4 @@ class Function : public Node
 
 }
 
-
 #endif

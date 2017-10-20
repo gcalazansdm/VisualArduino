@@ -5,7 +5,7 @@ class Node{
 	private:
 	public:
 		Node(){}
-		virtual	~Node(){}
-		Node(const NODE& t):{}	
+		virtual	~Node(){}	
 }
+
 #endif

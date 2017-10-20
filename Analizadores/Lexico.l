@@ -1,48 +1,5 @@
 %{
    #include<string>
-	enum Tokens{
-		L_INT = 1,
-		L_DOUBLE,
-		L_FLOAT,
-		L_CHAR,
-		L_STRING,
-		L_BOOL,
-		L_ID,
-		T_INT,
-		T_DOUBLE,
-		T_FLOAT,
-		T_CHAR,
-		T_STRING,
-		T_BOOL,
-		T_FUNC,
-		T_IF,
-		T_ELSE,
-		T_IFELSE,
-		T_WHI,
-		T_FOR,
-		OP_SUM,
-		OP_SUB,
-		OP_MUL,
-		OP_DIV,
-		OP_POT,
-		OP_EQ,
-		OP_BOOL_EQUAL,
-		OP_BOOL_DIF,
-		OP_BOOL_GRE,
-		OP_BOOL_LESS,
-		OP_BOOL_EQGRE,
-		OP_BOOL_EQLESS,
-		OP_BOOL_AND,
-		OP_BOOL_OR,
-		OP_BOOL_NOT,
-		A_SEMICOLON,
-		A_RPAR,
-		A_LPAR,
-		A_RKEY,
-		A_LKEY,
-		A_COMMA,
-		A_SEMICOLON
-	};
    string literal;
 %}
 %option nodefault noyywrap	
@@ -61,6 +18,8 @@
 "," { return A_COMMA;}
 ";" {return A_SEMICOLON;}
 "=" { return OP_EQ; }
+"++" { return L_INC; }
+"--" { return L_DEC; }
 "==" {return OP_BOOL_EQUAL;}
 "!=" {return OP_BOOL_DIF;}
 ">" {return OP_BOOL_GRE;}

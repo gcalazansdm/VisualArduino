@@ -12,13 +12,14 @@ class MainBodyRule1 : public MainBody
 	public:
 		MainBodyRule1():f_(NULL) mainBody_(NULL){}
 		MainBodyRule1(Function* f,MainBody* mainBody): f_(f), mainBody_(mainBody){}
-		virtual	~MainBodyRule1(){
+		virtual	~MainBodyRule1()
+		{
 			delete f_;
 			delete mainBody_;
 		}
-		MainBodyRule1(const MainBodyRule1& t): f_(t.f_), mainBody_(t->mainBody_), MainBody(t)
+		MainBodyRule1(const MainBodyRule1& t): MainBody(t), f_(t.f_), mainBody_(t->mainBody_)
 		{}
-		void set_F_(Function& f)
+		void set_F(Function& f)
 		{
             f_ = f;
         }
@@ -26,15 +27,14 @@ class MainBodyRule1 : public MainBody
         {
             mainBody_ = mainBody;
         }
-		const Function* f_() const 
+		const Function* f() const 
 		{
 			return f_;
 		}		
-		const MainBody* mainBody_() const 
+		const MainBody* mainBody() const 
 		{
 			return mainBody_;
 		}		
 }
-
 
 #endif

@@ -18,17 +18,17 @@ class MainBodyRule2 : public MainBody
 			delete v_;
 			delete mainBody_;
 		}
-		MainBodyRule2(const MainBodyRule2& t): v_(t.v_), mainBody_(t.mainBody_), MainBody(t)
+		MainBodyRule2(const MainBodyRule2& t): MainBody(t),v_(t.v_), mainBody_(t.mainBody_)
 		{}
-		void set_V_(Var& v)
+		void set_V(Var* v)
 		{
             v_ = v;
         }
-        void set_mainBody_(MainBody& mainBody)
+        void set_mainBody(MainBody* mainBody)
         {
             mainBody_ = mainBody;
         }
-		const Var* v_() const 
+		const Var* v() const 
 		{
 			return v_;
 		}		
