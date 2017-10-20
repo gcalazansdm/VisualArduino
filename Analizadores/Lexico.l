@@ -8,36 +8,36 @@
 		L_STRING,
 		L_BOOL,
 		L_ID,
-		T_BOOL,
 		T_INT,
 		T_DOUBLE,
-		T_FUNC,
+		T_FLOAT,
 		T_CHAR,
 		T_STRING,
-		T_WHI,
+		T_BOOL,
+		T_FUNC,
 		T_IF,
 		T_ELSE,
 		T_IFELSE,
-		T_FLOAT,
+		T_WHI,
 		T_FOR,
+		OP_SUM,
+		OP_SUB,
+		OP_MUL,
+		OP_DIV,
+		OP_POT,
 		OP_EQ,
-		OP_BOOL_IS,
-		OP_BOOL_DIFF,
+		OP_BOOL_EQUAL,
+		OP_BOOL_DIF,
 		OP_BOOL_GRE,
-		OP_BOOL_EQGRE,
 		OP_BOOL_LESS,
+		OP_BOOL_EQGRE,
 		OP_BOOL_EQLESS,
 		OP_BOOL_AND,
 		OP_BOOL_OR,
 		OP_BOOL_NOT,
-		OP_SUM,
-		OP_SUB,
-		OP_DIV,
-		OP_MUL,
-		OP_POW,
-		A_LPAR,
+		A_SEMICOLON,
 		A_RPAR,
-		A_SEMICOLON
+		A_LPAR,
 	};
    string literal;
 %}
@@ -50,30 +50,31 @@
 "*" { return OP_MUL;}
 "/" { return OP_DIV;}
 "^" { return OP_POT;}
-"(" { return A_RPAR;}
-")" { return A_LPAR;}
+\( { return A_RPAR;}
+\) { return A_LPAR;}
 "=" { return OP_EQ; }
-"==" {return OP_BOOL_IS;}
-"!=" {return OP_BOOL_DIFF;}
+"==" {return OP_BOOL_EQUAL;}
+"!=" {return OP_BOOL_DIF;}
 ">" {return OP_BOOL_GRE;}
-">=" {return OP_BOOL_LESS;}
-"<" {return OP_BOOL_IS;}
+"<" {return OP_BOOL_LESS;}
+">=" {return OP_BOOL_EQGRE;}
 "<=" {return OP_BOOL_EQLESS;}
 "e" {return OP_BOOL_AND;}
 "ou" {return OP_BOOL_OR;}
 "nao" {return OP_BOOL_NOT;}
-"se" { return T_IF;}
-"se nao mas" { return T_IFELSE;}
-"entao" { return T_ELSE;}
-"real" { return T_DOUBLE;}
-"funcao" { return T_FUNC;}
 "inteiro" { return T_INT;}
-"logico" {return T_BOOL;}
+"real" { return T_DOUBLE;}
+"flutuante" { return T_FLOAT;}
 "caractere" {return T_CHAR;}
 "texto" {return T_STRING;}
+"logico" {return T_BOOL;}
+"funcao" { return T_FUNC;}
+"se" { return T_IF;}
+"entao" { return T_ELSE;}
+"se nao mas" { return T_IFELSE;}
 "enquanto" { return T_WHI;}
-"flutuante" { return T_FLOAT;}
 "para" { return T_FOR;}
+";" {return A_SEMICOLON;}
 [A-Za-z][A-Za-z0-9_-] {return L_ID}
 [\r\n ] {}
 "\\"[.]* {}
@@ -91,7 +92,6 @@
 "\*" {BEGIN(COMMENT);}
 <COMMENT> "*\" {BEGIN(INITIAL);}
 <COMMENT> . {}
-";" {return A_SEMICOLON;}
 . { printf("caractere invalido [%s] \n", yytext); return 0;}
 
 %%
@@ -110,6 +110,3 @@
 		return 0;
 
 	}
-
-//$> flex -o analise_lexico.c Compilers.l
-//gcc -o teste analise_lexico.c
