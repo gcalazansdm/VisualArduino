@@ -6,7 +6,7 @@
 class ValuesRule2 : public Values
 {
 	private:
-		L_FLOAT l_float_;
+		float l_float_;
 	public:
 		ValuesRule2(){}
 		ValuesRule2( l_float l_float,):Values(),l_float_(l_float){}
@@ -14,11 +14,11 @@ class ValuesRule2 : public Values
 		{
 		}
 		ValuesRule2(const ValuesRule2& values):Values(values){}
-		void set_l_float(L_FLOAT* l_float)
+		void set_l_float(float* l_float)
 		{
 			l_float_ = l_float;
 		}
-		L_FLOAT l_float const ()
+		float l_float const ()
 		{
 			return l_float_;
 		}

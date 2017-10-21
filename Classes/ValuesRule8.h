@@ -1,33 +1,27 @@
-#ifndef VARFORRULE1_H
-#define VARFORRULE1_H
+#ifndef VALUESRULE8_H
+#define VALUESRULE8_H
 
-#include "VarFor.h"
+#include "Values.h"
 #include "VariablesTypes.h"
 #include <string>
 #include "Operation.h"
 
-class VarForRule1 : public VarFor
+class ValuesRule8 : public Values
 {
 	private:
-		Const char a_lpar_= '(';
 		VariablesTypes* variablestypes_;
 		std::string l_id_;
 		Const char op_eq_= '=';
 		Operation* operation_;
-		Const char a_semicolon_= ';';
 	public:
-		VarForRule1(){}
-		VarForRule1( VariablesTypes* variablestypes,l_id l_id,Operation* operation):VarFor(),variablestypes_(variablestypes),l_id_(l_id),operation_(operation){}
-		virtual ~VarForRule1()
+		ValuesRule8(){}
+		ValuesRule8( VariablesTypes* variablestypes,l_id l_id,Operation* operation):Values(),variablestypes_(variablestypes),l_id_(l_id),operation_(operation){}
+		virtual ~ValuesRule8()
 		{
 			delete variablestypes;
 			delete operation;
 		}
-		VarForRule1(const VarForRule1& varfor):VarFor(varfor),variablestypes_(varfor->variablestypes_),operation_(varfor->operation_){}
-		char a_lpar const ()
-		{
-			return a_lpar_;
-		}
+		ValuesRule8(const ValuesRule8& values):Values(values),variablestypes_(values->variablestypes_),operation_(values->operation_){}
 		void set_variablestypes(VariablesTypes* variablestypes)
 		{
 			variablestypes_ = variablestypes;
@@ -55,10 +49,6 @@ class VarForRule1 : public VarFor
 		const Operation operation const ()
 		{
 			return operation_;
-		}
-		char a_semicolon const ()
-		{
-			return a_semicolon_;
 		}
 }
 #endif

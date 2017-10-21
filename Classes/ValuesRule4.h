@@ -6,7 +6,7 @@
 class ValuesRule4 : public Values
 {
 	private:
-		L_CHAR l_char_;
+		char l_char_;
 	public:
 		ValuesRule4(){}
 		ValuesRule4( l_char l_char,):Values(),l_char_(l_char){}
@@ -14,11 +14,11 @@ class ValuesRule4 : public Values
 		{
 		}
 		ValuesRule4(const ValuesRule4& values):Values(values){}
-		void set_l_char(L_CHAR* l_char)
+		void set_l_char(char* l_char)
 		{
 			l_char_ = l_char;
 		}
-		L_CHAR l_char const ()
+		char l_char const ()
 		{
 			return l_char_;
 		}

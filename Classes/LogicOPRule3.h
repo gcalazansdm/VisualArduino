@@ -6,7 +6,7 @@
 class LogicOPRule3 : public LogicOP
 {
 	private:
-		L_BOOL l_bool_;
+		boolean l_bool_;
 	public:
 		LogicOPRule3(){}
 		LogicOPRule3( l_bool l_bool):LogicOP(),l_bool_(l_bool){}
@@ -14,11 +14,11 @@ class LogicOPRule3 : public LogicOP
 		{
 		}
 		LogicOPRule3(const LogicOPRule3& logicop):LogicOP(logicop){}
-		void set_l_bool(L_BOOL* l_bool)
+		void set_l_bool(boolean* l_bool)
 		{
 			l_bool_ = l_bool;
 		}
-		L_BOOL l_bool const ()
+		boolean l_bool const ()
 		{
 			return l_bool_;
 		}

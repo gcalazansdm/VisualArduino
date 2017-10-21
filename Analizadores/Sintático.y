@@ -11,7 +11,8 @@
 %token L_BOOL
 %token L_ID
 %token T_BOOL
-%token T_INT
+%token T_INT 
+%token T_PINMODE
 %token T_DOUBLE
 %token T_FLOAT
 %token T_CHAR
@@ -27,7 +28,9 @@
 %token OP_BOOL_NOT
 %token T_FUNC
 %token T_IF
+%token T_PINMODE
 %token T_ELSE
+%token T_DIGITALWRITE
 %token T_IFELSE
 %token T_WHI
 %token T_FOR
@@ -43,12 +46,17 @@
 %token A_RKEY
 %token A_SEMICOLON
 %token A_COMMA
-
+%token A_OUT
+%token A_INP
+%token A_HIGH
+%token A_LOW
+%token A_LOOP
+%token A_SETUP
 %union{
-  	int64_t integer;
+    int64_t integer;
     std::string str;
     bool logic;
-  	float float_point;
+    float float_point;
     double double_point;
     char caractere;
 }
@@ -61,68 +69,86 @@
 %type <float_point> L_FLOAT
 %type <double_point> L_DOUBLE
 %%
-MainBody : Function MainBody
-         | Var A_SEMICOLON MainBody
-         | Function
-         | Var A_SEMICOLON 
+ 
+Main : Setup A_SEMICOLON Loop A_SEMICOLON;
+MainBody : Function MainBody 
+         | Var A_SEMICOLON MainBody 
+         | Function 
+         | Var A_SEMICOLON  
          ;
-
+ 
 Function : T_FUNC VariablesTypes L_ID Parameters Body
-         | T_FUNC VariablesTypes L_ID Parameters A_SEMICOLON
+         | T_FUNC VariablesTypes L_ID Parameters A_SEMICOLON 
          ;
-
-Parameter : A_LPAR Parameters A_RPAR
-          | A_LPAR A_RPAR
+ 
+Parameter : A_LPAR Parameters A_RPAR 
+          | A_LPAR A_RPAR 
           ;
-
-Parameters : Var A_COMMA Parameters
-           | Var
+ 
+Parameters : Var A_COMMA Parameters 
+           | Var 
            ;
-
-Body : A_LKEY LocalBody A_RKEY
-     | A_LKEY A_RKEY
+  
+Body : A_LKEY LocalBody A_RKEY 
+     | A_LKEY A_RKEY 
      ;
-
-LocalBody : Line A_SEMICOLON LocalBody
-          | Line A_SEMICOLON
+ 
+LocalBody : Line A_SEMICOLON LocalBody 
+          | Line A_SEMICOLON 
           ;
-
-Line : Operation 
-     | Var 
-     | Condiction
+  
+Line : Operation  
+     | Var  
+     | Condiction 
      ;
-
-Condiction : SelectionClause
+ 
+Condiction : SelectionClause 
            | WhileClause
-           | ForClause
+           | ForClause 
            ;
-
+ 
+Loop : A_LOOP A_LPAR A_RPAR A_RKEY Loop A_LKEY
+     | A_LOOP A_LPAR A_RPAR A_RKEY MainBody Loop A_LKEY
+     ;
+ 
+Setup : A_SETUP A_LPAR A_RPAR A_RKEY  A_LKEY
+      | A_SETUP A_LPAR A_RPAR MainBody
+      ;
+ 
 SelectionClause : IfClause 
                 | IfClause ElseClauses
                 ;
-
+ 
 ElseClauses : IfElseClauses ElseClause
             | ElseClause
             ;
-
+ 
 IfElseClauses : IfElseClause IfElseClauses
               | IfElseClause
               ;
-
+ 
 IfClause : T_IF A_LPAR LogicOperation A_RPAR Command;
-
+ 
+PinModeClause : T_PINMODE A_LPAR Values T_INT A_COMMA A_INP A_RPAR A_SEMICOLON
+              | T_PINMODE A_LPAR Values T_INT A_COMMA A_OUT A_RPAR A_SEMICOLON
+              ;
+  
+DigitalWriteClause : T_DIGITALWRITE A_LPAR Values T_INT A_COMMA A_HIGH A_RPAR A_SEMICOLON
+                   | T_DIGITALWRITE A_LPAR Values T_INT A_COMMA A_LOW A_RPAR A_SEMICOLON
+                   ;
+ 
 ElseClause  : T_ELSE Command;
-
+ 
 IfElseClause  : T_IFELSE A_LPAR LogicOperation A_RPAR Command;
-
+  
 WhileClause : T_WHI A_LPAR LogicOperation A_RPAR Command;
-
+  
 ForClause : T_FOR VarFor LogicOperation A_SEMICOLON UnitaryOperators A_RPAR Command;
-
+ 
 Command : A_LKEY LocalBody A_RKEY 
         | Line A_SEMICOLON
         ;
-
+  
 VarFor : A_LPAR VariablesTypes L_ID OP_EQ Operation A_SEMICOLON
        | A_LPAR L_ID OP_EQ Operation A_SEMICOLON
        | A_LPAR A_SEMICOLON
@@ -131,55 +157,54 @@ VarFor : A_LPAR VariablesTypes L_ID OP_EQ Operation A_SEMICOLON
 LogicOperation : LogicOP
                | LogicComp
                ;
-
+  
 Operation : Eq 
           | LogicOperation 
           | UnitaryOperators
           ;
-
-//FIXME FAZER += -= \= e *=
+ 
 UnitaryOperators : Values L_INC
                  | Values L_DEC
                  ;
-
+ 
 LogicComp : Eq BinaryCompOperator Eq
           | A_LPAR LogicComp A_RPAR
           ;
-
+ 
 BinaryCompOperator : OP_BOOL_GRE
                    | OP_BOOL_LESS
                    | OP_BOOL_EQGRE
                    | OP_BOOL_EQLESS
                    ;
-
+ 
 LogicOP : LogicOP BinaryLogicalOperator LogicOP
         | UnitaryLogicalOperator LogicOP
         | L_BOOL 
         | A_LPAR LogicOP A_RPAR
         ;
-        
+ 
 BinaryLogicalOperator : OP_BOOL_AND
                       | OP_BOOL_OR
                       ;
-
+ 
 UnitaryLogicalOperator : OP_BOOL_NOT;
-
-Eq : Eq OP_SUM Factor 
-   | Eq OP_SUB Factor 
+ 
+Eq : Eq OP_SUM Factor
+   | Eq OP_SUB Factor
    | Factor
    ;
-
+ 
 Factor : Factor OP_DIV Elem
        | Factor OP_MUL Elem
        | Elem
        ;
-
+  
 Elem : OP_SUM Elem 
      | OP_SUB Elem
      | A_LPAR Eq A_RPAR
      | Values
      ;
-
+ 
 Values : L_INT
        | L_FLOAT
        | L_DOUBLE
@@ -188,11 +213,11 @@ Values : L_INT
        | L_BOOL
        | L_ID
        ;
-
+ 
 Var : VariablesTypes L_ID
     | VariablesTypes L_ID OP_EQ Operation
     ;
-
+ 
 VariablesTypes : T_DOUBLE
                | T_INT
                | T_FLOAT

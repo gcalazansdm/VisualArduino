@@ -6,7 +6,7 @@
 class ValuesRule6 : public Values
 {
 	private:
-		L_BOOL l_bool_;
+		boolean l_bool_;
 	public:
 		ValuesRule6(){}
 		ValuesRule6( l_bool l_bool,):Values(),l_bool_(l_bool){}
@@ -14,11 +14,11 @@ class ValuesRule6 : public Values
 		{
 		}
 		ValuesRule6(const ValuesRule6& values):Values(values){}
-		void set_l_bool(L_BOOL* l_bool)
+		void set_l_bool(boolean* l_bool)
 		{
 			l_bool_ = l_bool;
 		}
-		L_BOOL l_bool const ()
+		boolean l_bool const ()
 		{
 			return l_bool_;
 		}

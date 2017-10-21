@@ -6,7 +6,7 @@
 class ValuesRule1 : public Values
 {
 	private:
-		L_INT l_int_;
+		int l_int_;
 	public:
 		ValuesRule1(){}
 		ValuesRule1( l_int l_int,):Values(),l_int_(l_int){}
@@ -14,11 +14,11 @@ class ValuesRule1 : public Values
 		{
 		}
 		ValuesRule1(const ValuesRule1& values):Values(values){}
-		void set_l_int(L_INT* l_int)
+		void set_l_int(int* l_int)
 		{
 			l_int_ = l_int;
 		}
-		L_INT l_int const ()
+		int l_int const ()
 		{
 			return l_int_;
 		}

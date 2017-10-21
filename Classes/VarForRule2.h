@@ -8,7 +8,7 @@ class VarForRule2 : public VarFor
 {
 	private:
 		Const char a_lpar_= '(';
-		L_ID l_id_;
+		std::string l_id_;
 		Const char op_eq_= '=';
 		Operation* operation_;
 		Const char a_semicolon_= ';';
@@ -24,11 +24,11 @@ class VarForRule2 : public VarFor
 		{
 			return a_lpar_;
 		}
-		void set_l_id(L_ID* l_id)
+		void set_l_id(std::string* l_id)
 		{
 			l_id_ = l_id;
 		}
-		L_ID l_id const ()
+		std::string l_id const ()
 		{
 			return l_id_;
 		}

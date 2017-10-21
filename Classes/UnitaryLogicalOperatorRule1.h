@@ -1,14 +1,23 @@
-#ifndef UNITARYLOGICALOPERATORRULE1_h
-#define UNITARYLOGICALOPERATORRULE1_h
-#include "UnitaryLogicalOperator.h"classUnitaryLogicalOperatorRule1: public UnitaryLogicalOperator
+#ifndef UNITARYLOGICALOPERATORRULE1_H
+#define UNITARYLOGICALOPERATORRULE1_H
+
+#include "UnitaryLogicalOperator.h"
+#include <string>
+
+class UnitaryLogicalOperatorRule1 : public UnitaryLogicalOperator
 {
-	 private:
-		 OP_BOOL_NOT op_bool_not_;
-	 public:
-		 UnitaryLogicalOperator(){}
-		 UnitaryLogicalOperator(){}
-		 virtual ~UnitaryLogicalOperator(){}
-		 UnitaryLogicalOperator(const UnitaryLogicalOperator& unitarylogicaloperator):UnitaryLogicalOperator(){}
+	private:
+		Const std::string op_bool_not_= "nao";
+	public:
+		UnitaryLogicalOperatorRule1(){}
+		UnitaryLogicalOperatorRule1():UnitaryLogicalOperator(){}
+		virtual ~UnitaryLogicalOperatorRule1()
+		{
+		}
+		UnitaryLogicalOperatorRule1(const UnitaryLogicalOperatorRule1& unitarylogicaloperator):UnitaryLogicalOperator(unitarylogicaloperator){}
+		std::string op_bool_not const ()
+		{
+			return op_bool_not_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif
