@@ -2,29 +2,43 @@
 #define LOCALBODYRULE1_H
 
 #include "LocalBody.h"
+#include "Line.h"
+#include "LocalBody.h"
 
-class LocalBodyRule1 : public LocalBody{
+class LocalBodyRule1 : public LocalBody
+{
 	private:
-		LocalBody* localBody_;
+		Line* line_;
+		Const char a_semicolon_= ';';
+		LocalBody* localbody_;
 	public:
-		LocalBodyRule1():localBody_(NULL)
-		{}
-		LocalBodyRule1(Lines& Lines,LocalBody& localBody):LocalBody(localBody),localBody_(localBody)
-		{}
-		virtual	~LocalBodyRule1()
+		LocalBodyRule1(){}
+		LocalBodyRule1( Line* line,LocalBody* localbody):LocalBody(),line_(line),localbody_(localbody){}
+		virtual ~LocalBodyRule1()
 		{
-			delete localBody_;
+			delete line;
+			delete localbody;
 		}
-		LocalBodyRule1(const LocalBodyRule1& t): localBody_(t->localBody_), LocalBody(t)
-		{}	
-		void set_LocalBody_(LocalBody* localBody)
+		LocalBodyRule1(const LocalBodyRule1& localbody):LocalBody(localbody),line_(localbody->line_),localbody_(localbody->localbody_){}
+		void set_line(Line* line)
 		{
-			localBody_ = localBody;
+			line_ = line;
 		}
-		const LocalBody* get_LocalBody_() const
+		const Line line const ()
 		{
-			return LocalBody_;
+			return line_;
+		}
+		char a_semicolon const ()
+		{
+			return a_semicolon_;
+		}
+		void set_localbody(LocalBody* localbody)
+		{
+			localbody_ = localbody;
+		}
+		const LocalBody localbody const ()
+		{
+			return localbody_;
 		}
 }
-
 #endif

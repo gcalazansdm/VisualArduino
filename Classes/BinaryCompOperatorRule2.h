@@ -1,14 +1,22 @@
-#ifndef BINARYCOMPOPERATORRULE2_h
-#define BINARYCOMPOPERATORRULE2_h
-#include "BinaryCompOperator.h"classBinaryCompOperatorRule2: public BinaryCompOperator
+#ifndef BINARYCOMPOPERATORRULE2_H
+#define BINARYCOMPOPERATORRULE2_H
+
+#include "BinaryCompOperator.h"
+
+class BinaryCompOperatorRule2 : public BinaryCompOperator
 {
-	 private:
-		 OP_BOOL_LESS op_bool_less_;
-	 public:
-		 BinaryCompOperator(){}
-		 BinaryCompOperator(){}
-		 virtual ~BinaryCompOperator(){}
-		 BinaryCompOperator(const BinaryCompOperator& binarycompoperator):BinaryCompOperator(){}
+	private:
+		Const char op_bool_less_= '<';
+	public:
+		BinaryCompOperatorRule2(){}
+		BinaryCompOperatorRule2( ):BinaryCompOperator(){}
+		virtual ~BinaryCompOperatorRule2()
+		{
+		}
+		BinaryCompOperatorRule2(const BinaryCompOperatorRule2& binarycompoperator):BinaryCompOperator(binarycompoperator){}
+		char op_bool_less const ()
+		{
+			return op_bool_less_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

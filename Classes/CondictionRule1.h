@@ -1,61 +1,28 @@
-#ifndef CondictionRule1_H
-#define CondictionRule1_H
+#ifndef CONDICTIONRULE1_H
+#define CONDICTIONRULE1_H
 
 #include "Condiction.h"
-#include "VariablesTypes.h"
+#include "SelectionClause.h"
 
 class CondictionRule1 : public Condiction
 {
 	private:
-		 function_ = "funcao";
+		SelectionClause* selectionclause_;
 	public:
 		CondictionRule1(){}
-		CondictionRule1(std::string id, Parameters& parametros,VariablesTypes& variablesTypes): id_(id), parametros_(parametros),variablesTypes_(variablesTypes)
-		{}
-		virtual	~CondictionRule1(){
-			delete id_;
-			delete parametros_;
-			delete variablesTypes_;
-			delete function;
-		}
-		CondictionRule1(const CondictionRule1& t): id_(t->id_), parametros_(t->parametros_),variablesTypes_(t->variablesTypes_)
-		{}
-		void set_id_(std::string& id)
-        {
-            id_ = id;
-        }
-		void set_variablesTypes_(VariablesTypes& variablesTypes)
-        {
-            variablesTypes_ = variablesTypes;
-        }void set_parametros_(Parameters& parametros)
-        {
-            parametros_ = parametros;
-        }
-		const std::string function_() const 
+		CondictionRule1( SelectionClause* selectionclause):Condiction(),selectionclause_(selectionclause){}
+		virtual ~CondictionRule1()
 		{
-			return function;
+			delete selectionclause;
 		}
-		const std::string id_() const 
+		CondictionRule1(const CondictionRule1& condiction):Condiction(condiction),selectionclause_(condiction->selectionclause_){}
+		void set_selectionclause(SelectionClause* selectionclause)
 		{
-			return function;
+			selectionclause_ = selectionclause;
 		}
-		const Parameters* parametros_() const 
+		const SelectionClause selectionclause const ()
 		{
-			return parametros_;
+			return selectionclause_;
 		}
-		const char parEsq_() const 
-		{
-			return parEsq;
-		}
-		const char parDir_() const 
-		{
-			return parDir;
-		}
-		const VariablesTypes* variablesTypes_() const 
-		{
-			return variablesTypes_;
-		}
-
 }
-
 #endif

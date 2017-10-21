@@ -1,32 +1,65 @@
-#ifndef FUCTIONRULE1_H
-#define FUCTIONRULE1_H
+#ifndef FUNCTIONRULE1_H
+#define FUNCTIONRULE1_H
 
-#include "LocalBody.h"
 #include "Function.h"
+#include <string>
+#include "VariablesTypes.h"
+#include "Parameters.h"
+#include "Body.h"
 
 class FunctionRule1 : public Function
 {
 	private:
-		const char L_KEY = "{";
-		LocalBody* localBody_;
-		const char R_KEY = "}";
+		Const std::string t_func_= "funcao";
+		VariablesTypes* variablestypes_;
+		L_ID l_id_;
+		Parameters* parameters_;
+		Body* body_;
 	public:
 		FunctionRule1(){}
-		FunctionRule1(std::string id, Parameters& parametros,VariablesTypes& variablesType, LocalBody& localBody):Function(id,parametros,variablesType), localBody_(localBody){}
-		virtual	~FunctionRule1(){
-			delete localBody_;
+		FunctionRule1( VariablesTypes* variablestypes,l_id l_id,Parameters* parameters,Body* body):Function(),variablestypes_(variablestypes),l_id_(l_id),parameters_(parameters),body_(body){}
+		virtual ~FunctionRule1()
+		{
+			delete variablestypes;
+			delete parameters;
+			delete body;
 		}
-		FunctionRule1(const FunctionRule1& t): Function(t) f_(t.f_)
-		{}
-		void set_localBody_(LocalBody& localBody_)
+		FunctionRule1(const FunctionRule1& function):Function(function),variablestypes_(function->variablestypes_),parameters_(function->parameters_),body_(function->body_){}
+		std::string t_func const ()
 		{
-            localBody_ = localBody;
-        } 
-		const LocalBody* localBody_() const 
+			return t_func_;
+		}
+		void set_variablestypes(VariablesTypes* variablestypes)
 		{
-			return localBody_;
-		}				
+			variablestypes_ = variablestypes;
+		}
+		const VariablesTypes variablestypes const ()
+		{
+			return variablestypes_;
+		}
+		void set_l_id(L_ID* l_id)
+		{
+			l_id_ = l_id;
+		}
+		L_ID l_id const ()
+		{
+			return l_id_;
+		}
+		void set_parameters(Parameters* parameters)
+		{
+			parameters_ = parameters;
+		}
+		const Parameters parameters const ()
+		{
+			return parameters_;
+		}
+		void set_body(Body* body)
+		{
+			body_ = body;
+		}
+		const Body body const ()
+		{
+			return body_;
+		}
 }
-
-
 #endif

@@ -1,14 +1,28 @@
-#ifndef SELECTIONCLAUSERULE1_h
-#define SELECTIONCLAUSERULE1_h
-#include "SelectionClause.h"classSelectionClauseRule1: public SelectionClause
+#ifndef SELECTIONCLAUSERULE1_H
+#define SELECTIONCLAUSERULE1_H
+
+#include "SelectionClause.h"
+#include "IfClause.h"
+
+class SelectionClauseRule1 : public SelectionClause
 {
-	 private:
-		 IfClause ifclause_;
-	 public:
-		 SelectionClause(){}
-		 SelectionClause(){}
-		 virtual ~SelectionClause(){}
-		 SelectionClause(const SelectionClause& selectionclause):SelectionClause(){}
+	private:
+		IfClause* ifclause_;
+	public:
+		SelectionClauseRule1(){}
+		SelectionClauseRule1( IfClause* ifclause):SelectionClause(),ifclause_(ifclause){}
+		virtual ~SelectionClauseRule1()
+		{
+			delete ifclause;
+		}
+		SelectionClauseRule1(const SelectionClauseRule1& selectionclause):SelectionClause(selectionclause),ifclause_(selectionclause->ifclause_){}
+		void set_ifclause(IfClause* ifclause)
+		{
+			ifclause_ = ifclause;
+		}
+		const IfClause ifclause const ()
+		{
+			return ifclause_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

@@ -1,14 +1,22 @@
-#ifndef BINARYCOMPOPERATORRULE1_h
-#define BINARYCOMPOPERATORRULE1_h
-#include "BinaryCompOperator.h"classBinaryCompOperatorRule1: public BinaryCompOperator
+#ifndef BINARYCOMPOPERATORRULE1_H
+#define BINARYCOMPOPERATORRULE1_H
+
+#include "BinaryCompOperator.h"
+
+class BinaryCompOperatorRule1 : public BinaryCompOperator
 {
-	 private:
-		 OP_BOOL_GRE op_bool_gre_;
-	 public:
-		 BinaryCompOperator(){}
-		 BinaryCompOperator(){}
-		 virtual ~BinaryCompOperator(){}
-		 BinaryCompOperator(const BinaryCompOperator& binarycompoperator):BinaryCompOperator(){}
+	private:
+		Const char op_bool_gre_= '>';
+	public:
+		BinaryCompOperatorRule1(){}
+		BinaryCompOperatorRule1( ):BinaryCompOperator(){}
+		virtual ~BinaryCompOperatorRule1()
+		{
+		}
+		BinaryCompOperatorRule1(const BinaryCompOperatorRule1& binarycompoperator):BinaryCompOperator(binarycompoperator){}
+		char op_bool_gre const ()
+		{
+			return op_bool_gre_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

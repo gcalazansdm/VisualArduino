@@ -1,12 +1,14 @@
-#ifndef FORCLAUSE_h
-#define FORCLAUSE_h
-class ForClause: public Node
+#ifndef FORCLAUSE_H
+#define FORCLAUSE_H
+
+#include "Node.h"
+
+class ForClause : public Node
 {
-	 private:
-	 public:
-		 ForClause(){}
-		 virtual ~ForClause(){}
-		 ForClause(const ForClause& forclause):ForClause(){}
+	private:
+	public:
+		ForClause():Node(){}
+		virtual ~ForClause(){}
+		ForClause(const ForClause& forclause):ForClause(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

@@ -1,12 +1,14 @@
-#ifndef VALUES_h
-#define VALUES_h
-class Values: public Node
+#ifndef VALUES_H
+#define VALUES_H
+
+#include "Node.h"
+
+class Values : public Node
 {
-	 private:
-	 public:
-		 Values(){}
-		 virtual ~Values(){}
-		 Values(const Values& values):Values(){}
+	private:
+	public:
+		Values():Node(){}
+		virtual ~Values(){}
+		Values(const Values& values):Values(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

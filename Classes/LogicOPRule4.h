@@ -1,16 +1,38 @@
-#ifndef LOGICOPRULE4_h
-#define LOGICOPRULE4_h
-#include "LogicOP.h"classLogicOPRule4: public LogicOP
+#ifndef LOGICOPRULE4_H
+#define LOGICOPRULE4_H
+
+#include "LogicOP.h"
+#include "LogicOP.h"
+
+class LogicOPRule4 : public LogicOP
 {
-	 private:
-		 A_LPAR a_lpar_;
-		 LogicOP logicop_;
-		 A_RPAR a_rpar_;
-	 public:
-		 LogicOP(){}
-		 LogicOP(){}
-		 virtual ~LogicOP(){}
-		 LogicOP(const LogicOP& logicop):LogicOP(){}
+	private:
+		Const char a_lpar_= '(';
+		LogicOP* logicop_;
+		Const char a_rpar_= ')';
+	public:
+		LogicOPRule4(){}
+		LogicOPRule4( LogicOP* logicop):LogicOP(),logicop_(logicop){}
+		virtual ~LogicOPRule4()
+		{
+			delete logicop;
+		}
+		LogicOPRule4(const LogicOPRule4& logicop):LogicOP(logicop),logicop_(logicop->logicop_){}
+		char a_lpar const ()
+		{
+			return a_lpar_;
+		}
+		void set_logicop(LogicOP* logicop)
+		{
+			logicop_ = logicop;
+		}
+		const LogicOP logicop const ()
+		{
+			return logicop_;
+		}
+		char a_rpar const ()
+		{
+			return a_rpar_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

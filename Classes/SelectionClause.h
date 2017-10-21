@@ -1,12 +1,14 @@
-#ifndef SELECTIONCLAUSE_h
-#define SELECTIONCLAUSE_h
-class SelectionClause: public Node
+#ifndef SELECTIONCLAUSE_H
+#define SELECTIONCLAUSE_H
+
+#include "Node.h"
+
+class SelectionClause : public Node
 {
-	 private:
-	 public:
-		 SelectionClause(){}
-		 virtual ~SelectionClause(){}
-		 SelectionClause(const SelectionClause& selectionclause):SelectionClause(){}
+	private:
+	public:
+		SelectionClause():Node(){}
+		virtual ~SelectionClause(){}
+		SelectionClause(const SelectionClause& selectionclause):SelectionClause(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

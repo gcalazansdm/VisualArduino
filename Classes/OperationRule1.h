@@ -1,14 +1,28 @@
-#ifndef OPERATIONRULE1_h
-#define OPERATIONRULE1_h
-#include "Operation.h"classOperationRule1: public Operation
+#ifndef OPERATIONRULE1_H
+#define OPERATIONRULE1_H
+
+#include "Operation.h"
+#include "Eq.h"
+
+class OperationRule1 : public Operation
 {
-	 private:
-		 Eq eq_;
-	 public:
-		 Operation(){}
-		 Operation(){}
-		 virtual ~Operation(){}
-		 Operation(const Operation& operation):Operation(){}
+	private:
+		Eq* eq_;
+	public:
+		OperationRule1(){}
+		OperationRule1( Eq* eq):Operation(),eq_(eq){}
+		virtual ~OperationRule1()
+		{
+			delete eq;
+		}
+		OperationRule1(const OperationRule1& operation):Operation(operation),eq_(operation->eq_){}
+		void set_eq(Eq* eq)
+		{
+			eq_ = eq;
+		}
+		const Eq eq const ()
+		{
+			return eq_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

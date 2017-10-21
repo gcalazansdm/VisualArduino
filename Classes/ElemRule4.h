@@ -1,14 +1,28 @@
-#ifndef ELEMRULE4_h
-#define ELEMRULE4_h
-#include "Elem.h"classElemRule4: public Elem
+#ifndef ELEMRULE4_H
+#define ELEMRULE4_H
+
+#include "Elem.h"
+#include "Values.h"
+
+class ElemRule4 : public Elem
 {
-	 private:
-		 Values values_;
-	 public:
-		 Elem(){}
-		 Elem(){}
-		 virtual ~Elem(){}
-		 Elem(const Elem& elem):Elem(){}
+	private:
+		Values* values_;
+	public:
+		ElemRule4(){}
+		ElemRule4( Values* values):Elem(),values_(values){}
+		virtual ~ElemRule4()
+		{
+			delete values;
+		}
+		ElemRule4(const ElemRule4& elem):Elem(elem),values_(elem->values_){}
+		void set_values(Values* values)
+		{
+			values_ = values;
+		}
+		const Values values const ()
+		{
+			return values_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

@@ -1,16 +1,44 @@
-#ifndef EQRULE1_h
-#define EQRULE1_h
-#include "Eq.h"classEqRule1: public Eq
+#ifndef EQRULE1_H
+#define EQRULE1_H
+
+#include "Eq.h"
+#include "Eq.h"
+#include "Factor.h"
+
+class EqRule1 : public Eq
 {
-	 private:
-		 Eq eq_;
-		 OP_SUM op_sum_;
-		 Factor factor_;
-	 public:
-		 Eq(){}
-		 Eq(){}
-		 virtual ~Eq(){}
-		 Eq(const Eq& eq):Eq(){}
+	private:
+		Eq* eq_;
+		Const char op_sum_= '+';
+		Factor* factor_;
+	public:
+		EqRule1(){}
+		EqRule1( Eq* eq,Factor* factor):Eq(),eq_(eq),factor_(factor){}
+		virtual ~EqRule1()
+		{
+			delete eq;
+			delete factor;
+		}
+		EqRule1(const EqRule1& eq):Eq(eq),eq_(eq->eq_),factor_(eq->factor_){}
+		void set_eq(Eq* eq)
+		{
+			eq_ = eq;
+		}
+		const Eq eq const ()
+		{
+			return eq_;
+		}
+		char op_sum const ()
+		{
+			return op_sum_;
+		}
+		void set_factor(Factor* factor)
+		{
+			factor_ = factor;
+		}
+		const Factor factor const ()
+		{
+			return factor_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

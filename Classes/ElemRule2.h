@@ -1,15 +1,33 @@
-#ifndef ELEMRULE2_h
-#define ELEMRULE2_h
-#include "Elem.h"classElemRule2: public Elem
+#ifndef ELEMRULE2_H
+#define ELEMRULE2_H
+
+#include "Elem.h"
+#include "Elem.h"
+
+class ElemRule2 : public Elem
 {
-	 private:
-		 OP_SUB op_sub_;
-		 Elem elem_;
-	 public:
-		 Elem(){}
-		 Elem(){}
-		 virtual ~Elem(){}
-		 Elem(const Elem& elem):Elem(){}
+	private:
+		Const char op_sub_= '-';
+		Elem* elem_;
+	public:
+		ElemRule2(){}
+		ElemRule2( Elem* elem):Elem(),elem_(elem){}
+		virtual ~ElemRule2()
+		{
+			delete elem;
+		}
+		ElemRule2(const ElemRule2& elem):Elem(elem),elem_(elem->elem_){}
+		char op_sub const ()
+		{
+			return op_sub_;
+		}
+		void set_elem(Elem* elem)
+		{
+			elem_ = elem;
+		}
+		const Elem elem const ()
+		{
+			return elem_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

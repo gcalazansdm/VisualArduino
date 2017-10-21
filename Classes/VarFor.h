@@ -1,12 +1,14 @@
-#ifndef VARFOR_h
-#define VARFOR_h
-class VarFor: public Node
+#ifndef VARFOR_H
+#define VARFOR_H
+
+#include "Node.h"
+
+class VarFor : public Node
 {
-	 private:
-	 public:
-		 VarFor(){}
-		 virtual ~VarFor(){}
-		 VarFor(const VarFor& varfor):VarFor(){}
+	private:
+	public:
+		VarFor():Node(){}
+		virtual ~VarFor(){}
+		VarFor(const VarFor& varfor):VarFor(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

@@ -1,12 +1,14 @@
-#ifndef BODY_h
-#define BODY_h
-class Body: public Node
+#ifndef BODY_H
+#define BODY_H
+
+#include "Node.h"
+
+class Body : public Node
 {
-	 private:
-	 public:
-		 Body(){}
-		 virtual ~Body(){}
-		 Body(const Body& body):Body(){}
+	private:
+	public:
+		Body():Node(){}
+		virtual ~Body(){}
+		Body(const Body& body):Body(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

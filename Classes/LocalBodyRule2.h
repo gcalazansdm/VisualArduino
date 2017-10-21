@@ -2,18 +2,32 @@
 #define LOCALBODYRULE2_H
 
 #include "LocalBody.h"
+#include "Line.h"
 
-class LocalBodyRule2 : public LocalBody{
+class LocalBodyRule2 : public LocalBody
+{
 	private:
+		Line* line_;
+		Const char a_semicolon_= ';';
 	public:
-		LocalBodyRule2():
-		{}
-		LocalBodyRule2(Lines& lines):LocalBody(lines)
-		{}
-		virtual	~LocalBodyRule2()
-		{}
-		LocalBodyRule2(const LocalBodyRule2& t): LocalBody(t)
-		{}	
+		LocalBodyRule2(){}
+		LocalBodyRule2( Line* line):LocalBody(),line_(line){}
+		virtual ~LocalBodyRule2()
+		{
+			delete line;
+		}
+		LocalBodyRule2(const LocalBodyRule2& localbody):LocalBody(localbody),line_(localbody->line_){}
+		void set_line(Line* line)
+		{
+			line_ = line;
+		}
+		const Line line const ()
+		{
+			return line_;
+		}
+		char a_semicolon const ()
+		{
+			return a_semicolon_;
+		}
 }
-
 #endif

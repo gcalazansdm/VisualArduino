@@ -7,26 +7,27 @@
 class MainBodyRule4 : public MainBody
 {
 	private:
-		Var* v_;
-		const char semicolon_ = ';';
+		Var* var_;
+		Const char a_semicolon_= ';';
 	public:
-		MainBodyRule4():v_(NULL){}
-		MainBodyRule4(Var* v): v_(v){}
-		virtual	~MainBodyRule4(){}
-		MainBodyRule4(const MainBodyRule4& t): v_(t.v)
-		{}
-		void set_V_(Var& v)
+		MainBodyRule4(){}
+		MainBodyRule4( Var* var):MainBody(),var_(var){}
+		virtual ~MainBodyRule4()
 		{
-            v_ = v;
-        }
-		const Var* v_() const 
-		{
-			return v_;
+			delete var;
 		}
-		const char semicolon_() const 
+		MainBodyRule4(const MainBodyRule4& mainbody):MainBody(mainbody),var_(mainbody->var_){}
+		void set_var(Var* var)
 		{
-			return semicolon_;
-		}		
+			var_ = var;
+		}
+		const Var var const ()
+		{
+			return var_;
+		}
+		char a_semicolon const ()
+		{
+			return a_semicolon_;
+		}
 }
-
 #endif

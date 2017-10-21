@@ -3,38 +3,37 @@
 
 #include "MainBody.h"
 #include "Function.h"
+#include "MainBody.h"
 
 class MainBodyRule1 : public MainBody
 {
 	private:
-		Function* f_;
-		MainBody* mainBody_;
+		Function* function_;
+		MainBody* mainbody_;
 	public:
-		MainBodyRule1():f_(NULL) mainBody_(NULL){}
-		MainBodyRule1(Function* f,MainBody* mainBody): f_(f), mainBody_(mainBody){}
-		virtual	~MainBodyRule1()
+		MainBodyRule1(){}
+		MainBodyRule1( Function* function,MainBody* mainbody):MainBody(),function_(function),mainbody_(mainbody){}
+		virtual ~MainBodyRule1()
 		{
-			delete f_;
-			delete mainBody_;
+			delete function;
+			delete mainbody;
 		}
-		MainBodyRule1(const MainBodyRule1& t): MainBody(t), f_(t.f_), mainBody_(t->mainBody_)
-		{}
-		void set_F(Function& f)
+		MainBodyRule1(const MainBodyRule1& mainbody):MainBody(mainbody),function_(mainbody->function_),mainbody_(mainbody->mainbody_){}
+		void set_function(Function* function)
 		{
-            f_ = f;
-        }
-        void set_MainBody(MainBody& mainBody)
-        {
-            mainBody_ = mainBody;
-        }
-		const Function* f() const 
+			function_ = function;
+		}
+		const Function function const ()
 		{
-			return f_;
-		}		
-		const MainBody* mainBody() const 
+			return function_;
+		}
+		void set_mainbody(MainBody* mainbody)
 		{
-			return mainBody_;
-		}		
+			mainbody_ = mainbody;
+		}
+		const MainBody mainbody const ()
+		{
+			return mainbody_;
+		}
 }
-
 #endif

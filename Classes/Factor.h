@@ -1,12 +1,14 @@
-#ifndef FACTOR_h
-#define FACTOR_h
-class Factor: public Node
+#ifndef FACTOR_H
+#define FACTOR_H
+
+#include "Node.h"
+
+class Factor : public Node
 {
-	 private:
-	 public:
-		 Factor(){}
-		 virtual ~Factor(){}
-		 Factor(const Factor& factor):Factor(){}
+	private:
+	public:
+		Factor():Node(){}
+		virtual ~Factor(){}
+		Factor(const Factor& factor):Factor(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

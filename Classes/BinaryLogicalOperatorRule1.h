@@ -1,14 +1,23 @@
-#ifndef BINARYLOGICALOPERATORRULE1_h
-#define BINARYLOGICALOPERATORRULE1_h
-#include "BinaryLogicalOperator.h"classBinaryLogicalOperatorRule1: public BinaryLogicalOperator
+#ifndef BINARYLOGICALOPERATORRULE1_H
+#define BINARYLOGICALOPERATORRULE1_H
+
+#include "BinaryLogicalOperator.h"
+#include <string>
+
+class BinaryLogicalOperatorRule1 : public BinaryLogicalOperator
 {
-	 private:
-		 OP_BOOL_AND op_bool_and_;
-	 public:
-		 BinaryLogicalOperator(){}
-		 BinaryLogicalOperator(){}
-		 virtual ~BinaryLogicalOperator(){}
-		 BinaryLogicalOperator(const BinaryLogicalOperator& binarylogicaloperator):BinaryLogicalOperator(){}
+	private:
+		Const std::string op_bool_and_= "e";
+	public:
+		BinaryLogicalOperatorRule1(){}
+		BinaryLogicalOperatorRule1():BinaryLogicalOperator(){}
+		virtual ~BinaryLogicalOperatorRule1()
+		{
+		}
+		BinaryLogicalOperatorRule1(const BinaryLogicalOperatorRule1& binarylogicaloperator):BinaryLogicalOperator(binarylogicaloperator){}
+		std::string op_bool_and const ()
+		{
+			return op_bool_and_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

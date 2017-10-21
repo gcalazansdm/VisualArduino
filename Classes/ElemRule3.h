@@ -1,16 +1,38 @@
-#ifndef ELEMRULE3_h
-#define ELEMRULE3_h
-#include "Elem.h"classElemRule3: public Elem
+#ifndef ELEMRULE3_H
+#define ELEMRULE3_H
+
+#include "Elem.h"
+#include "Eq.h"
+
+class ElemRule3 : public Elem
 {
-	 private:
-		 A_LPAR a_lpar_;
-		 Eq eq_;
-		 A_RPAR a_rpar_;
-	 public:
-		 Elem(){}
-		 Elem(){}
-		 virtual ~Elem(){}
-		 Elem(const Elem& elem):Elem(){}
+	private:
+		Const char a_lpar_= '(';
+		Eq* eq_;
+		Const char a_rpar_= ')';
+	public:
+		ElemRule3(){}
+		ElemRule3( Eq* eq):Elem(),eq_(eq){}
+		virtual ~ElemRule3()
+		{
+			delete eq;
+		}
+		ElemRule3(const ElemRule3& elem):Elem(elem),eq_(elem->eq_){}
+		char a_lpar const ()
+		{
+			return a_lpar_;
+		}
+		void set_eq(Eq* eq)
+		{
+			eq_ = eq;
+		}
+		const Eq eq const ()
+		{
+			return eq_;
+		}
+		char a_rpar const ()
+		{
+			return a_rpar_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

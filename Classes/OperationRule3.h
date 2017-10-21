@@ -1,14 +1,28 @@
-#ifndef OPERATIONRULE3_h
-#define OPERATIONRULE3_h
-#include "Operation.h"classOperationRule3: public Operation
+#ifndef OPERATIONRULE3_H
+#define OPERATIONRULE3_H
+
+#include "Operation.h"
+#include "UnitaryOperators.h"
+
+class OperationRule3 : public Operation
 {
-	 private:
-		 UnitaryOperators unitaryoperators_;
-	 public:
-		 Operation(){}
-		 Operation(){}
-		 virtual ~Operation(){}
-		 Operation(const Operation& operation):Operation(){}
+	private:
+		UnitaryOperators* unitaryoperators_;
+	public:
+		OperationRule3(){}
+		OperationRule3( UnitaryOperators* unitaryoperators):Operation(),unitaryoperators_(unitaryoperators){}
+		virtual ~OperationRule3()
+		{
+			delete unitaryoperators;
+		}
+		OperationRule3(const OperationRule3& operation):Operation(operation),unitaryoperators_(operation->unitaryoperators_){}
+		void set_unitaryoperators(UnitaryOperators* unitaryoperators)
+		{
+			unitaryoperators_ = unitaryoperators;
+		}
+		const UnitaryOperators unitaryoperators const ()
+		{
+			return unitaryoperators_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

@@ -1,12 +1,14 @@
-#ifndef BINARYLOGICALOPERATOR_h
-#define BINARYLOGICALOPERATOR_h
-class BinaryLogicalOperator: public Node
+#ifndef BINARYLOGICALOPERATOR_H
+#define BINARYLOGICALOPERATOR_H
+
+#include "Node.h"
+
+class BinaryLogicalOperator : public Node
 {
-	 private:
-	 public:
-		 BinaryLogicalOperator(){}
-		 virtual ~BinaryLogicalOperator(){}
-		 BinaryLogicalOperator(const BinaryLogicalOperator& binarylogicaloperator):BinaryLogicalOperator(){}
+	private:
+	public:
+		BinaryLogicalOperator():Node(){}
+		virtual ~BinaryLogicalOperator(){}
+		BinaryLogicalOperator(const BinaryLogicalOperator& binarylogicaloperator):BinaryLogicalOperator(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

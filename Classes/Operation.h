@@ -1,12 +1,14 @@
-#ifndef OPERATION_h
-#define OPERATION_h
-class Operation: public Node
+#ifndef OPERATION_H
+#define OPERATION_H
+
+#include "Node.h"
+
+class Operation : public Node
 {
-	 private:
-	 public:
-		 Operation(){}
-		 virtual ~Operation(){}
-		 Operation(const Operation& operation):Operation(){}
+	private:
+	public:
+		Operation():Node(){}
+		virtual ~Operation(){}
+		Operation(const Operation& operation):Operation(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

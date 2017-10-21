@@ -1,12 +1,14 @@
-#ifndef ELSECLAUSES_h
-#define ELSECLAUSES_h
-class ElseClauses: public Node
+#ifndef ELSECLAUSES_H
+#define ELSECLAUSES_H
+
+#include "Node.h"
+
+class ElseClauses : public Node
 {
-	 private:
-	 public:
-		 ElseClauses(){}
-		 virtual ~ElseClauses(){}
-		 ElseClauses(const ElseClauses& elseclauses):ElseClauses(){}
+	private:
+	public:
+		ElseClauses():Node(){}
+		virtual ~ElseClauses(){}
+		ElseClauses(const ElseClauses& elseclauses):ElseClauses(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

@@ -1,14 +1,23 @@
-#ifndef BINARYLOGICALOPERATORRULE2_h
-#define BINARYLOGICALOPERATORRULE2_h
-#include "BinaryLogicalOperator.h"classBinaryLogicalOperatorRule2: public BinaryLogicalOperator
+#ifndef BINARYLOGICALOPERATORRULE2_H
+#define BINARYLOGICALOPERATORRULE2_H
+
+#include "BinaryLogicalOperator.h"
+#include <string>
+
+class BinaryLogicalOperatorRule2 : public BinaryLogicalOperator
 {
-	 private:
-		 OP_BOOL_OR op_bool_or_;
-	 public:
-		 BinaryLogicalOperator(){}
-		 BinaryLogicalOperator(){}
-		 virtual ~BinaryLogicalOperator(){}
-		 BinaryLogicalOperator(const BinaryLogicalOperator& binarylogicaloperator):BinaryLogicalOperator(){}
+	private:
+		Const std::string op_bool_or_= "ou";
+	public:
+		BinaryLogicalOperatorRule2(){}
+		BinaryLogicalOperatorRule2():BinaryLogicalOperator(){}
+		virtual ~BinaryLogicalOperatorRule2()
+		{
+		}
+		BinaryLogicalOperatorRule2(const BinaryLogicalOperatorRule2& binarylogicaloperator):BinaryLogicalOperator(binarylogicaloperator){}
+		std::string op_bool_or const ()
+		{
+			return op_bool_or_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

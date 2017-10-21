@@ -1,12 +1,32 @@
-#ifndef ELSECLAUSE_h
-#define ELSECLAUSE_h
-class ElseClause: public Node
+#ifndef ELSECLAUSE_H
+#define ELSECLAUSE_H
+
+#include "Node.h"
+
+class ElseClause : public Node
 {
-	 private:
-	 public:
-		 ElseClause(){}
-		 virtual ~ElseClause(){}
-		 ElseClause(const ElseClause& elseclause):ElseClause(){}
+	private:
+		Const std::string t_else_= "entao";
+		Command* command_;
+	public:
+		ElseClause(){}
+		ElseClause( Command* command):Node(),command_(command){}
+		virtual ~ElseClause()
+		{
+			delete command;
+		}
+		ElseClause(const ElseClause& elseclause):command_(elseclause->command_){}
+		std::string t_else const ()
+		{
+			return t_else_;
+		}
+		void set_command(Command* command)
+		{
+			command_ = command;
+		}
+		const Command command const ()
+		{
+			return command_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

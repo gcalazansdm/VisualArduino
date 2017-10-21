@@ -1,15 +1,39 @@
-#ifndef SELECTIONCLAUSERULE2_h
-#define SELECTIONCLAUSERULE2_h
-#include "SelectionClause.h"classSelectionClauseRule2: public SelectionClause
+#ifndef SELECTIONCLAUSERULE2_H
+#define SELECTIONCLAUSERULE2_H
+
+#include "SelectionClause.h"
+#include "IfClause.h"
+#include "ElseClauses.h"
+
+class SelectionClauseRule2 : public SelectionClause
 {
-	 private:
-		 IfClause ifclause_;
-		 ElseClauses elseclauses_;
-	 public:
-		 SelectionClause(){}
-		 SelectionClause(){}
-		 virtual ~SelectionClause(){}
-		 SelectionClause(const SelectionClause& selectionclause):SelectionClause(){}
+	private:
+		IfClause* ifclause_;
+		ElseClauses* elseclauses_;
+	public:
+		SelectionClauseRule2(){}
+		SelectionClauseRule2( IfClause* ifclause,ElseClauses* elseclauses):SelectionClause(),ifclause_(ifclause),elseclauses_(elseclauses){}
+		virtual ~SelectionClauseRule2()
+		{
+			delete ifclause;
+			delete elseclauses;
+		}
+		SelectionClauseRule2(const SelectionClauseRule2& selectionclause):SelectionClause(selectionclause),ifclause_(selectionclause->ifclause_),elseclauses_(selectionclause->elseclauses_){}
+		void set_ifclause(IfClause* ifclause)
+		{
+			ifclause_ = ifclause;
+		}
+		const IfClause ifclause const ()
+		{
+			return ifclause_;
+		}
+		void set_elseclauses(ElseClauses* elseclauses)
+		{
+			elseclauses_ = elseclauses;
+		}
+		const ElseClauses elseclauses const ()
+		{
+			return elseclauses_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

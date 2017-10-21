@@ -1,14 +1,22 @@
-#ifndef VARIABLESTYPESRULE6_h
-#define VARIABLESTYPESRULE6_h
-#include "VariablesTypes.h"classVariablesTypesRule6: public VariablesTypes
+#ifndef VARIABLESTYPESRULE6_H
+#define VARIABLESTYPESRULE6_H
+
+#include "VariablesTypes.h"
+
+class VariablesTypesRule6 : public VariablesTypes
 {
-	 private:
-		 T_STRING t_string_;
-	 public:
-		 VariablesTypes(){}
-		 VariablesTypes(){}
-		 virtual ~VariablesTypes(){}
-		 VariablesTypes(const VariablesTypes& variablestypes):VariablesTypes(){}
+	private:
+		Const std::string t_string_= string;
+	public:
+		VariablesTypesRule6(){}
+		VariablesTypesRule6():VariablesTypes(){}
+		virtual ~VariablesTypesRule6()
+		{
+		}
+		VariablesTypesRule6(const VariablesTypesRule6& variablestypes):VariablesTypes(variablestypes){}
+		std::string t_string const ()
+		{
+			return t_string_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

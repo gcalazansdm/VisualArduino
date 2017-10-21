@@ -1,12 +1,14 @@
-#ifndef IFELSECLAUSES_h
-#define IFELSECLAUSES_h
-class IfElseClauses: public Node
+#ifndef IFELSECLAUSES_H
+#define IFELSECLAUSES_H
+
+#include "Node.h"
+
+class IfElseClauses : public Node
 {
-	 private:
-	 public:
-		 IfElseClauses(){}
-		 virtual ~IfElseClauses(){}
-		 IfElseClauses(const IfElseClauses& ifelseclauses):IfElseClauses(){}
+	private:
+	public:
+		IfElseClauses():Node(){}
+		virtual ~IfElseClauses(){}
+		IfElseClauses(const IfElseClauses& ifelseclauses):IfElseClauses(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

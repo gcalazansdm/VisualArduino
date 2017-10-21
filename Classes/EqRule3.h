@@ -1,14 +1,28 @@
-#ifndef EQRULE3_h
-#define EQRULE3_h
-#include "Eq.h"classEqRule3: public Eq
+#ifndef EQRULE3_H
+#define EQRULE3_H
+
+#include "Eq.h"
+#include "Factor.h"
+
+class EqRule3 : public Eq
 {
-	 private:
-		 Factor factor_;
-	 public:
-		 Eq(){}
-		 Eq(){}
-		 virtual ~Eq(){}
-		 Eq(const Eq& eq):Eq(){}
+	private:
+		Factor* factor_;
+	public:
+		EqRule3(){}
+		EqRule3( Factor* factor):Eq(),factor_(factor){}
+		virtual ~EqRule3()
+		{
+			delete factor;
+		}
+		EqRule3(const EqRule3& eq):Eq(eq),factor_(eq->factor_){}
+		void set_factor(Factor* factor)
+		{
+			factor_ = factor;
+		}
+		const Factor factor const ()
+		{
+			return factor_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

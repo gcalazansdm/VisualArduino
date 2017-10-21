@@ -1,12 +1,14 @@
-#ifndef ELEM_h
-#define ELEM_h
-class Elem: public Node
+#ifndef ELEM_H
+#define ELEM_H
+
+#include "Node.h"
+
+class Elem : public Node
 {
-	 private:
-	 public:
-		 Elem(){}
-		 virtual ~Elem(){}
-		 Elem(const Elem& elem):Elem(){}
+	private:
+	public:
+		Elem():Node(){}
+		virtual ~Elem(){}
+		Elem(const Elem& elem):Elem(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

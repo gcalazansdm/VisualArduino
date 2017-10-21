@@ -7,24 +7,22 @@
 class MainBodyRule3 : public MainBody
 {
 	private:
-		Function* f_;
+		Function* function_;
 	public:
-		MainBodyRule3():f_(NULL){}
-		MainBodyRule3(Function* f): f_(f){}
-		virtual	~MainBodyRule3(){
-			delete f_;
+		MainBodyRule3(){}
+		MainBodyRule3( Function* function):MainBody(),function_(function){}
+		virtual ~MainBodyRule3()
+		{
+			delete function;
 		}
-		MainBodyRule3(const MainBodyRule3& t): f_(t.f_), MainBody(t)
-		{}
-		void set_F_(Function& f)
+		MainBodyRule3(const MainBodyRule3& mainbody):MainBody(mainbody),function_(mainbody->function_){}
+		void set_function(Function* function)
 		{
-            f_ = f;
-        }
-		const Function* f_() const 
+			function_ = function;
+		}
+		const Function function const ()
 		{
-			return f_;
-		}		
+			return function_;
+		}
 }
-
-
 #endif

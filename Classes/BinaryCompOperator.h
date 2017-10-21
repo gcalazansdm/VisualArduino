@@ -1,12 +1,14 @@
-#ifndef BINARYCOMPOPERATOR_h
-#define BINARYCOMPOPERATOR_h
-class BinaryCompOperator: public Node
+#ifndef BINARYCOMPOPERATOR_H
+#define BINARYCOMPOPERATOR_H
+
+#include "Node.h"
+
+class BinaryCompOperator : public Node
 {
-	 private:
-	 public:
-		 BinaryCompOperator(){}
-		 virtual ~BinaryCompOperator(){}
-		 BinaryCompOperator(const BinaryCompOperator& binarycompoperator):BinaryCompOperator(){}
+	private:
+	public:
+		BinaryCompOperator():Node(){}
+		virtual ~BinaryCompOperator(){}
+		BinaryCompOperator(const BinaryCompOperator& binarycompoperator):BinaryCompOperator(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

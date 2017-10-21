@@ -1,14 +1,28 @@
-#ifndef ELSECLAUSESRULE2_h
-#define ELSECLAUSESRULE2_h
-#include "ElseClauses.h"classElseClausesRule2: public ElseClauses
+#ifndef ELSECLAUSESRULE2_H
+#define ELSECLAUSESRULE2_H
+
+#include "ElseClauses.h"
+#include "ElseClause.h"
+
+class ElseClausesRule2 : public ElseClauses
 {
-	 private:
-		 ElseClause elseclause_;
-	 public:
-		 ElseClauses(){}
-		 ElseClauses(){}
-		 virtual ~ElseClauses(){}
-		 ElseClauses(const ElseClauses& elseclauses):ElseClauses(){}
+	private:
+		ElseClause* elseclause_;
+	public:
+		ElseClausesRule2(){}
+		ElseClausesRule2( ElseClause* elseclause):ElseClauses(),elseclause_(elseclause){}
+		virtual ~ElseClausesRule2()
+		{
+			delete elseclause;
+		}
+		ElseClausesRule2(const ElseClausesRule2& elseclauses):ElseClauses(elseclauses),elseclause_(elseclauses->elseclause_){}
+		void set_elseclause(ElseClause* elseclause)
+		{
+			elseclause_ = elseclause;
+		}
+		const ElseClause elseclause const ()
+		{
+			return elseclause_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

@@ -1,14 +1,22 @@
-#ifndef VARIABLESTYPESRULE1_h
-#define VARIABLESTYPESRULE1_h
-#include "VariablesTypes.h"classVariablesTypesRule1: public VariablesTypes
+#ifndef VARIABLESTYPESRULE1_H
+#define VARIABLESTYPESRULE1_H
+
+#include "VariablesTypes.h"
+
+class VariablesTypesRule1 : public VariablesTypes
 {
-	 private:
-		 T_DOUBLE t_double_;
-	 public:
-		 VariablesTypes(){}
-		 VariablesTypes(){}
-		 virtual ~VariablesTypes(){}
-		 VariablesTypes(const VariablesTypes& variablestypes):VariablesTypes(){}
+	private:
+		Const Double t_double_= Double;
+	public:
+		VariablesTypesRule1(){}
+		VariablesTypesRule1( ):VariablesTypes(){}
+		virtual ~VariablesTypesRule1()
+		{
+		}
+		VariablesTypesRule1(const VariablesTypesRule1& variablestypes):VariablesTypes(variablestypes){}
+		Double t_double const ()
+		{
+			return t_double_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

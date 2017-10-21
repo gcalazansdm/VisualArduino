@@ -7,10 +7,8 @@ class Condiction : public Node
 {
 	private:
 	public:
-		Condiction()
-		{}
-		virtual	~Condiction()
-		{}
-		Condiction(const Condiction& t){}
+		Condiction():Node(){}
+		virtual ~Condiction(){}
+		Condiction(const Condiction& condiction):Condiction(){}
 }
 #endif

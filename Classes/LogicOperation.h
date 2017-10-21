@@ -1,12 +1,14 @@
-#ifndef LOGICOPERATION_h
-#define LOGICOPERATION_h
-class LogicOperation: public Node
+#ifndef LOGICOPERATION_H
+#define LOGICOPERATION_H
+
+#include "Node.h"
+
+class LogicOperation : public Node
 {
-	 private:
-	 public:
-		 LogicOperation(){}
-		 virtual ~LogicOperation(){}
-		 LogicOperation(const LogicOperation& logicoperation):LogicOperation(){}
+	private:
+	public:
+		LogicOperation():Node(){}
+		virtual ~LogicOperation(){}
+		LogicOperation(const LogicOperation& logicoperation):LogicOperation(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

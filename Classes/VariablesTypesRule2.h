@@ -1,14 +1,22 @@
-#ifndef VARIABLESTYPESRULE2_h
-#define VARIABLESTYPESRULE2_h
-#include "VariablesTypes.h"classVariablesTypesRule2: public VariablesTypes
+#ifndef VARIABLESTYPESRULE2_H
+#define VARIABLESTYPESRULE2_H
+
+#include "VariablesTypes.h"
+
+class VariablesTypesRule2 : public VariablesTypes
 {
-	 private:
-		 T_INT t_int_;
-	 public:
-		 VariablesTypes(){}
-		 VariablesTypes(){}
-		 virtual ~VariablesTypes(){}
-		 VariablesTypes(const VariablesTypes& variablestypes):VariablesTypes(){}
+	private:
+		Const int t_int_= int;
+	public:
+		VariablesTypesRule2(){}
+		VariablesTypesRule2( ):VariablesTypes(){}
+		virtual ~VariablesTypesRule2()
+		{
+		}
+		VariablesTypesRule2(const VariablesTypesRule2& variablestypes):VariablesTypes(variablestypes){}
+		int t_int const ()
+		{
+			return t_int_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

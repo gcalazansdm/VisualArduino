@@ -1,12 +1,14 @@
-#ifndef LOGICOP_h
-#define LOGICOP_h
-class LogicOP: public Node
+#ifndef LOGICOP_H
+#define LOGICOP_H
+
+#include "Node.h"
+
+class LogicOP : public Node
 {
-	 private:
-	 public:
-		 LogicOP(){}
-		 virtual ~LogicOP(){}
-		 LogicOP(const LogicOP& logicop):LogicOP(){}
+	private:
+	public:
+		LogicOP():Node(){}
+		virtual ~LogicOP(){}
+		LogicOP(const LogicOP& logicop):LogicOP(){}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

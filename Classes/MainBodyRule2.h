@@ -3,44 +3,42 @@
 
 #include "MainBody.h"
 #include "Var.h"
+#include "MainBody.h"
 
 class MainBodyRule2 : public MainBody
 {
 	private:
-		Var* v_;
-		MainBody* mainBody_;
-		const char semicolon_ = ';';
+		Var* var_;
+		Const char a_semicolon_= ';';
+		MainBody* mainbody_;
 	public:
-		MainBodyRule2():v_(NULL) mainBody_(NULL){}
-		MainBodyRule2(Var* v,MainBody* mainBody): v_(v), mainBody_(mainBody){}
-		virtual	~MainBodyRule2()
+		MainBodyRule2(){}
+		MainBodyRule2( Var* var,MainBody* mainbody):MainBody(),var_(var),mainbody_(mainbody){}
+		virtual ~MainBodyRule2()
 		{
-			delete v_;
-			delete mainBody_;
+			delete var;
+			delete mainbody;
 		}
-		MainBodyRule2(const MainBodyRule2& t): MainBody(t),v_(t.v_), mainBody_(t.mainBody_)
-		{}
-		void set_V(Var* v)
+		MainBodyRule2(const MainBodyRule2& mainbody):MainBody(mainbody),var_(mainbody->var_),mainbody_(mainbody->mainbody_){}
+		void set_var(Var* var)
 		{
-            v_ = v;
-        }
-        void set_mainBody(MainBody* mainBody)
-        {
-            mainBody_ = mainBody;
-        }
-		const Var* v() const 
-		{
-			return v_;
-		}		
-		const MainBody* mainBody_() const 
-		{
-			return mainBody_;
+			var_ = var;
 		}
-		const char semicolon_() const 
+		const Var var const ()
 		{
-			return semicolon_;
-		}		
+			return var_;
+		}
+		char a_semicolon const ()
+		{
+			return a_semicolon_;
+		}
+		void set_mainbody(MainBody* mainbody)
+		{
+			mainbody_ = mainbody;
+		}
+		const MainBody mainbody const ()
+		{
+			return mainbody_;
+		}
 }
-
-
 #endif

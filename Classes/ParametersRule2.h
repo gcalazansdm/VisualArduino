@@ -2,20 +2,27 @@
 #define PARAMETERSRULE2_H
 
 #include "Parameters.h"
+#include "Var.h"
 
-class ParametersRule2 : public Parameters{
+class ParametersRule2 : public Parameters
+{
 	private:
+		Var* var_;
 	public:
-		ParametersRule2():parameters_(NULL)
-		{}
-		ParametersRule2(Var& variavel):Parameters(variavel)
-		{}
-		virtual	~ParametersRule2()
+		ParametersRule2(){}
+		ParametersRule2( Var* var):Parameters(),var_(var){}
+		virtual ~ParametersRule2()
 		{
-			delete parameters_;
+			delete var;
 		}
-		ParametersRule2(const ParametersRule2& t): Parameters(t->variavel_)
-		{}	
+		ParametersRule2(const ParametersRule2& parameters):Parameters(parameters),var_(parameters->var_){}
+		void set_var(Var* var)
+		{
+			var_ = var;
+		}
+		const Var var const ()
+		{
+			return var_;
+		}
 }
-
 #endif

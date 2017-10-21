@@ -1,15 +1,27 @@
-#ifndef VARFORRULE3_h
-#define VARFORRULE3_h
-#include "VarFor.h"classVarForRule3: public VarFor
+#ifndef VARFORRULE3_H
+#define VARFORRULE3_H
+
+#include "VarFor.h"
+
+class VarForRule3 : public VarFor
 {
-	 private:
-		 A_LPAR a_lpar_;
-		 A_SEMICOLON a_semicolon_;
-	 public:
-		 VarFor(){}
-		 VarFor(){}
-		 virtual ~VarFor(){}
-		 VarFor(const VarFor& varfor):VarFor(){}
+	private:
+		Const char a_lpar_= '(';
+		Const char a_semicolon_= ';';
+	public:
+		VarForRule3(){}
+		VarForRule3():VarFor(){}
+		virtual ~VarForRule3()
+		{
+		}
+		VarForRule3(const VarForRule3& varfor):VarFor(varfor){}
+		char a_lpar const ()
+		{
+			return a_lpar_;
+		}
+		char a_semicolon const ()
+		{
+			return a_semicolon_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

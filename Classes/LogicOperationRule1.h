@@ -1,14 +1,28 @@
-#ifndef LOGICOPERATIONRULE1_h
-#define LOGICOPERATIONRULE1_h
-#include "LogicOperation.h"classLogicOperationRule1: public LogicOperation
+#ifndef LOGICOPERATIONRULE1_H
+#define LOGICOPERATIONRULE1_H
+
+#include "LogicOperation.h"
+#include "LogicOP.h"
+
+class LogicOperationRule1 : public LogicOperation
 {
-	 private:
-		 LogicOP logicop_;
-	 public:
-		 LogicOperation(){}
-		 LogicOperation(){}
-		 virtual ~LogicOperation(){}
-		 LogicOperation(const LogicOperation& logicoperation):LogicOperation(){}
+	private:
+		LogicOP* logicop_;
+	public:
+		LogicOperationRule1(){}
+		LogicOperationRule1( LogicOP* logicop):LogicOperation(),logicop_(logicop){}
+		virtual ~LogicOperationRule1()
+		{
+			delete logicop;
+		}
+		LogicOperationRule1(const LogicOperationRule1& logicoperation):LogicOperation(logicoperation),logicop_(logicoperation->logicop_){}
+		void set_logicop(LogicOP* logicop)
+		{
+			logicop_ = logicop;
+		}
+		const LogicOP logicop const ()
+		{
+			return logicop_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

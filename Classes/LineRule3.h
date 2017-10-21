@@ -1,14 +1,28 @@
-#ifndef LINERULE3_h
-#define LINERULE3_h
-#include "Line.h"classLineRule3: public Line
+#ifndef LINERULE3_H
+#define LINERULE3_H
+
+#include "Line.h"
+#include "Condiction.h"
+
+class LineRule3 : public Line
 {
-	 private:
-		 Condiction condiction_;
-	 public:
-		 Line(){}
-		 Line(){}
-		 virtual ~Line(){}
-		 Line(const Line& line):Line(){}
+	private:
+		Condiction* condiction_;
+	public:
+		LineRule3(){}
+		LineRule3( Condiction* condiction):Line(),condiction_(condiction){}
+		virtual ~LineRule3()
+		{
+			delete condiction;
+		}
+		LineRule3(const LineRule3& line):Line(line),condiction_(line->condiction_){}
+		void set_condiction(Condiction* condiction)
+		{
+			condiction_ = condiction;
+		}
+		const Condiction condiction const ()
+		{
+			return condiction_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif

@@ -1,14 +1,23 @@
-#ifndef BINARYCOMPOPERATORRULE3_h
-#define BINARYCOMPOPERATORRULE3_h
-#include "BinaryCompOperator.h"classBinaryCompOperatorRule3: public BinaryCompOperator
+#ifndef BINARYCOMPOPERATORRULE3_H
+#define BINARYCOMPOPERATORRULE3_H
+
+#include "BinaryCompOperator.h"
+#include <string>
+
+class BinaryCompOperatorRule3 : public BinaryCompOperator
 {
-	 private:
-		 OP_BOOL_EQGRE op_bool_eqgre_;
-	 public:
-		 BinaryCompOperator(){}
-		 BinaryCompOperator(){}
-		 virtual ~BinaryCompOperator(){}
-		 BinaryCompOperator(const BinaryCompOperator& binarycompoperator):BinaryCompOperator(){}
+	private:
+		Const std::string op_bool_eqgre_= ">=";
+	public:
+		BinaryCompOperatorRule3(){}
+		BinaryCompOperatorRule3():BinaryCompOperator(){}
+		virtual ~BinaryCompOperatorRule3()
+		{
+		}
+		BinaryCompOperatorRule3(const BinaryCompOperatorRule3& binarycompoperator):BinaryCompOperator(binarycompoperator){}
+		std::string op_bool_eqgre const ()
+		{
+			return op_bool_eqgre_;
+		}
 }
-//Auto Gerated by Gabriel Calazans
 #endif
