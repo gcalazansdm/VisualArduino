@@ -197,7 +197,6 @@ VariablesTypes : T_DOUBLE
                | T_INT
                | T_FLOAT
                | T_CHAR
-               | T_ID
                | T_STRING
                | T_BOOL
                ;

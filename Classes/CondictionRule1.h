@@ -9,16 +9,16 @@ class CondictionRule1 : public Condiction
 	private:
 		 function_ = "funcao";
 	public:
-		Function(){}
-		Function(std::string id, Parameters& parametros,VariablesTypes& variablesTypes): id_(id), parametros_(parametros),variablesTypes_(variablesTypes)
+		CondictionRule1(){}
+		CondictionRule1(std::string id, Parameters& parametros,VariablesTypes& variablesTypes): id_(id), parametros_(parametros),variablesTypes_(variablesTypes)
 		{}
-		virtual	~Function(){
+		virtual	~CondictionRule1(){
 			delete id_;
 			delete parametros_;
 			delete variablesTypes_;
 			delete function;
 		}
-		Function(const Function& t): id_(t->id_), parametros_(t->parametros_),variablesTypes_(t->variablesTypes_)
+		CondictionRule1(const CondictionRule1& t): id_(t->id_), parametros_(t->parametros_),variablesTypes_(t->variablesTypes_)
 		{}
 		void set_id_(std::string& id)
         {
