@@ -18,7 +18,7 @@ class LogicOPRule2 : public LogicOP
 			delete unitarylogicaloperator;
 			delete logicop;
 		}
-		LogicOPRule2(const LogicOPRule2& logicop):LogicOP(logicop),unitarylogicaloperator_(logicop->unitarylogicaloperator_),logicop_(logicop->logicop_){}
+		LogicOPRule2(const LogicOPRule2& logicoprule2):LogicOP(logicoprule2),unitarylogicaloperator_(logicop->unitarylogicaloperator_),logicop_(logicop->logicop_){}
 		void set_unitarylogicaloperator(UnitaryLogicalOperator* unitarylogicaloperator)
 		{
 			unitarylogicaloperator_ = unitarylogicaloperator;

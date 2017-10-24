@@ -13,7 +13,7 @@ class ValuesRule2 : public Values
 		virtual ~ValuesRule2()
 		{
 		}
-		ValuesRule2(const ValuesRule2& values):Values(values){}
+		ValuesRule2(const ValuesRule2& valuesrule2):Values(valuesrule2){}
 		void set_l_float(float* l_float)
 		{
 			l_float_ = l_float;

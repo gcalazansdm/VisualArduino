@@ -16,13 +16,13 @@ class WhileClause : public Node
 		Command* command_;
 	public:
 		WhileClause(){}
-		WhileClause( LogicOperation* logicoperation,Command* command):logicoperation_(logicoperation),command_(command){}
-		virtual ~WhileClauseRule1()
+		WhileClause( LogicOperation* logicoperation,Command* command):Node(),logicoperation_(logicoperation),command_(command){}
+		virtual ~WhileClause()
 		{
 			delete logicoperation;
 			delete command;
 		}
-		WhileClause(const WhileClause& whileclause):logicoperation_(whileclause->logicoperation_),command_(whileclause->command_){}
+		WhileClause(const WhileClause& whileclause):Node(whileclause),logicoperation_(whileclause->logicoperation_),command_(whileclause->command_){}
 		std::string t_whi const ()
 		{
 			return t_whi_;

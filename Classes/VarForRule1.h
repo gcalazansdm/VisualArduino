@@ -23,7 +23,7 @@ class VarForRule1 : public VarFor
 			delete variablestypes;
 			delete operation;
 		}
-		VarForRule1(const VarForRule1& varfor):VarFor(varfor),variablestypes_(varfor->variablestypes_),operation_(varfor->operation_){}
+		VarForRule1(const VarForRule1& varforrule1):VarFor(varforrule1),variablestypes_(varfor->variablestypes_),operation_(varfor->operation_){}
 		char a_lpar const ()
 		{
 			return a_lpar_;

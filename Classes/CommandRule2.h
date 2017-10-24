@@ -16,7 +16,7 @@ class CommandRule2 : public Command
 		{
 			delete line;
 		}
-		CommandRule2(const CommandRule2& command):Command(command),line_(command->line_){}
+		CommandRule2(const CommandRule2& commandrule2):Command(commandrule2),line_(command->line_){}
 		void set_line(Line* line)
 		{
 			line_ = line;

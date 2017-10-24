@@ -19,7 +19,7 @@ class FactorRule2 : public Factor
 			delete factor;
 			delete elem;
 		}
-		FactorRule2(const FactorRule2& factor):Factor(factor),factor_(factor->factor_),elem_(factor->elem_){}
+		FactorRule2(const FactorRule2& factorrule2):Factor(factorrule2),factor_(factor->factor_),elem_(factor->elem_){}
 		void set_factor(Factor* factor)
 		{
 			factor_ = factor;

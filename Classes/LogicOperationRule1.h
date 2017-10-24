@@ -15,7 +15,7 @@ class LogicOperationRule1 : public LogicOperation
 		{
 			delete logicop;
 		}
-		LogicOperationRule1(const LogicOperationRule1& logicoperation):LogicOperation(logicoperation),logicop_(logicoperation->logicop_){}
+		LogicOperationRule1(const LogicOperationRule1& logicoperationrule1):LogicOperation(logicoperationrule1),logicop_(logicoperation->logicop_){}
 		void set_logicop(LogicOP* logicop)
 		{
 			logicop_ = logicop;

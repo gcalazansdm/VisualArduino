@@ -15,7 +15,7 @@ class OperationRule2 : public Operation
 		{
 			delete logicoperation;
 		}
-		OperationRule2(const OperationRule2& operation):Operation(operation),logicoperation_(operation->logicoperation_){}
+		OperationRule2(const OperationRule2& operationrule2):Operation(operationrule2),logicoperation_(operation->logicoperation_){}
 		void set_logicoperation(LogicOperation* logicoperation)
 		{
 			logicoperation_ = logicoperation;

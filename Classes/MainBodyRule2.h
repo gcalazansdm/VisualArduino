@@ -19,7 +19,7 @@ class MainBodyRule2 : public MainBody
 			delete var;
 			delete mainbody;
 		}
-		MainBodyRule2(const MainBodyRule2& mainbody):MainBody(mainbody),var_(mainbody->var_),mainbody_(mainbody->mainbody_){}
+		MainBodyRule2(const MainBodyRule2& mainbodyrule2):MainBody(mainbodyrule2),var_(mainbody->var_),mainbody_(mainbody->mainbody_){}
 		void set_var(Var* var)
 		{
 			var_ = var;

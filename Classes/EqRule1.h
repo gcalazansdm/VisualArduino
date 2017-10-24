@@ -19,7 +19,7 @@ class EqRule1 : public Eq
 			delete eq;
 			delete factor;
 		}
-		EqRule1(const EqRule1& eq):Eq(eq),eq_(eq->eq_),factor_(eq->factor_){}
+		EqRule1(const EqRule1& eqrule1):Eq(eqrule1),eq_(eq->eq_),factor_(eq->factor_){}
 		void set_eq(Eq* eq)
 		{
 			eq_ = eq;

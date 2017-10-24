@@ -14,7 +14,7 @@ class ValuesRule5 : public Values
 		virtual ~ValuesRule5()
 		{
 		}
-		ValuesRule5(const ValuesRule5& values):Values(values){}
+		ValuesRule5(const ValuesRule5& valuesrule5):Values(valuesrule5){}
 		void set_l_string(std::string* l_string)
 		{
 			l_string_ = l_string;

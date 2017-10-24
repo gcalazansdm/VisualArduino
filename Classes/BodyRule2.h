@@ -14,7 +14,7 @@ class BodyRule2 : public Body
 		virtual ~BodyRule2()
 		{
 		}
-		BodyRule2(const BodyRule2& body):Body(body){}
+		BodyRule2(const BodyRule2& bodyrule2):Body(bodyrule2){}
 		char a_lkey const ()
 		{
 			return a_lkey_;

@@ -15,7 +15,7 @@ class LineRule1 : public Line
 		{
 			delete operation;
 		}
-		LineRule1(const LineRule1& line):Line(line),operation_(line->operation_){}
+		LineRule1(const LineRule1& linerule1):Line(linerule1),operation_(line->operation_){}
 		void set_operation(Operation* operation)
 		{
 			operation_ = operation;

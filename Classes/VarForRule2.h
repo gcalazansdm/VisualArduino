@@ -19,7 +19,7 @@ class VarForRule2 : public VarFor
 		{
 			delete operation;
 		}
-		VarForRule2(const VarForRule2& varfor):VarFor(varfor),operation_(varfor->operation_){}
+		VarForRule2(const VarForRule2& varforrule2):VarFor(varforrule2),operation_(varfor->operation_){}
 		char a_lpar const ()
 		{
 			return a_lpar_;

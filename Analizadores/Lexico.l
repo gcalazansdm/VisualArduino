@@ -2,9 +2,10 @@
    #include<string>
    string literal;
 %}
-%option nodefault noyywrap  
+%option noyywrap  
 %x STRING
 %x COMMENT
+%x COMMENTSTRING
 %%
 "+" { return OP_SUM;}
 "-" { return OP_SUB;} 
@@ -49,23 +50,20 @@
 "porem" { return T_IFELSE;}
 "enquanto" { return T_WHI;}
 "para" { return T_FOR;}
-[A-Za-z][A-Za-z0-9_-] {return L_ID}
+[A-Za-z][A-Za-z0-9_-] {return L_ID;}
 [\r\n ] {}
-"\\"[.]* {}
-[']([^"]|"\\\"")['] { printf("[%s]", yytext); return L_CHAR}
-(0|[+-]?[1-9][0-9]*) { printf("[%s]", yytext); return L_INT;}
-[+-]?(0|[1-9][0-9]*)?\.[0-9]+ { printf("[%s]", yytext); return L_DOUBLE;}
-[+-]?(0|[1-9][0-9]*)?\.[0-9]+[fF] { printf("[%s]", yytext); return L_FLOAT;}
+[/][/][^$]* {}
+[']([^"]|"\\\"")['] {return L_CHAR;}
+(0|[+-]?[1-9][0-9]*) {return L_INT;}
+[+-]?(0|[1-9][0-9]*)?\.[0-9]+ {return L_DOUBLE;}
+[+-]?(0|[1-9][0-9]*)?\.[0-9]+[fF] {return L_FLOAT;}
+[/]"*" {BEGIN(COMMENT);}
+<COMMENT>"*/" {BEGIN(INITIAL);}
+<COMMENT>. {}
 \" {BEGIN(STRING); literal = "";}
-<STRING> \t {literal += '\t';}
-<STRING> \n {literal += '\n';}
-<STRING> \b {literal += '\b';}
-<STRING> \a {literal += '\a';}
-<STRING> \" {BEGIN(INITIAL);yylval.str = literal;return L_STRING;}
-<STRING> . {literal += yytext}
-"\*" {BEGIN(COMMENT);}
-<COMMENT> "*\" {BEGIN(INITIAL);}
-<COMMENT> . {}
+<STRING>\" {yylval.str = literal;BEGIN(INITIAL);return L_STRING;}
+<STRING>[/][/][^$]* {}
+<STRING>. {literal += yytext;}
 . { printf("caractere invalido [%s] \n", yytext); return 0;}
 %%
   extern FILE *yyin;

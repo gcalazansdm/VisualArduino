@@ -15,7 +15,7 @@ class ParametersRule2 : public Parameters
 		{
 			delete var;
 		}
-		ParametersRule2(const ParametersRule2& parameters):Parameters(parameters),var_(parameters->var_){}
+		ParametersRule2(const ParametersRule2& parametersrule2):Parameters(parametersrule2),var_(parameters->var_){}
 		void set_var(Var* var)
 		{
 			var_ = var;

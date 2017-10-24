@@ -15,7 +15,7 @@ class ElseClausesRule2 : public ElseClauses
 		{
 			delete elseclause;
 		}
-		ElseClausesRule2(const ElseClausesRule2& elseclauses):ElseClauses(elseclauses),elseclause_(elseclauses->elseclause_){}
+		ElseClausesRule2(const ElseClausesRule2& elseclausesrule2):ElseClauses(elseclausesrule2),elseclause_(elseclauses->elseclause_){}
 		void set_elseclause(ElseClause* elseclause)
 		{
 			elseclause_ = elseclause;

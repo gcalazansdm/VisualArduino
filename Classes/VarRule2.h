@@ -9,7 +9,7 @@ class VarRule2 : public Var
 {
 	private:
 		VariablesTypes* variablestypes_;
-		L_ID l_id_;
+		std::string l_id_;
 		Const char op_eq_= '=';
 		Operation* operation_;
 	public:
@@ -20,7 +20,7 @@ class VarRule2 : public Var
 			delete variablestypes;
 			delete operation;
 		}
-		VarRule2(const VarRule2& var):Var(var),variablestypes_(var->variablestypes_),operation_(var->operation_){}
+		VarRule2(const VarRule2& varrule2):Var(varrule2),variablestypes_(var->variablestypes_),operation_(var->operation_){}
 		void set_variablestypes(VariablesTypes* variablestypes)
 		{
 			variablestypes_ = variablestypes;
@@ -29,11 +29,11 @@ class VarRule2 : public Var
 		{
 			return variablestypes_;
 		}
-		void set_l_id(L_ID* l_id)
+		void set_l_id(std::string* l_id)
 		{
 			l_id_ = l_id;
 		}
-		L_ID l_id const ()
+		std::string l_id const ()
 		{
 			return l_id_;
 		}

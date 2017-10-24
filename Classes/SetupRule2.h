@@ -1,10 +1,11 @@
-#ifndef LOOPRULE3_H
-#define LOOPRULE3_H
+#ifndef SETUPRULE2_H
+#define SETUPRULE2_H
 
-#include "Loop.h"
+#include "Setup.h"
+#include <string>
 #include "MainBody.h"
 
-class LoopRule3 : public Loop
+class SetupRule2 : public Setup
 {
 	private:
 		Const std::string a_setup_= "inicio";
@@ -12,13 +13,13 @@ class LoopRule3 : public Loop
 		Const char a_rpar_= ')';
 		MainBody* mainbody_;
 	public:
-		LoopRule3(){}
-		LoopRule3( MainBody* mainbody):Loop(),mainbody_(mainbody){}
-		virtual ~LoopRule3()
+		SetupRule2(){}
+		SetupRule2( MainBody* mainbody):Setup(),mainbody_(mainbody){}
+		virtual ~SetupRule2()
 		{
 			delete mainbody;
 		}
-		LoopRule3(const LoopRule3& loop):Loop(loop),mainbody_(loop->mainbody_){}
+		SetupRule2(const SetupRule2& setuprule2):Setup(setuprule2),mainbody_(setup->mainbody_){}
 		std::string a_setup const ()
 		{
 			return a_setup_;

@@ -15,7 +15,7 @@ class MainBodyRule3 : public MainBody
 		{
 			delete function;
 		}
-		MainBodyRule3(const MainBodyRule3& mainbody):MainBody(mainbody),function_(mainbody->function_){}
+		MainBodyRule3(const MainBodyRule3& mainbodyrule3):MainBody(mainbodyrule3),function_(mainbody->function_){}
 		void set_function(Function* function)
 		{
 			function_ = function;

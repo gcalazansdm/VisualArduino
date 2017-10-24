@@ -15,7 +15,7 @@ class FactorRule3 : public Factor
 		{
 			delete elem;
 		}
-		FactorRule3(const FactorRule3& factor):Factor(factor),elem_(factor->elem_){}
+		FactorRule3(const FactorRule3& factorrule3):Factor(factorrule3),elem_(factor->elem_){}
 		void set_elem(Elem* elem)
 		{
 			elem_ = elem;

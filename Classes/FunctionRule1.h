@@ -12,7 +12,7 @@ class FunctionRule1 : public Function
 	private:
 		Const std::string t_func_= "funcao";
 		VariablesTypes* variablestypes_;
-		L_ID l_id_;
+		std::string l_id_;
 		Parameters* parameters_;
 		Body* body_;
 	public:
@@ -24,7 +24,7 @@ class FunctionRule1 : public Function
 			delete parameters;
 			delete body;
 		}
-		FunctionRule1(const FunctionRule1& function):Function(function),variablestypes_(function->variablestypes_),parameters_(function->parameters_),body_(function->body_){}
+		FunctionRule1(const FunctionRule1& functionrule1):Function(functionrule1),variablestypes_(function->variablestypes_),parameters_(function->parameters_),body_(function->body_){}
 		std::string t_func const ()
 		{
 			return t_func_;
@@ -37,11 +37,11 @@ class FunctionRule1 : public Function
 		{
 			return variablestypes_;
 		}
-		void set_l_id(L_ID* l_id)
+		void set_l_id(std::string* l_id)
 		{
 			l_id_ = l_id;
 		}
-		L_ID l_id const ()
+		std::string l_id const ()
 		{
 			return l_id_;
 		}

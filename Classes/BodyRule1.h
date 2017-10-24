@@ -17,7 +17,7 @@ class BodyRule1 : public Body
 		{
 			delete localbody;
 		}
-		BodyRule1(const BodyRule1& body):Body(body),localbody_(body->localbody_){}
+		BodyRule1(const BodyRule1& bodyrule1):Body(bodyrule1),localbody_(body->localbody_){}
 		char a_lkey const ()
 		{
 			return a_lkey_;

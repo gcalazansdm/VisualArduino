@@ -15,7 +15,7 @@ class EqRule3 : public Eq
 		{
 			delete factor;
 		}
-		EqRule3(const EqRule3& eq):Eq(eq),factor_(eq->factor_){}
+		EqRule3(const EqRule3& eqrule3):Eq(eqrule3),factor_(eq->factor_){}
 		void set_factor(Factor* factor)
 		{
 			factor_ = factor;

@@ -15,7 +15,7 @@ class ElemRule4 : public Elem
 		{
 			delete values;
 		}
-		ElemRule4(const ElemRule4& elem):Elem(elem),values_(elem->values_){}
+		ElemRule4(const ElemRule4& elemrule4):Elem(elemrule4),values_(elem->values_){}
 		void set_values(Values* values)
 		{
 			values_ = values;

@@ -2,6 +2,8 @@
 #define ELSECLAUSE_H
 
 #include "Node.h"
+#include <string>
+#include "Command.h"
 
 class ElseClause : public Node
 {
@@ -15,7 +17,7 @@ class ElseClause : public Node
 		{
 			delete command;
 		}
-		ElseClause(const ElseClause& elseclause):command_(elseclause->command_){}
+		ElseClause(const ElseClause& elseclause):Node(elseclause),command_(elseclause->command_){}
 		std::string t_else const ()
 		{
 			return t_else_;

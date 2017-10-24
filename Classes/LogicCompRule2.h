@@ -17,7 +17,7 @@ class LogicCompRule2 : public LogicComp
 		{
 			delete logiccomp;
 		}
-		LogicCompRule2(const LogicCompRule2& logiccomp):LogicComp(logiccomp),logiccomp_(logiccomp->logiccomp_){}
+		LogicCompRule2(const LogicCompRule2& logiccomprule2):LogicComp(logiccomprule2),logiccomp_(logiccomp->logiccomp_){}
 		char a_lpar const ()
 		{
 			return a_lpar_;

@@ -15,7 +15,7 @@ class LineRule3 : public Line
 		{
 			delete condiction;
 		}
-		LineRule3(const LineRule3& line):Line(line),condiction_(line->condiction_){}
+		LineRule3(const LineRule3& linerule3):Line(linerule3),condiction_(line->condiction_){}
 		void set_condiction(Condiction* condiction)
 		{
 			condiction_ = condiction;

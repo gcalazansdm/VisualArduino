@@ -21,7 +21,7 @@ class LogicOPRule1 : public LogicOP
 			delete binarylogicaloperator;
 			delete logicop;
 		}
-		LogicOPRule1(const LogicOPRule1& logicop):LogicOP(logicop),logicop_(logicop->logicop_),binarylogicaloperator_(logicop->binarylogicaloperator_),logicop_(logicop->logicop_){}
+		LogicOPRule1(const LogicOPRule1& logicoprule1):LogicOP(logicoprule1),logicop_(logicop->logicop_),binarylogicaloperator_(logicop->binarylogicaloperator_),logicop_(logicop->logicop_){}
 		void set_logicop(LogicOP* logicop)
 		{
 			logicop_ = logicop;

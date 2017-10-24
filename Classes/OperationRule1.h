@@ -15,7 +15,7 @@ class OperationRule1 : public Operation
 		{
 			delete eq;
 		}
-		OperationRule1(const OperationRule1& operation):Operation(operation),eq_(operation->eq_){}
+		OperationRule1(const OperationRule1& operationrule1):Operation(operationrule1),eq_(operation->eq_){}
 		void set_eq(Eq* eq)
 		{
 			eq_ = eq;

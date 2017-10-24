@@ -21,7 +21,7 @@ class LogicCompRule1 : public LogicComp
 			delete binarycompoperator;
 			delete eq;
 		}
-		LogicCompRule1(const LogicCompRule1& logiccomp):LogicComp(logiccomp),eq_(logiccomp->eq_),binarycompoperator_(logiccomp->binarycompoperator_),eq_(logiccomp->eq_){}
+		LogicCompRule1(const LogicCompRule1& logiccomprule1):LogicComp(logiccomprule1),eq_(logiccomp->eq_),binarycompoperator_(logiccomp->binarycompoperator_),eq_(logiccomp->eq_){}
 		void set_eq(Eq* eq)
 		{
 			eq_ = eq;

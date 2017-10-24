@@ -16,7 +16,7 @@ class MainBodyRule4 : public MainBody
 		{
 			delete var;
 		}
-		MainBodyRule4(const MainBodyRule4& mainbody):MainBody(mainbody),var_(mainbody->var_){}
+		MainBodyRule4(const MainBodyRule4& mainbodyrule4):MainBody(mainbodyrule4),var_(mainbody->var_){}
 		void set_var(Var* var)
 		{
 			var_ = var;

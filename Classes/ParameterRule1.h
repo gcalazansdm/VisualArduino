@@ -17,7 +17,7 @@ class ParameterRule1 : public Parameter
 		{
 			delete parameters;
 		}
-		ParameterRule1(const ParameterRule1& parameter):Parameter(parameter),parameters_(parameter->parameters_){}
+		ParameterRule1(const ParameterRule1& parameterrule1):Parameter(parameterrule1),parameters_(parameter->parameters_){}
 		char a_lpar const ()
 		{
 			return a_lpar_;

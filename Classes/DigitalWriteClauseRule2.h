@@ -4,7 +4,6 @@
 #include "DigitalWriteClause.h"
 #include "T_DIGITALWRITE.h"
 #include "Values.h"
-#include "A_SEMICOLONIfElseClause.h"
 
 class DigitalWriteClauseRule2 : public DigitalWriteClause
 {
@@ -13,20 +12,19 @@ class DigitalWriteClauseRule2 : public DigitalWriteClause
 		Const char a_lpar_= '(';
 		Values* values_;
 		Const std::string t_int_= "int";
-		Const char a_comma_= ',';
+		Const char a_comma_= '.';
 		Const std::string a_low_= "BAIXO";
 		Const char a_rpar_= ')';
-		A_SEMICOLONIfElseClause* a_semicolonifelseclause_;
+		Const char a_semicolon_= ';';
 	public:
 		DigitalWriteClauseRule2(){}
-		DigitalWriteClauseRule2( T_DIGITALWRITE* t_digitalwrite,Values* values,A_SEMICOLONIfElseClause* a_semicolonifelseclause):DigitalWriteClause(),t_digitalwrite_(t_digitalwrite),values_(values),a_semicolonifelseclause_(a_semicolonifelseclause){}
+		DigitalWriteClauseRule2( T_DIGITALWRITE* t_digitalwrite,Values* values):DigitalWriteClause(),t_digitalwrite_(t_digitalwrite),values_(values){}
 		virtual ~DigitalWriteClauseRule2()
 		{
 			delete t_digitalwrite;
 			delete values;
-			delete a_semicolonifelseclause;
 		}
-		DigitalWriteClauseRule2(const DigitalWriteClauseRule2& digitalwriteclause):DigitalWriteClause(digitalwriteclause),t_digitalwrite_(digitalwriteclause->t_digitalwrite_),values_(digitalwriteclause->values_),a_semicolonifelseclause_(digitalwriteclause->a_semicolonifelseclause_){}
+		DigitalWriteClauseRule2(const DigitalWriteClauseRule2& digitalwriteclauserule2):DigitalWriteClause(digitalwriteclauserule2),t_digitalwrite_(digitalwriteclause->t_digitalwrite_),values_(digitalwriteclause->values_){}
 		void set_t_digitalwrite(T_DIGITALWRITE* t_digitalwrite)
 		{
 			t_digitalwrite_ = t_digitalwrite;
@@ -51,7 +49,7 @@ class DigitalWriteClauseRule2 : public DigitalWriteClause
 		{
 			return t_int_;
 		}
-		' a_comma const ()
+		char a_comma const ()
 		{
 			return a_comma_;
 		}
@@ -63,13 +61,9 @@ class DigitalWriteClauseRule2 : public DigitalWriteClause
 		{
 			return a_rpar_;
 		}
-		void set_a_semicolonifelseclause(A_SEMICOLONIfElseClause* a_semicolonifelseclause)
+		char a_semicolon const ()
 		{
-			a_semicolonifelseclause_ = a_semicolonifelseclause;
-		}
-		const A_SEMICOLONIfElseClause a_semicolonifelseclause const ()
-		{
-			return a_semicolonifelseclause_;
+			return a_semicolon_;
 		}
 }
 #endif

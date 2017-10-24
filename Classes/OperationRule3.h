@@ -15,7 +15,7 @@ class OperationRule3 : public Operation
 		{
 			delete unitaryoperators;
 		}
-		OperationRule3(const OperationRule3& operation):Operation(operation),unitaryoperators_(operation->unitaryoperators_){}
+		OperationRule3(const OperationRule3& operationrule3):Operation(operationrule3),unitaryoperators_(operation->unitaryoperators_){}
 		void set_unitaryoperators(UnitaryOperators* unitaryoperators)
 		{
 			unitaryoperators_ = unitaryoperators;

@@ -17,7 +17,7 @@ class LogicOPRule4 : public LogicOP
 		{
 			delete logicop;
 		}
-		LogicOPRule4(const LogicOPRule4& logicop):LogicOP(logicop),logicop_(logicop->logicop_){}
+		LogicOPRule4(const LogicOPRule4& logicoprule4):LogicOP(logicoprule4),logicop_(logicop->logicop_){}
 		char a_lpar const ()
 		{
 			return a_lpar_;

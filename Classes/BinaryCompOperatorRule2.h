@@ -13,7 +13,7 @@ class BinaryCompOperatorRule2 : public BinaryCompOperator
 		virtual ~BinaryCompOperatorRule2()
 		{
 		}
-		BinaryCompOperatorRule2(const BinaryCompOperatorRule2& binarycompoperator):BinaryCompOperator(binarycompoperator){}
+		BinaryCompOperatorRule2(const BinaryCompOperatorRule2& binarycompoperatorrule2):BinaryCompOperator(binarycompoperatorrule2){}
 		char op_bool_less const ()
 		{
 			return op_bool_less_;

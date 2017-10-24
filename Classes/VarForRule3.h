@@ -14,7 +14,7 @@ class VarForRule3 : public VarFor
 		virtual ~VarForRule3()
 		{
 		}
-		VarForRule3(const VarForRule3& varfor):VarFor(varfor){}
+		VarForRule3(const VarForRule3& varforrule3):VarFor(varforrule3){}
 		char a_lpar const ()
 		{
 			return a_lpar_;

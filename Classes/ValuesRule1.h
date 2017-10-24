@@ -13,7 +13,7 @@ class ValuesRule1 : public Values
 		virtual ~ValuesRule1()
 		{
 		}
-		ValuesRule1(const ValuesRule1& values):Values(values){}
+		ValuesRule1(const ValuesRule1& valuesrule1):Values(valuesrule1){}
 		void set_l_int(int* l_int)
 		{
 			l_int_ = l_int;

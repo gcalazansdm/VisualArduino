@@ -14,7 +14,7 @@ class BinaryCompOperatorRule4 : public BinaryCompOperator
 		virtual ~BinaryCompOperatorRule4()
 		{
 		}
-		BinaryCompOperatorRule4(const BinaryCompOperatorRule4& binarycompoperator):BinaryCompOperator(binarycompoperator){}
+		BinaryCompOperatorRule4(const BinaryCompOperatorRule4& binarycompoperatorrule4):BinaryCompOperator(binarycompoperatorrule4){}
 		std::string op_bool_eqless const ()
 		{
 			return op_bool_eqless_;

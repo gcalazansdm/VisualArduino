@@ -15,7 +15,7 @@ class CondictionRule2 : public Condiction
 		{
 			delete whileclause;
 		}
-		CondictionRule2(const CondictionRule2& condiction):Condiction(condiction),whileclause_(condiction->whileclause_){}
+		CondictionRule2(const CondictionRule2& condictionrule2):Condiction(condictionrule2),whileclause_(condiction->whileclause_){}
 		void set_whileclause(WhileClause* whileclause)
 		{
 			whileclause_ = whileclause;

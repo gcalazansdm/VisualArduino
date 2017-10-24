@@ -13,7 +13,7 @@ class ValuesRule3 : public Values
 		virtual ~ValuesRule3()
 		{
 		}
-		ValuesRule3(const ValuesRule3& values):Values(values){}
+		ValuesRule3(const ValuesRule3& valuesrule3):Values(valuesrule3){}
 		void set_l_double(double* l_double)
 		{
 			l_double_ = l_double;

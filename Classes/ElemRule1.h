@@ -16,7 +16,7 @@ class ElemRule1 : public Elem
 		{
 			delete elem;
 		}
-		ElemRule1(const ElemRule1& elem):Elem(elem),elem_(elem->elem_){}
+		ElemRule1(const ElemRule1& elemrule1):Elem(elemrule1),elem_(elem->elem_){}
 		char op_sum const ()
 		{
 			return op_sum_;

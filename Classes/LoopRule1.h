@@ -21,7 +21,7 @@ class LoopRule1 : public Loop
 		{
 			delete loop;
 		}
-		LoopRule1(const LoopRule1& loop):Loop(loop),loop_(loop->loop_){}
+		LoopRule1(const LoopRule1& looprule1):Loop(looprule1),loop_(loop->loop_){}
 		std::string a_loop const ()
 		{
 			return a_loop_;

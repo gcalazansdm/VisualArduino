@@ -15,7 +15,7 @@ class LogicOperationRule2 : public LogicOperation
 		{
 			delete logiccomp;
 		}
-		LogicOperationRule2(const LogicOperationRule2& logicoperation):LogicOperation(logicoperation),logiccomp_(logicoperation->logiccomp_){}
+		LogicOperationRule2(const LogicOperationRule2& logicoperationrule2):LogicOperation(logicoperationrule2),logiccomp_(logicoperation->logiccomp_){}
 		void set_logiccomp(LogicComp* logiccomp)
 		{
 			logiccomp_ = logiccomp;

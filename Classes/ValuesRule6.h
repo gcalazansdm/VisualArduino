@@ -13,7 +13,7 @@ class ValuesRule6 : public Values
 		virtual ~ValuesRule6()
 		{
 		}
-		ValuesRule6(const ValuesRule6& values):Values(values){}
+		ValuesRule6(const ValuesRule6& valuesrule6):Values(valuesrule6){}
 		void set_l_bool(boolean* l_bool)
 		{
 			l_bool_ = l_bool;

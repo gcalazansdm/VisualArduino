@@ -17,6 +17,15 @@
 %token T_FLOAT
 %token T_CHAR
 %token T_STRING
+%token T_FUNC
+%token T_IF
+%token T_ELSE
+%token T_DIGITALWRITE
+%token T_IFELSE
+%token T_WHI
+%token T_FOR
+%token L_DEC
+%token L_INC
 %token OP_BOOL_IS
 %token OP_BOOL_DIFF
 %token OP_BOOL_GRE
@@ -26,14 +35,6 @@
 %token OP_BOOL_AND
 %token OP_BOOL_OR
 %token OP_BOOL_NOT
-%token T_FUNC
-%token T_IF
-%token T_PINMODE
-%token T_ELSE
-%token T_DIGITALWRITE
-%token T_IFELSE
-%token T_WHI
-%token T_FOR
 %token OP_EQ
 %token OP_SUM
 %token OP_SUB
@@ -70,13 +71,15 @@
 %type <double_point> L_DOUBLE
 %%
  
-Main : Setup A_SEMICOLON Loop A_SEMICOLON;
+
 MainBody : Function MainBody 
          | Var A_SEMICOLON MainBody 
          | Function 
          | Var A_SEMICOLON  
          ;
  
+MainArduino : Setup A_SEMICOLON Loop A_SEMICOLON;
+
 Function : T_FUNC VariablesTypes L_ID Parameters Body
          | T_FUNC VariablesTypes L_ID Parameters A_SEMICOLON 
          ;

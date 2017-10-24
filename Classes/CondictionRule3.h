@@ -15,7 +15,7 @@ class CondictionRule3 : public Condiction
 		{
 			delete forclause;
 		}
-		CondictionRule3(const CondictionRule3& condiction):Condiction(condiction),forclause_(condiction->forclause_){}
+		CondictionRule3(const CondictionRule3& condictionrule3):Condiction(condictionrule3),forclause_(condiction->forclause_){}
 		void set_forclause(ForClause* forclause)
 		{
 			forclause_ = forclause;

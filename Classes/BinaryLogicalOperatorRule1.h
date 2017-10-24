@@ -14,7 +14,7 @@ class BinaryLogicalOperatorRule1 : public BinaryLogicalOperator
 		virtual ~BinaryLogicalOperatorRule1()
 		{
 		}
-		BinaryLogicalOperatorRule1(const BinaryLogicalOperatorRule1& binarylogicaloperator):BinaryLogicalOperator(binarylogicaloperator){}
+		BinaryLogicalOperatorRule1(const BinaryLogicalOperatorRule1& binarylogicaloperatorrule1):BinaryLogicalOperator(binarylogicaloperatorrule1){}
 		std::string op_bool_and const ()
 		{
 			return op_bool_and_;

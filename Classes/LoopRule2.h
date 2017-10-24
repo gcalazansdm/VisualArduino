@@ -23,7 +23,7 @@ class LoopRule2 : public Loop
 			delete mainbody;
 			delete loop;
 		}
-		LoopRule2(const LoopRule2& loop):Loop(loop),mainbody_(loop->mainbody_),loop_(loop->loop_){}
+		LoopRule2(const LoopRule2& looprule2):Loop(looprule2),mainbody_(loop->mainbody_),loop_(loop->loop_){}
 		std::string a_loop const ()
 		{
 			return a_loop_;

@@ -16,7 +16,7 @@ class LocalBodyRule2 : public LocalBody
 		{
 			delete line;
 		}
-		LocalBodyRule2(const LocalBodyRule2& localbody):LocalBody(localbody),line_(localbody->line_){}
+		LocalBodyRule2(const LocalBodyRule2& localbodyrule2):LocalBody(localbodyrule2),line_(localbody->line_){}
 		void set_line(Line* line)
 		{
 			line_ = line;

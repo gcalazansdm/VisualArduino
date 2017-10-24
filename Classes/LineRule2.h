@@ -15,7 +15,7 @@ class LineRule2 : public Line
 		{
 			delete var;
 		}
-		LineRule2(const LineRule2& line):Line(line),var_(line->var_){}
+		LineRule2(const LineRule2& linerule2):Line(linerule2),var_(line->var_){}
 		void set_var(Var* var)
 		{
 			var_ = var;

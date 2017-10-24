@@ -2,27 +2,27 @@
 #define IFELSECLAUSESRULE2_H
 
 #include "IfElseClauses.h"
-#include "IfElseClausePinModeClause.h"
+#include "IfElseClause.h"
 
 class IfElseClausesRule2 : public IfElseClauses
 {
 	private:
-		IfElseClausePinModeClause* ifelseclausepinmodeclause_;
+		IfElseClause* ifelseclause_;
 	public:
 		IfElseClausesRule2(){}
-		IfElseClausesRule2( IfElseClausePinModeClause* ifelseclausepinmodeclause):IfElseClauses(),ifelseclausepinmodeclause_(ifelseclausepinmodeclause){}
+		IfElseClausesRule2( IfElseClause* ifelseclause):IfElseClauses(),ifelseclause_(ifelseclause){}
 		virtual ~IfElseClausesRule2()
 		{
-			delete ifelseclausepinmodeclause;
+			delete ifelseclause;
 		}
-		IfElseClausesRule2(const IfElseClausesRule2& ifelseclauses):IfElseClauses(ifelseclauses),ifelseclausepinmodeclause_(ifelseclauses->ifelseclausepinmodeclause_){}
-		void set_ifelseclausepinmodeclause(IfElseClausePinModeClause* ifelseclausepinmodeclause)
+		IfElseClausesRule2(const IfElseClausesRule2& ifelseclausesrule2):IfElseClauses(ifelseclausesrule2),ifelseclause_(ifelseclauses->ifelseclause_){}
+		void set_ifelseclause(IfElseClause* ifelseclause)
 		{
-			ifelseclausepinmodeclause_ = ifelseclausepinmodeclause;
+			ifelseclause_ = ifelseclause;
 		}
-		const IfElseClausePinModeClause ifelseclausepinmodeclause const ()
+		const IfElseClause ifelseclause const ()
 		{
-			return ifelseclausepinmodeclause_;
+			return ifelseclause_;
 		}
 }
 #endif

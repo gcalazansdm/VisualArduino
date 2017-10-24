@@ -16,13 +16,13 @@ class IfClause : public Node
 		Command* command_;
 	public:
 		IfClause(){}
-		IfClause( LogicOperation* logicoperation,Command* command):logicoperation_(logicoperation),command_(command){}
-		virtual ~IfClauseRule1()
+		IfClause( LogicOperation* logicoperation,Command* command):Node(),logicoperation_(logicoperation),command_(command){}
+		virtual ~IfClause()
 		{
 			delete logicoperation;
 			delete command;
 		}
-		IfClause(const IfClause& ifclause):logicoperation_(ifclause->logicoperation_),command_(ifclause->command_){}
+		IfClause(const IfClause& ifclause):Node(ifclause),logicoperation_(ifclause->logicoperation_),command_(ifclause->command_){}
 		std::string t_if const ()
 		{
 			return t_if_;

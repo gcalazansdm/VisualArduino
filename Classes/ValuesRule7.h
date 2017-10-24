@@ -14,7 +14,7 @@ class ValuesRule7 : public Values
 		virtual ~ValuesRule7()
 		{
 		}
-		ValuesRule7(const ValuesRule7& values):Values(values){}
+		ValuesRule7(const ValuesRule7& valuesrule7):Values(valuesrule7){}
 		void set_l_id(std::string* l_id)
 		{
 			l_id_ = l_id;

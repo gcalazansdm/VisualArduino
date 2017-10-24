@@ -14,7 +14,7 @@ class ParameterRule2 : public Parameter
 		virtual ~ParameterRule2()
 		{
 		}
-		ParameterRule2(const ParameterRule2& parameter):Parameter(parameter){}
+		ParameterRule2(const ParameterRule2& parameterrule2):Parameter(parameterrule2){}
 		char a_lpar const ()
 		{
 			return a_lpar_;

@@ -16,7 +16,7 @@ class ElemRule2 : public Elem
 		{
 			delete elem;
 		}
-		ElemRule2(const ElemRule2& elem):Elem(elem),elem_(elem->elem_){}
+		ElemRule2(const ElemRule2& elemrule2):Elem(elemrule2),elem_(elem->elem_){}
 		char op_sub const ()
 		{
 			return op_sub_;

@@ -1,9 +1,11 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MAINARDUINO_H
+#define MAINARDUINO_H
 
 #include "Node.h"
+#include "Setup.h"
+#include "Loop.h"
 
-class Main : public Node
+class MainArduino : public Node
 {
 	private:
 		Setup* setup_;
@@ -11,14 +13,14 @@ class Main : public Node
 		Loop* loop_;
 		Const char a_semicolon_= ';';
 	public:
-		Main(){}
-		Main( Setup* setup,Loop* loop):Main(),setup_(setup),loop_(loop){}
-		virtual ~Main()
+		MainArduino(){}
+		MainArduino( Setup* setup,Loop* loop):Node(),setup_(setup),loop_(loop){}
+		virtual ~MainArduino()
 		{
 			delete setup;
 			delete loop;
 		}
-		Main(const Main& main):Main(main),setup_(main->setup_),loop_(main->loop_){}
+		MainArduino(const MainArduino& mainarduino):Node(mainarduino),setup_(mainarduino->setup_),loop_(mainarduino->loop_){}
 		void set_setup(Setup* setup)
 		{
 			setup_ = setup;

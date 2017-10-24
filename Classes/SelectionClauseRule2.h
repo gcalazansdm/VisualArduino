@@ -18,7 +18,7 @@ class SelectionClauseRule2 : public SelectionClause
 			delete ifclause;
 			delete elseclauses;
 		}
-		SelectionClauseRule2(const SelectionClauseRule2& selectionclause):SelectionClause(selectionclause),ifclause_(selectionclause->ifclause_),elseclauses_(selectionclause->elseclauses_){}
+		SelectionClauseRule2(const SelectionClauseRule2& selectionclauserule2):SelectionClause(selectionclauserule2),ifclause_(selectionclause->ifclause_),elseclauses_(selectionclause->elseclauses_){}
 		void set_ifclause(IfClause* ifclause)
 		{
 			ifclause_ = ifclause;

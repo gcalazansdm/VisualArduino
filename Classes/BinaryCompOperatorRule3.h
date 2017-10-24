@@ -14,7 +14,7 @@ class BinaryCompOperatorRule3 : public BinaryCompOperator
 		virtual ~BinaryCompOperatorRule3()
 		{
 		}
-		BinaryCompOperatorRule3(const BinaryCompOperatorRule3& binarycompoperator):BinaryCompOperator(binarycompoperator){}
+		BinaryCompOperatorRule3(const BinaryCompOperatorRule3& binarycompoperatorrule3):BinaryCompOperator(binarycompoperatorrule3){}
 		std::string op_bool_eqgre const ()
 		{
 			return op_bool_eqgre_;

@@ -17,7 +17,7 @@ class ElemRule3 : public Elem
 		{
 			delete eq;
 		}
-		ElemRule3(const ElemRule3& elem):Elem(elem),eq_(elem->eq_){}
+		ElemRule3(const ElemRule3& elemrule3):Elem(elemrule3),eq_(elem->eq_){}
 		char a_lpar const ()
 		{
 			return a_lpar_;

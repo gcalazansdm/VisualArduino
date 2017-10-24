@@ -13,7 +13,7 @@ class LogicOPRule3 : public LogicOP
 		virtual ~LogicOPRule3()
 		{
 		}
-		LogicOPRule3(const LogicOPRule3& logicop):LogicOP(logicop){}
+		LogicOPRule3(const LogicOPRule3& logicoprule3):LogicOP(logicoprule3){}
 		void set_l_bool(boolean* l_bool)
 		{
 			l_bool_ = l_bool;

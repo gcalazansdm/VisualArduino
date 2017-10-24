@@ -15,7 +15,7 @@ class CondictionRule1 : public Condiction
 		{
 			delete selectionclause;
 		}
-		CondictionRule1(const CondictionRule1& condiction):Condiction(condiction),selectionclause_(condiction->selectionclause_){}
+		CondictionRule1(const CondictionRule1& condictionrule1):Condiction(condictionrule1),selectionclause_(condiction->selectionclause_){}
 		void set_selectionclause(SelectionClause* selectionclause)
 		{
 			selectionclause_ = selectionclause;
