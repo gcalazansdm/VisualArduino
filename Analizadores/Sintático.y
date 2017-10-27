@@ -72,46 +72,46 @@
 %%
  
 
-MainBody : Function MainBody 
-         | Var A_SEMICOLON MainBody 
-         | Function 
-         | Var A_SEMICOLON  
+MainBody : Function MainBody { $$ = new MainBodyRule1($1,$2);} 
+         | Var A_SEMICOLON MainBody { $$ = new MainBodyRule2($1,$3);}
+         | Function { $$ = $1;}
+         | Var A_SEMICOLON  {$$ = $1;}
          ;
  
-MainArduino : Setup A_SEMICOLON Loop A_SEMICOLON;
+MainArduino : Setup A_SEMICOLON Loop A_SEMICOLON {$$ = new MainArduino($1,$3);};
 
-Function : T_FUNC VariablesTypes L_ID Parameters Body
-         | T_FUNC VariablesTypes L_ID Parameters A_SEMICOLON 
+Function : T_FUNC VariablesTypes L_ID Parameter Body { $$ = new FuctionRule1($2,$3,$4);}
+         | T_FUNC VariablesTypes L_ID Parameter A_SEMICOLON { $$ = new FuctionRule2($2,$3);}
          ;
  
-Parameter : A_LPAR Parameters A_RPAR 
-          | A_LPAR A_RPAR 
+Parameter : A_LPAR Parameters A_RPAR { $$ = new ParameterRule1($2,$3);}
+          | A_LPAR A_RPAR { $$ = new ParameterRule2();}
           ;
  
-Parameters : Var A_COMMA Parameters 
-           | Var 
+Parameters : Var A_COMMA Parameters { $$ = new ParameterRule1($1,$3);}
+           | Var { $$ = new ParameterRule2($1);}
            ;
   
-Body : A_LKEY LocalBody A_RKEY 
-     | A_LKEY A_RKEY 
+Body : A_LKEY LocalBody A_RKEY { $$ = new BodyRule1($2,$3);}
+     | A_LKEY A_RKEY { $$ = new BodyRule2();}
      ;
  
-LocalBody : Line A_SEMICOLON LocalBody 
-          | Line A_SEMICOLON 
+LocalBody : Line A_SEMICOLON LocalBody { $$ = new LocalBodyRule1($1,$3);}
+          | Line A_SEMICOLON { $$ = new LocalBodyRule1($1);}
           ;
   
-Line : Operation  
-     | Var  
-     | Condiction 
+Line : Operation  { $$ = new LineRule1($1);}
+     | Var { $$ = new LineRule2($1);}
+     | Condiction { $$ = new LineRule3($1);}
      ;
  
-Condiction : SelectionClause 
-           | WhileClause
-           | ForClause 
+Condiction : SelectionClause { $$ = new CondictionRule1($1);}
+           | WhileClause { $$ = new CondictionRule1($1);}
+           | ForClause { $$ = new CondictionRule1($1);}
            ;
  
-Loop : A_LOOP A_LPAR A_RPAR A_RKEY Loop A_LKEY
-     | A_LOOP A_LPAR A_RPAR A_RKEY MainBody Loop A_LKEY
+Loop : A_LOOP A_LPAR A_RPAR A_RKEY Loop A_LKEY { $$ = new CondictionRule1($1);}
+     | A_LOOP A_LPAR A_RPAR A_RKEY MainBody Loop A_LKEY { $$ = new CondictionRule2($5,$6);}
      ;
  
 Setup : A_SETUP A_LPAR A_RPAR A_RKEY  A_LKEY
