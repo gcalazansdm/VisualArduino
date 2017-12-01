@@ -7,7 +7,6 @@
 class BinaryLogicalOperatorRule1 : public BinaryLogicalOperator
 {
 	private:
-		Const std::string op_bool_and_= "e";
 	public:
 		BinaryLogicalOperatorRule1(){}
 		BinaryLogicalOperatorRule1():BinaryLogicalOperator(){}
@@ -15,9 +14,8 @@ class BinaryLogicalOperatorRule1 : public BinaryLogicalOperator
 		{
 		}
 		BinaryLogicalOperatorRule1(const BinaryLogicalOperatorRule1& binarylogicaloperatorrule1):BinaryLogicalOperator(binarylogicaloperatorrule1){}
-		std::string op_bool_and const ()
-		{
-			return op_bool_and_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

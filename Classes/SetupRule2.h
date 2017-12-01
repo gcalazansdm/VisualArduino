@@ -8,9 +8,6 @@
 class SetupRule2 : public Setup
 {
 	private:
-		Const std::string a_setup_= "inicio";
-		Const char a_lpar_= '(';
-		Const char a_rpar_= ')';
 		MainBody* mainbody_;
 	public:
 		SetupRule2(){}
@@ -20,18 +17,6 @@ class SetupRule2 : public Setup
 			delete mainbody;
 		}
 		SetupRule2(const SetupRule2& setuprule2):Setup(setuprule2),mainbody_(setup->mainbody_){}
-		std::string a_setup const ()
-		{
-			return a_setup_;
-		}
-		char a_lpar const ()
-		{
-			return a_lpar_;
-		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
-		}
 		void set_mainbody(MainBody* mainbody)
 		{
 			mainbody_ = mainbody;
@@ -40,5 +25,8 @@ class SetupRule2 : public Setup
 		{
 			return mainbody_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

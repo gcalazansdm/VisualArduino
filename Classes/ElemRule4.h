@@ -24,5 +24,8 @@ class ElemRule4 : public Elem
 		{
 			return values_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

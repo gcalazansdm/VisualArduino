@@ -24,5 +24,8 @@ class IfElseClausesRule2 : public IfElseClauses
 		{
 			return ifelseclause_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

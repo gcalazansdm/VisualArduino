@@ -6,21 +6,15 @@
 class ValuesRule4 : public Values
 {
 	private:
-		char l_char_;
 	public:
 		ValuesRule4(){}
-		ValuesRule4( l_char l_char,):Values(),l_char_(l_char){}
+		ValuesRule4( ):Values(){}
 		virtual ~ValuesRule4()
 		{
 		}
 		ValuesRule4(const ValuesRule4& valuesrule4):Values(valuesrule4){}
-		void set_l_char(char* l_char)
-		{
-			l_char_ = l_char;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-		char l_char const ()
-		{
-			return l_char_;
-		}
-}
+};
 #endif

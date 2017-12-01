@@ -6,21 +6,15 @@
 class LogicOPRule3 : public LogicOP
 {
 	private:
-		boolean l_bool_;
 	public:
 		LogicOPRule3(){}
-		LogicOPRule3( l_bool l_bool):LogicOP(),l_bool_(l_bool){}
+		LogicOPRule3():LogicOP(){}
 		virtual ~LogicOPRule3()
 		{
 		}
 		LogicOPRule3(const LogicOPRule3& logicoprule3):LogicOP(logicoprule3){}
-		void set_l_bool(boolean* l_bool)
-		{
-			l_bool_ = l_bool;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-		boolean l_bool const ()
-		{
-			return l_bool_;
-		}
-}
+};
 #endif

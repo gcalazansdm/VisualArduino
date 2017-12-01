@@ -7,7 +7,6 @@
 class VariablesTypesRule1 : public VariablesTypes
 {
 	private:
-		Const std::string t_double_= "Double";
 	public:
 		VariablesTypesRule1(){}
 		VariablesTypesRule1():VariablesTypes(){}
@@ -15,9 +14,8 @@ class VariablesTypesRule1 : public VariablesTypes
 		{
 		}
 		VariablesTypesRule1(const VariablesTypesRule1& variablestypesrule1):VariablesTypes(variablestypesrule1){}
-		std::string t_double const ()
-		{
-			return t_double_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

@@ -24,5 +24,8 @@ class SelectionClauseRule1 : public SelectionClause
 		{
 			return ifclause_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

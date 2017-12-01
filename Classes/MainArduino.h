@@ -9,9 +9,7 @@ class MainArduino : public Node
 {
 	private:
 		Setup* setup_;
-		Const char a_semicolon_= ';';
 		Loop* loop_;
-		Const char a_semicolon_= ';';
 	public:
 		MainArduino(){}
 		MainArduino( Setup* setup,Loop* loop):Node(),setup_(setup),loop_(loop){}
@@ -29,10 +27,6 @@ class MainArduino : public Node
 		{
 			return setup_;
 		}
-		char a_semicolon const ()
-		{
-			return a_semicolon_;
-		}
 		void set_loop(Loop* loop)
 		{
 			loop_ = loop;
@@ -41,9 +35,8 @@ class MainArduino : public Node
 		{
 			return loop_;
 		}
-		char a_semicolon const ()
-		{
-			return a_semicolon_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

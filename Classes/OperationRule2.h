@@ -24,5 +24,8 @@ class OperationRule2 : public Operation
 		{
 			return logicoperation_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

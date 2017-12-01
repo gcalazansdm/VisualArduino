@@ -8,7 +8,6 @@ class UnitaryOperatorsRule2 : public UnitaryOperators
 {
 	private:
 		Values* values_;
-		Const std::string l_dec_= "--";
 	public:
 		UnitaryOperatorsRule2(){}
 		UnitaryOperatorsRule2( Values* values):UnitaryOperators(),values_(values){}
@@ -25,9 +24,8 @@ class UnitaryOperatorsRule2 : public UnitaryOperators
 		{
 			return values_;
 		}
-		std::string l_dec const ()
-		{
-			return l_dec_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

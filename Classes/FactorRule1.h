@@ -9,7 +9,6 @@ class FactorRule1 : public Factor
 {
 	private:
 		Factor* factor_;
-		Const char op_div_= '/';
 		Elem* elem_;
 	public:
 		FactorRule1(){}
@@ -28,10 +27,6 @@ class FactorRule1 : public Factor
 		{
 			return factor_;
 		}
-		char op_div const ()
-		{
-			return op_div_;
-		}
 		void set_elem(Elem* elem)
 		{
 			elem_ = elem;
@@ -40,5 +35,8 @@ class FactorRule1 : public Factor
 		{
 			return elem_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

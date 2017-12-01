@@ -11,12 +11,9 @@
 class ForClause : public Node
 {
 	private:
-		Const std::string t_for_= "para";
 		VarFor* varfor_;
 		LogicOperation* logicoperation_;
-		Const char a_semicolon_= ';';
 		UnitaryOperators* unitaryoperators_;
-		Const char a_rpar_= ')';
 		Command* command_;
 	public:
 		ForClause(){}
@@ -29,10 +26,6 @@ class ForClause : public Node
 			delete command;
 		}
 		ForClause(const ForClause& forclause):Node(forclause),varfor_(forclause->varfor_),logicoperation_(forclause->logicoperation_),unitaryoperators_(forclause->unitaryoperators_),command_(forclause->command_){}
-		std::string t_for const ()
-		{
-			return t_for_;
-		}
 		void set_varfor(VarFor* varfor)
 		{
 			varfor_ = varfor;
@@ -49,10 +42,6 @@ class ForClause : public Node
 		{
 			return logicoperation_;
 		}
-		char a_semicolon const ()
-		{
-			return a_semicolon_;
-		}
 		void set_unitaryoperators(UnitaryOperators* unitaryoperators)
 		{
 			unitaryoperators_ = unitaryoperators;
@@ -60,10 +49,6 @@ class ForClause : public Node
 		const UnitaryOperators unitaryoperators const ()
 		{
 			return unitaryoperators_;
-		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
 		}
 		void set_command(Command* command)
 		{
@@ -73,5 +58,8 @@ class ForClause : public Node
 		{
 			return command_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

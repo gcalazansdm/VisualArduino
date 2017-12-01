@@ -7,7 +7,6 @@
 class ElemRule1 : public Elem
 {
 	private:
-		Const char op_sum_= '+';
 		Elem* elem_;
 	public:
 		ElemRule1(){}
@@ -17,10 +16,6 @@ class ElemRule1 : public Elem
 			delete elem;
 		}
 		ElemRule1(const ElemRule1& elemrule1):Elem(elemrule1),elem_(elem->elem_){}
-		char op_sum const ()
-		{
-			return op_sum_;
-		}
 		void set_elem(Elem* elem)
 		{
 			elem_ = elem;
@@ -29,5 +24,8 @@ class ElemRule1 : public Elem
 		{
 			return elem_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

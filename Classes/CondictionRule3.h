@@ -24,5 +24,8 @@ class CondictionRule3 : public Condiction
 		{
 			return forclause_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

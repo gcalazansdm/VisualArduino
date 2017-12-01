@@ -35,5 +35,8 @@ class SelectionClauseRule2 : public SelectionClause
 		{
 			return elseclauses_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

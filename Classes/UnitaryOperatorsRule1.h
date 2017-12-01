@@ -9,7 +9,6 @@ class UnitaryOperatorsRule1 : public UnitaryOperators
 {
 	private:
 		Values* values_;
-		Const std::string l_inc_= "++";
 	public:
 		UnitaryOperatorsRule1(){}
 		UnitaryOperatorsRule1( Values* values):UnitaryOperators(),values_(values){}
@@ -26,9 +25,8 @@ class UnitaryOperatorsRule1 : public UnitaryOperators
 		{
 			return values_;
 		}
-		std::string l_inc const ()
-		{
-			return l_inc_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

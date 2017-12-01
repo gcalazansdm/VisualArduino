@@ -46,5 +46,8 @@ class LogicCompRule1 : public LogicComp
 		{
 			return eq_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

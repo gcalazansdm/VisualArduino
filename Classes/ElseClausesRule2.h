@@ -24,5 +24,8 @@ class ElseClausesRule2 : public ElseClauses
 		{
 			return elseclause_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

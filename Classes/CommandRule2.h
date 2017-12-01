@@ -8,7 +8,6 @@ class CommandRule2 : public Command
 {
 	private:
 		Line* line_;
-		Const char a_semicolon_= ';';
 	public:
 		CommandRule2(){}
 		CommandRule2( Line* line):Command(),line_(line){}
@@ -25,9 +24,8 @@ class CommandRule2 : public Command
 		{
 			return line_;
 		}
-		char a_semicolon const ()
-		{
-			return a_semicolon_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

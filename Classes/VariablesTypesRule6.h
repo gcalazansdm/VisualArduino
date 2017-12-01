@@ -7,7 +7,6 @@
 class VariablesTypesRule6 : public VariablesTypes
 {
 	private:
-		Const std::string t_bool_= "Boolean";
 	public:
 		VariablesTypesRule6(){}
 		VariablesTypesRule6():VariablesTypes(){}
@@ -15,9 +14,8 @@ class VariablesTypesRule6 : public VariablesTypes
 		{
 		}
 		VariablesTypesRule6(const VariablesTypesRule6& variablestypesrule6):VariablesTypes(variablestypesrule6){}
-		std::string t_bool const ()
-		{
-			return t_bool_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

@@ -7,21 +7,15 @@
 class ValuesRule7 : public Values
 {
 	private:
-		std::string l_id_;
 	public:
 		ValuesRule7(){}
-		ValuesRule7( l_id l_id):Values(),l_id_(l_id){}
+		ValuesRule7():Values(){}
 		virtual ~ValuesRule7()
 		{
 		}
 		ValuesRule7(const ValuesRule7& valuesrule7):Values(valuesrule7){}
-		void set_l_id(std::string* l_id)
-		{
-			l_id_ = l_id;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-		std::string l_id const ()
-		{
-			return l_id_;
-		}
-}
+};
 #endif

@@ -24,5 +24,8 @@ class OperationRule3 : public Operation
 		{
 			return unitaryoperators_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

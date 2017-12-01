@@ -35,5 +35,8 @@ class MainBodyRule1 : public MainBody
 		{
 			return mainbody_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

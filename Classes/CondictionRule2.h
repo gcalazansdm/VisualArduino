@@ -24,5 +24,8 @@ class CondictionRule2 : public Condiction
 		{
 			return whileclause_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

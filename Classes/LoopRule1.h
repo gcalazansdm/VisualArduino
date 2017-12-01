@@ -8,12 +8,7 @@
 class LoopRule1 : public Loop
 {
 	private:
-		Const std::string a_loop_= "repeticao";
-		Const char a_lpar_= '(';
-		Const char a_rpar_= ')';
-		Const char a_rkey_= '}';
 		Loop* loop_;
-		Const char a_lkey_= '{';
 	public:
 		LoopRule1(){}
 		LoopRule1( Loop* loop):Loop(),loop_(loop){}
@@ -22,22 +17,6 @@ class LoopRule1 : public Loop
 			delete loop;
 		}
 		LoopRule1(const LoopRule1& looprule1):Loop(looprule1),loop_(loop->loop_){}
-		std::string a_loop const ()
-		{
-			return a_loop_;
-		}
-		char a_lpar const ()
-		{
-			return a_lpar_;
-		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
-		}
-		char a_rkey const ()
-		{
-			return a_rkey_;
-		}
 		void set_loop(Loop* loop)
 		{
 			loop_ = loop;
@@ -46,9 +25,8 @@ class LoopRule1 : public Loop
 		{
 			return loop_;
 		}
-		char a_lkey const ()
-		{
-			return a_lkey_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

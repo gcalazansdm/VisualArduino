@@ -6,8 +6,6 @@
 class ParameterRule2 : public Parameter
 {
 	private:
-		Const char a_lpar_= '(';
-		Const char a_rpar_= ')';
 	public:
 		ParameterRule2(){}
 		ParameterRule2():Parameter(){}
@@ -15,13 +13,8 @@ class ParameterRule2 : public Parameter
 		{
 		}
 		ParameterRule2(const ParameterRule2& parameterrule2):Parameter(parameterrule2){}
-		char a_lpar const ()
-		{
-			return a_lpar_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
-		}
-}
+};
 #endif

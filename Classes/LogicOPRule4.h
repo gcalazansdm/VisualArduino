@@ -7,9 +7,7 @@
 class LogicOPRule4 : public LogicOP
 {
 	private:
-		Const char a_lpar_= '(';
 		LogicOP* logicop_;
-		Const char a_rpar_= ')';
 	public:
 		LogicOPRule4(){}
 		LogicOPRule4( LogicOP* logicop):LogicOP(),logicop_(logicop){}
@@ -18,10 +16,6 @@ class LogicOPRule4 : public LogicOP
 			delete logicop;
 		}
 		LogicOPRule4(const LogicOPRule4& logicoprule4):LogicOP(logicoprule4),logicop_(logicop->logicop_){}
-		char a_lpar const ()
-		{
-			return a_lpar_;
-		}
 		void set_logicop(LogicOP* logicop)
 		{
 			logicop_ = logicop;
@@ -30,9 +24,8 @@ class LogicOPRule4 : public LogicOP
 		{
 			return logicop_;
 		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

@@ -9,7 +9,6 @@ class ParametersRule1 : public Parameters
 {
 	private:
 		Var* var_;
-		Const char a_comma_= '.';
 		Parameters* parameters_;
 	public:
 		ParametersRule1(){}
@@ -28,10 +27,6 @@ class ParametersRule1 : public Parameters
 		{
 			return var_;
 		}
-		char a_comma const ()
-		{
-			return a_comma_;
-		}
 		void set_parameters(Parameters* parameters)
 		{
 			parameters_ = parameters;
@@ -40,5 +35,8 @@ class ParametersRule1 : public Parameters
 		{
 			return parameters_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

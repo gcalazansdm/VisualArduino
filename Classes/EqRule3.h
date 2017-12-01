@@ -24,5 +24,8 @@ class EqRule3 : public Eq
 		{
 			return factor_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

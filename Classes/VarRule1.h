@@ -9,10 +9,9 @@ class VarRule1 : public Var
 {
 	private:
 		VariablesTypes* variablestypes_;
-		std::string l_id_;
 	public:
 		VarRule1(){}
-		VarRule1( VariablesTypes* variablestypes,l_id l_id):Var(),variablestypes_(variablestypes),l_id_(l_id){}
+		VarRule1( VariablesTypes* variablestypes):Var(),variablestypes_(variablestypes){}
 		virtual ~VarRule1()
 		{
 			delete variablestypes;
@@ -26,13 +25,8 @@ class VarRule1 : public Var
 		{
 			return variablestypes_;
 		}
-		void set_l_id(std::string* l_id)
-		{
-			l_id_ = l_id;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-		std::string l_id const ()
-		{
-			return l_id_;
-		}
-}
+};
 #endif

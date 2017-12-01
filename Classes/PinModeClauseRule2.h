@@ -9,13 +9,7 @@ class PinModeClauseRule2 : public PinModeClause
 {
 	private:
 		T_PINMODE* t_pinmode_;
-		Const char a_lpar_= '(';
 		Values* values_;
-		Const std::string t_int_= "int";
-		Const char a_comma_= '.';
-		Const std::string a_out_= "SAIDA";
-		Const char a_rpar_= ')';
-		Const char a_semicolon_= ';';
 	public:
 		PinModeClauseRule2(){}
 		PinModeClauseRule2( T_PINMODE* t_pinmode,Values* values):PinModeClause(),t_pinmode_(t_pinmode),values_(values){}
@@ -33,10 +27,6 @@ class PinModeClauseRule2 : public PinModeClause
 		{
 			return t_pinmode_;
 		}
-		char a_lpar const ()
-		{
-			return a_lpar_;
-		}
 		void set_values(Values* values)
 		{
 			values_ = values;
@@ -45,25 +35,8 @@ class PinModeClauseRule2 : public PinModeClause
 		{
 			return values_;
 		}
-		std::string t_int const ()
-		{
-			return t_int_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-		char a_comma const ()
-		{
-			return a_comma_;
-		}
-		std::string a_out const ()
-		{
-			return a_out_;
-		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
-		}
-		char a_semicolon const ()
-		{
-			return a_semicolon_;
-		}
-}
+};
 #endif

@@ -9,10 +9,7 @@
 class WhileClause : public Node
 {
 	private:
-		Const std::string t_whi_= "enquanto";
-		Const char a_lpar_= '(';
 		LogicOperation* logicoperation_;
-		Const char a_rpar_= ')';
 		Command* command_;
 	public:
 		WhileClause(){}
@@ -23,14 +20,6 @@ class WhileClause : public Node
 			delete command;
 		}
 		WhileClause(const WhileClause& whileclause):Node(whileclause),logicoperation_(whileclause->logicoperation_),command_(whileclause->command_){}
-		std::string t_whi const ()
-		{
-			return t_whi_;
-		}
-		char a_lpar const ()
-		{
-			return a_lpar_;
-		}
 		void set_logicoperation(LogicOperation* logicoperation)
 		{
 			logicoperation_ = logicoperation;
@@ -38,10 +27,6 @@ class WhileClause : public Node
 		const LogicOperation logicoperation const ()
 		{
 			return logicoperation_;
-		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
 		}
 		void set_command(Command* command)
 		{
@@ -51,5 +36,8 @@ class WhileClause : public Node
 		{
 			return command_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

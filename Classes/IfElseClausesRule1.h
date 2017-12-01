@@ -35,5 +35,8 @@ class IfElseClausesRule1 : public IfElseClauses
 		{
 			return ifelseclauses_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

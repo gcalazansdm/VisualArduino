@@ -24,5 +24,8 @@ class ParametersRule2 : public Parameters
 		{
 			return var_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

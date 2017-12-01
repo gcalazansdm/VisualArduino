@@ -7,9 +7,7 @@
 class LogicCompRule2 : public LogicComp
 {
 	private:
-		Const char a_lpar_= '(';
 		LogicComp* logiccomp_;
-		Const char a_rpar_= ')';
 	public:
 		LogicCompRule2(){}
 		LogicCompRule2( LogicComp* logiccomp):LogicComp(),logiccomp_(logiccomp){}
@@ -18,10 +16,6 @@ class LogicCompRule2 : public LogicComp
 			delete logiccomp;
 		}
 		LogicCompRule2(const LogicCompRule2& logiccomprule2):LogicComp(logiccomprule2),logiccomp_(logiccomp->logiccomp_){}
-		char a_lpar const ()
-		{
-			return a_lpar_;
-		}
 		void set_logiccomp(LogicComp* logiccomp)
 		{
 			logiccomp_ = logiccomp;
@@ -30,9 +24,8 @@ class LogicCompRule2 : public LogicComp
 		{
 			return logiccomp_;
 		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

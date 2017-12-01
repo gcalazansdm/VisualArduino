@@ -7,7 +7,6 @@
 class ElemRule2 : public Elem
 {
 	private:
-		Const char op_sub_= '-';
 		Elem* elem_;
 	public:
 		ElemRule2(){}
@@ -17,10 +16,6 @@ class ElemRule2 : public Elem
 			delete elem;
 		}
 		ElemRule2(const ElemRule2& elemrule2):Elem(elemrule2),elem_(elem->elem_){}
-		char op_sub const ()
-		{
-			return op_sub_;
-		}
 		void set_elem(Elem* elem)
 		{
 			elem_ = elem;
@@ -29,5 +24,8 @@ class ElemRule2 : public Elem
 		{
 			return elem_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

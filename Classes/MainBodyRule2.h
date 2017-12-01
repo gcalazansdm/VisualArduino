@@ -9,7 +9,6 @@ class MainBodyRule2 : public MainBody
 {
 	private:
 		Var* var_;
-		Const char a_semicolon_= ';';
 		MainBody* mainbody_;
 	public:
 		MainBodyRule2(){}
@@ -28,10 +27,6 @@ class MainBodyRule2 : public MainBody
 		{
 			return var_;
 		}
-		char a_semicolon const ()
-		{
-			return a_semicolon_;
-		}
 		void set_mainbody(MainBody* mainbody)
 		{
 			mainbody_ = mainbody;
@@ -40,5 +35,8 @@ class MainBodyRule2 : public MainBody
 		{
 			return mainbody_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

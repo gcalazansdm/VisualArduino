@@ -24,5 +24,8 @@ class LineRule3 : public Line
 		{
 			return condiction_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

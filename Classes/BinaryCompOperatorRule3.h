@@ -7,7 +7,6 @@
 class BinaryCompOperatorRule3 : public BinaryCompOperator
 {
 	private:
-		Const std::string op_bool_eqgre_= ">=";
 	public:
 		BinaryCompOperatorRule3(){}
 		BinaryCompOperatorRule3():BinaryCompOperator(){}
@@ -15,9 +14,8 @@ class BinaryCompOperatorRule3 : public BinaryCompOperator
 		{
 		}
 		BinaryCompOperatorRule3(const BinaryCompOperatorRule3& binarycompoperatorrule3):BinaryCompOperator(binarycompoperatorrule3){}
-		std::string op_bool_eqgre const ()
-		{
-			return op_bool_eqgre_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

@@ -7,7 +7,6 @@
 class UnitaryLogicalOperator : public Node
 {
 	private:
-		Const std::string op_bool_not_= "nao";
 	public:
 		UnitaryLogicalOperator(){}
 		UnitaryLogicalOperator():Node(){}
@@ -15,9 +14,8 @@ class UnitaryLogicalOperator : public Node
 		{
 		}
 		UnitaryLogicalOperator(const UnitaryLogicalOperator& unitarylogicaloperator):Node(unitarylogicaloperator){}
-		std::string op_bool_not const ()
-		{
-			return op_bool_not_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

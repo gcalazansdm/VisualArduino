@@ -7,9 +7,7 @@
 class ParameterRule1 : public Parameter
 {
 	private:
-		Const char a_lpar_= '(';
 		Parameters* parameters_;
-		Const char a_rpar_= ')';
 	public:
 		ParameterRule1(){}
 		ParameterRule1( Parameters* parameters):Parameter(),parameters_(parameters){}
@@ -18,10 +16,6 @@ class ParameterRule1 : public Parameter
 			delete parameters;
 		}
 		ParameterRule1(const ParameterRule1& parameterrule1):Parameter(parameterrule1),parameters_(parameter->parameters_){}
-		char a_lpar const ()
-		{
-			return a_lpar_;
-		}
 		void set_parameters(Parameters* parameters)
 		{
 			parameters_ = parameters;
@@ -30,9 +24,8 @@ class ParameterRule1 : public Parameter
 		{
 			return parameters_;
 		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

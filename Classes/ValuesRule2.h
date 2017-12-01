@@ -6,21 +6,15 @@
 class ValuesRule2 : public Values
 {
 	private:
-		float l_float_;
 	public:
 		ValuesRule2(){}
-		ValuesRule2( l_float l_float,):Values(),l_float_(l_float){}
+		ValuesRule2( ):Values(){}
 		virtual ~ValuesRule2()
 		{
 		}
 		ValuesRule2(const ValuesRule2& valuesrule2):Values(valuesrule2){}
-		void set_l_float(float* l_float)
-		{
-			l_float_ = l_float;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-		float l_float const ()
-		{
-			return l_float_;
-		}
-}
+};
 #endif

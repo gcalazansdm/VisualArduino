@@ -8,7 +8,6 @@
 class ElseClause : public Node
 {
 	private:
-		Const std::string t_else_= "entao";
 		Command* command_;
 	public:
 		ElseClause(){}
@@ -18,10 +17,6 @@ class ElseClause : public Node
 			delete command;
 		}
 		ElseClause(const ElseClause& elseclause):Node(elseclause),command_(elseclause->command_){}
-		std::string t_else const ()
-		{
-			return t_else_;
-		}
 		void set_command(Command* command)
 		{
 			command_ = command;
@@ -30,5 +25,8 @@ class ElseClause : public Node
 		{
 			return command_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

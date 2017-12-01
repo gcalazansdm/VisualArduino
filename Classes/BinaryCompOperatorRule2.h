@@ -6,7 +6,6 @@
 class BinaryCompOperatorRule2 : public BinaryCompOperator
 {
 	private:
-		Const char op_bool_less_= '<';
 	public:
 		BinaryCompOperatorRule2(){}
 		BinaryCompOperatorRule2( ):BinaryCompOperator(){}
@@ -14,9 +13,8 @@ class BinaryCompOperatorRule2 : public BinaryCompOperator
 		{
 		}
 		BinaryCompOperatorRule2(const BinaryCompOperatorRule2& binarycompoperatorrule2):BinaryCompOperator(binarycompoperatorrule2){}
-		char op_bool_less const ()
-		{
-			return op_bool_less_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

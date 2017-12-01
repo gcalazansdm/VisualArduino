@@ -9,10 +9,7 @@
 class IfClause : public Node
 {
 	private:
-		Const std::string t_if_= "se";
-		Const char a_lpar_= '(';
 		LogicOperation* logicoperation_;
-		Const char a_rpar_= ')';
 		Command* command_;
 	public:
 		IfClause(){}
@@ -23,14 +20,6 @@ class IfClause : public Node
 			delete command;
 		}
 		IfClause(const IfClause& ifclause):Node(ifclause),logicoperation_(ifclause->logicoperation_),command_(ifclause->command_){}
-		std::string t_if const ()
-		{
-			return t_if_;
-		}
-		char a_lpar const ()
-		{
-			return a_lpar_;
-		}
 		void set_logicoperation(LogicOperation* logicoperation)
 		{
 			logicoperation_ = logicoperation;
@@ -38,10 +27,6 @@ class IfClause : public Node
 		const LogicOperation logicoperation const ()
 		{
 			return logicoperation_;
-		}
-		char a_rpar const ()
-		{
-			return a_rpar_;
 		}
 		void set_command(Command* command)
 		{
@@ -51,5 +36,8 @@ class IfClause : public Node
 		{
 			return command_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

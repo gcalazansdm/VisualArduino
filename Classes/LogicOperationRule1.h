@@ -24,5 +24,8 @@ class LogicOperationRule1 : public LogicOperation
 		{
 			return logicop_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

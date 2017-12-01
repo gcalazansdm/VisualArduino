@@ -9,7 +9,6 @@ class EqRule2 : public Eq
 {
 	private:
 		Eq* eq_;
-		Const char op_sub_= '-';
 		Factor* factor_;
 	public:
 		EqRule2(){}
@@ -28,10 +27,6 @@ class EqRule2 : public Eq
 		{
 			return eq_;
 		}
-		char op_sub const ()
-		{
-			return op_sub_;
-		}
 		void set_factor(Factor* factor)
 		{
 			factor_ = factor;
@@ -40,5 +35,8 @@ class EqRule2 : public Eq
 		{
 			return factor_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

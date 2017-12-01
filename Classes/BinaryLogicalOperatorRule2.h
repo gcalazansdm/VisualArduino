@@ -7,7 +7,6 @@
 class BinaryLogicalOperatorRule2 : public BinaryLogicalOperator
 {
 	private:
-		Const std::string op_bool_or_= "ou";
 	public:
 		BinaryLogicalOperatorRule2(){}
 		BinaryLogicalOperatorRule2():BinaryLogicalOperator(){}
@@ -15,9 +14,8 @@ class BinaryLogicalOperatorRule2 : public BinaryLogicalOperator
 		{
 		}
 		BinaryLogicalOperatorRule2(const BinaryLogicalOperatorRule2& binarylogicaloperatorrule2):BinaryLogicalOperator(binarylogicaloperatorrule2){}
-		std::string op_bool_or const ()
-		{
-			return op_bool_or_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

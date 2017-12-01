@@ -6,21 +6,15 @@
 class ValuesRule1 : public Values
 {
 	private:
-		int l_int_;
 	public:
 		ValuesRule1(){}
-		ValuesRule1( l_int l_int,):Values(),l_int_(l_int){}
+		ValuesRule1( ):Values(){}
 		virtual ~ValuesRule1()
 		{
 		}
 		ValuesRule1(const ValuesRule1& valuesrule1):Values(valuesrule1){}
-		void set_l_int(int* l_int)
-		{
-			l_int_ = l_int;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-		int l_int const ()
-		{
-			return l_int_;
-		}
-}
+};
 #endif

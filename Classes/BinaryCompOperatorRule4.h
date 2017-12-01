@@ -7,7 +7,6 @@
 class BinaryCompOperatorRule4 : public BinaryCompOperator
 {
 	private:
-		Const std::string op_bool_eqless_= "<=";
 	public:
 		BinaryCompOperatorRule4(){}
 		BinaryCompOperatorRule4():BinaryCompOperator(){}
@@ -15,9 +14,8 @@ class BinaryCompOperatorRule4 : public BinaryCompOperator
 		{
 		}
 		BinaryCompOperatorRule4(const BinaryCompOperatorRule4& binarycompoperatorrule4):BinaryCompOperator(binarycompoperatorrule4){}
-		std::string op_bool_eqless const ()
-		{
-			return op_bool_eqless_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

@@ -35,5 +35,8 @@ class LogicOPRule2 : public LogicOP
 		{
 			return logicop_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

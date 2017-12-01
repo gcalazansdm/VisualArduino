@@ -8,7 +8,6 @@ class LocalBodyRule2 : public LocalBody
 {
 	private:
 		Line* line_;
-		Const char a_semicolon_= ';';
 	public:
 		LocalBodyRule2(){}
 		LocalBodyRule2( Line* line):LocalBody(),line_(line){}
@@ -25,9 +24,8 @@ class LocalBodyRule2 : public LocalBody
 		{
 			return line_;
 		}
-		char a_semicolon const ()
-		{
-			return a_semicolon_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

@@ -24,5 +24,8 @@ class MainBodyRule3 : public MainBody
 		{
 			return function_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

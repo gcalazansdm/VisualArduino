@@ -7,9 +7,7 @@
 class BodyRule1 : public Body
 {
 	private:
-		Const char a_lkey_= '{';
 		LocalBody* localbody_;
-		Const char a_rkey_= '}';
 	public:
 		BodyRule1(){}
 		BodyRule1( LocalBody* localbody):Body(),localbody_(localbody){}
@@ -18,10 +16,6 @@ class BodyRule1 : public Body
 			delete localbody;
 		}
 		BodyRule1(const BodyRule1& bodyrule1):Body(bodyrule1),localbody_(body->localbody_){}
-		char a_lkey const ()
-		{
-			return a_lkey_;
-		}
 		void set_localbody(LocalBody* localbody)
 		{
 			localbody_ = localbody;
@@ -30,9 +24,8 @@ class BodyRule1 : public Body
 		{
 			return localbody_;
 		}
-		char a_rkey const ()
-		{
-			return a_rkey_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

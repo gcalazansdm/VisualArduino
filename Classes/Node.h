@@ -6,6 +6,7 @@ class Node{
 	public:
 		Node(){}
 		virtual	~Node(){}	
+		virtual void accept(Visitor *v) = 0;
 }
 
 #endif

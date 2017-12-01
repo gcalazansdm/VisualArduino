@@ -8,7 +8,6 @@ class MainBodyRule4 : public MainBody
 {
 	private:
 		Var* var_;
-		Const char a_semicolon_= ';';
 	public:
 		MainBodyRule4(){}
 		MainBodyRule4( Var* var):MainBody(),var_(var){}
@@ -25,9 +24,8 @@ class MainBodyRule4 : public MainBody
 		{
 			return var_;
 		}
-		char a_semicolon const ()
-		{
-			return a_semicolon_;
+		void accept(Visitor *v) {
+			v -> visit(this);
 		}
-}
+};
 #endif

@@ -24,5 +24,8 @@ class OperationRule1 : public Operation
 		{
 			return eq_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif

@@ -24,5 +24,8 @@ class FactorRule3 : public Factor
 		{
 			return elem_;
 		}
-}
+		void accept(Visitor *v) {
+			v -> visit(this);
+		}
+};
 #endif
