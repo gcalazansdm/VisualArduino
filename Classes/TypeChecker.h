@@ -49,7 +49,7 @@ class PrintVisitor : public Visitor
 			}
 			Type t1= stack_.top();
 			stack_.pop();
-			int result = t1.compatible(t2);
+			int result = t1.compatible(&t2);
 			if(result > -2)
 			{
 				if(result > 0)
@@ -69,7 +69,7 @@ class PrintVisitor : public Visitor
 			}
 			t2= stack_.top();
 			stack_.pop();
-			int result = t1.compatible(t2);
+			int result = t1.compatible(&t2);
 			if(result > -2)
 			{
 				if(result > 0)
@@ -83,7 +83,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(VarRule1* e)
 		{
-			e -> variablestypes() -> accept(this);
+            e -> variablestypes() -> accept(this);
 			if(stack_.empty())
 			{
 				throw TypeCheckExeption("Esperado Dado");
@@ -92,7 +92,7 @@ class PrintVisitor : public Visitor
 			stack_.pop();
 			Type t2= stack_.top();
 			stack_.pop();
-			int result = t1.compatible(t2);
+			int result = t1.compatible(&t2);
 			if(result > -2)
 			{
 				if(result > 0)
@@ -229,7 +229,7 @@ class PrintVisitor : public Visitor
 		{
 			e -> values() -> accept(this);
 			Type t = map_[s1];
-			int result = t.compatible(new Type(1));
+			int result = t.compatible(&new Type(1));
 			if(result > -2)
 			{
 				stack_.push_back(t1);
@@ -239,7 +239,7 @@ class PrintVisitor : public Visitor
 		{
 			e -> values() -> accept(this);
 			Type t = map_[s1];
-			int result = t.compatible(new Type(1));
+			int result = t.compatible(&new Type(1));
 			if(result > -2)
 			{
 				stack_.push_back(t1);
@@ -278,7 +278,7 @@ class PrintVisitor : public Visitor
 			e -> operation() -> accept(this);
 			Type t2= stack_.top();
 			stack_.pop();
-			int result = t1.compatible(t2);
+			int result = t1.compatible(&t2);
 			if(result > -2)
 			{
 				if(result > 0)
@@ -304,7 +304,7 @@ class PrintVisitor : public Visitor
 			e -> operation() -> accept(this);
 			Type t2= stack_.top();
 			stack_.pop();
-			int result = t1.compatible(t2);
+			int result = t1.compatible(&t2);
 			if(result > -2)
 			{
 				if(result > 0)

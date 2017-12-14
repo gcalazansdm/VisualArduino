@@ -49,7 +49,7 @@ int compatible(Type* t){
 		break;
 		case L_STRING:
 		if(b== 1){
-			return 1
+			return 1;
 		}
 		break;
 		default:

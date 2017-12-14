@@ -185,4 +185,4 @@ class Visitor
 		virtual void visit(VariablesTypesRule5* e) = 0;
 		virtual void visit(VariablesTypesRule6* e) = 0;
 };
-#endif
+#endif	
