@@ -2,6 +2,8 @@
   #include<string>
   #include<stdint.h>
   #include<stdbool.h>
+
+  Node *root = null
 %}
 %token L_INT
 %token L_DOUBLE
@@ -71,6 +73,7 @@
 %type <double_point> L_DOUBLE
 %%
  
+Program : MainBody {root = $1}
 
 MainBody : Function MainBody { $$ = new MainBodyRule1($1,$2); } 
          | Var A_SEMICOLON MainBody { $$ = new MainBodyRule2($1,$3); }
