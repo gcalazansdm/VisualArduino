@@ -1,124 +1,135 @@
 #ifndef TYPECHECKER_H
 #define TYPECHECKER_H
-#include<math.h>
-#include<Visitor.h>
+#include <math.h>
+#include "Visitor.h"
+#include "TypeCheckExeption.h"
+#include "Type.h"
+#include <map>
+#include <vector>
 
 class PrintVisitor : public Visitor 
 {
 	private:
-		std::vector<Type>stack;
-		std::vector<std::stringType>map;
+		std::vector<Type> stack_;
+		std::vector<Type> idStack_;
+		std::vector<std::string,Type> map_;
 	public:
 		virtual void visit(VariablesTypesRule6* e)
 		{
+			stack_.push_back(new Type(6));
 		}
 		virtual void visit(VariablesTypesRule5* e)
 		{
+			stack_.push_back(new Type(5));
 		}
 		virtual void visit(VariablesTypesRule4* e)
 		{
+			stack_.push_back(new Type(4));	
 		}
 		virtual void visit(VariablesTypesRule3* e)
 		{
+			stack_.push_back(new Type(2));	
 		}
 		virtual void visit(VariablesTypesRule2* e)
 		{
+			stack_.push_back(new Type(1));	
 		}
 		virtual void visit(VariablesTypesRule1* e)
 		{
+			stack_.push_back(new Type(3));	
 		}
 		virtual void visit(VarRule2* e)
 		{
 			e -> variablestypes() -> accept(this);
-//L_ID
-			if(stack.empty())
+			Type t2= stack_.top();
+			stack_.pop();
+			if(stack_.empty())
 			{
 				throw TypeCheckExeption("Esperado Dado");
 			}
-			Type t1= stack.top();
-			stack.pop();
+			Type t1= stack_.top();
+			stack_.pop();
+			int result = t1.compatible(t2);
+			if(result > -2)
+			{
+				if(result > 0)
+				{
+					stack_.push_back(t1);
+				}else
+				{
+					stack_.push_back(t2);
+				}
+			}
+			t1= stack_.top();
+			stack_.pop();
 			e -> operation() -> accept(this);
+			if(stack_.empty())
+			{
+				throw TypeCheckExeption("Esperado Dado");
+			}
+			t2= stack_.top();
+			stack_.pop();
+			int result = t1.compatible(t2);
+			if(result > -2)
+			{
+				if(result > 0)
+				{
+					stack_.push_back(t1);
+				}else
+				{
+					stack_.push_back(t2);
+				}
+			}
 		}
 		virtual void visit(VarRule1* e)
 		{
 			e -> variablestypes() -> accept(this);
-//L_ID
-			if(stack.empty())
+			if(stack_.empty())
 			{
 				throw TypeCheckExeption("Esperado Dado");
 			}
-			Type t1= stack.top();
-			stack.pop();
+			Type t1= stack_.top();
+			stack_.pop();
+			Type t2= stack_.top();
+			stack_.pop();
+			int result = t1.compatible(t2);
+			if(result > -2)
+			{
+				if(result > 0)
+				{
+					stack_.push_back(t1);
+				}else
+				{
+					stack_.push_back(t2);
+				}
+			}
 		}
-		virtual void visit(ValuesRule7* e)
-		{
-//L_ID
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+		virtual void visit(ValuesRule7* e){
+			idStack_.push_back(e->nome());
 		}
 		virtual void visit(ValuesRule6* e)
 		{
-//L_BOOL
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			stack_.push_back(new Type(6));		
 		}
 		virtual void visit(ValuesRule5* e)
 		{
-//L_STRING
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			stack_.push_back(new Type(5));
 		}
 		virtual void visit(ValuesRule4* e)
 		{
-//L_CHAR
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			stack_.push_back(new Type(4));
 		}
 		virtual void visit(ValuesRule3* e)
 		{
-//L_DOUBLE
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			stack_.push_back(new Type(3));
 		}
 		virtual void visit(ValuesRule2* e)
 		{
-//L_FLOAT
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			stack_.push_back(new Type(2));
 		}
 		virtual void visit(ValuesRule1* e)
 		{
-//L_INT
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			stack_.push_back(new Type(1));
 		}
 		virtual void visit(ElemRule4* e)
 		{
@@ -166,33 +177,12 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(UnitaryLogicalOperator* e)
 		{
-//OP_BOOL_NOT
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
 		}
 		virtual void visit(BinaryLogicalOperatorRule2* e)
 		{
-//OP_BOOL_OR
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
 		}
 		virtual void visit(BinaryLogicalOperatorRule1* e)
 		{
-//OP_BOOL_AND
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
 		}
 		virtual void visit(LogicOPRule4* e)
 		{
@@ -200,13 +190,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(LogicOPRule3* e)
 		{
-//L_BOOL
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			stack_.push_back(new Type(6));
 		}
 		virtual void visit(LogicOPRule2* e)
 		{
@@ -221,43 +205,15 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(BinaryCompOperatorRule4* e)
 		{
-//OP_BOOL_EQLESS
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
 		}
 		virtual void visit(BinaryCompOperatorRule3* e)
 		{
-//OP_BOOL_EQGRE
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
 		}
 		virtual void visit(BinaryCompOperatorRule2* e)
 		{
-//OP_BOOL_LESS
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
 		}
 		virtual void visit(BinaryCompOperatorRule1* e)
 		{
-//OP_BOOL_GRE
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
 		}
 		virtual void visit(LogicCompRule2* e)
 		{
@@ -272,10 +228,22 @@ class PrintVisitor : public Visitor
 		virtual void visit(UnitaryOperatorsRule2* e)
 		{
 			e -> values() -> accept(this);
+			Type t = map_[s1];
+			int result = t.compatible(new Type(1));
+			if(result > -2)
+			{
+				stack_.push_back(t1);
+			}
 		}
 		virtual void visit(UnitaryOperatorsRule1* e)
 		{
 			e -> values() -> accept(this);
+			Type t = map_[s1];
+			int result = t.compatible(new Type(1));
+			if(result > -2)
+			{
+				stack_.push_back(t1);
+			}
 		}
 		virtual void visit(OperationRule3* e)
 		{
@@ -301,27 +269,52 @@ class PrintVisitor : public Visitor
 		{
 		}
 		virtual void visit(VarForRule2* e)
-		{
-//L_ID
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+		{ 
+			std::string s1= "$";
+			strcat (str,idStack_.top());
+			idStack_.pop();
+
+			Type t1=map_.[s1];
 			e -> operation() -> accept(this);
+			Type t2= stack_.top();
+			stack_.pop();
+			int result = t1.compatible(t2);
+			if(result > -2)
+			{
+				if(result > 0)
+				{
+					stack_.push_back(t1);
+				}else
+				{
+					stack_.push_back(t2);
+				}
+			}
 		}
 		virtual void visit(VarForRule1* e)
 		{
 			e -> variablestypes() -> accept(this);
-//L_ID
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			Type t1= stack_.top();
+			stack_.pop();
+
+  			std::string s1= "$";
+			strcat (str,idStack_.top());
+			idStack_.pop();
+
+			map_.insert(std::pair<std::string,Type>(s1,t1));
 			e -> operation() -> accept(this);
+			Type t2= stack_.top();
+			stack_.pop();
+			int result = t1.compatible(t2);
+			if(result > -2)
+			{
+				if(result > 0)
+				{
+					stack_.push_back(t1);
+				}else
+				{
+					stack_.push_back(t2);
+				}
+			}
 		}
 		virtual void visit(CommandRule2* e)
 		{
@@ -479,25 +472,27 @@ class PrintVisitor : public Visitor
 		virtual void visit(FunctionRule2* e)
 		{
 			e -> variablestypes() -> accept(this);
-//L_ID
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			Type t1= stack_.top();
+			stack_.pop();
+
+  			std::string s1= "$";
+			strcat (str,idStack_.top());
+			idStack_.pop();
+
+			map_.insert(std::pair<std::string,Type>(s1,t1));
 			e -> parameters() -> accept(this);
 		}
 		virtual void visit(FunctionRule1* e)
 		{
 			e -> variablestypes() -> accept(this);
-//L_ID
-			if(stack.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack.top();
-			stack.pop();
+			Type t1= stack_.top();
+			stack_.pop();
+
+  			std::string s1= "$";
+			strcat (str,idStack_.top());
+			idStack_.pop();
+
+			map_.insert(std::pair<std::string,Type>(s1,t1));
 			e -> parameters() -> accept(this);
 			e -> body() -> accept(this);
 		}
@@ -522,6 +517,10 @@ class PrintVisitor : public Visitor
 		virtual void visit(MainBodyRule1* e)
 		{
 			e -> function() -> accept(this);
+			e -> mainbody() -> accept(this);
+		}
+		virtual void visit(program* e)
+		{
 			e -> mainbody() -> accept(this);
 		}
 };
