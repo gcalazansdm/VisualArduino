@@ -7,8 +7,8 @@ class Loop : public Node
 {
 	private:
 	public:
-		Loop():Node(){}
-		virtual ~Loop(){}
-		Loop(const Loop& loop):Loop(){}
-}
+		Loop():Node(){};
+		virtual ~Loop(){};
+		Loop(const Loop& loop):Loop(){};
+};
 #endif

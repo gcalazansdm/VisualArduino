@@ -7,8 +7,8 @@ class Command : public Node
 {
 	private:
 	public:
-		Command():Node(){}
-		virtual ~Command(){}
-		Command(const Command& command):Command(){}
-}
+		Command():Node(){};
+		virtual ~Command(){};
+		Command(const Command& command):Command(){};
+};
 #endif

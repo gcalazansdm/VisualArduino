@@ -8,14 +8,14 @@ class UnitaryLogicalOperator : public Node
 {
 	private:
 	public:
-		UnitaryLogicalOperator(){}
-		UnitaryLogicalOperator():Node(){}
+		UnitaryLogicalOperator(){};
+		UnitaryLogicalOperator():Node(){};
 		virtual ~UnitaryLogicalOperator()
 		{
-		}
-		UnitaryLogicalOperator(const UnitaryLogicalOperator& unitarylogicaloperator):Node(unitarylogicaloperator){}
+		};
+		UnitaryLogicalOperator(const UnitaryLogicalOperator& unitarylogicaloperator):Node(unitarylogicaloperator){};
 		void accept(Visitor *v) {
 			v -> visit(this);
-		}
+		};
 };
 #endif

@@ -7,8 +7,8 @@ class Function : public Node
 {
 	private:
 	public:
-		Function():Node(){}
-		virtual ~Function(){}
-		Function(const Function& function):Function(){}
-}
+		Function():Node(){};
+		virtual ~Function(){};
+		Function(const Function& function):Function(){};
+};
 #endif

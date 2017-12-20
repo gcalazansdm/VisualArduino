@@ -7,8 +7,8 @@ class Values : public Node
 {
 	private:
 	public:
-		Values():Node(){}
-		virtual ~Values(){}
-		Values(const Values& values):Values(){}
-}
+		Values():Node(){};
+		virtual ~Values(){};
+		Values(const Values& values):Values(){};
+};
 #endif

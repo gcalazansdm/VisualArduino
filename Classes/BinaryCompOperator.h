@@ -7,8 +7,8 @@ class BinaryCompOperator : public Node
 {
 	private:
 	public:
-		BinaryCompOperator():Node(){}
-		virtual ~BinaryCompOperator(){}
-		BinaryCompOperator(const BinaryCompOperator& binarycompoperator):BinaryCompOperator(){}
-}
+		BinaryCompOperator():Node(){};
+		virtual ~BinaryCompOperator(){};
+		BinaryCompOperator(const BinaryCompOperator& binarycompoperator):BinaryCompOperator(){};
+};
 #endif

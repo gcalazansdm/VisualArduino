@@ -7,8 +7,8 @@ class Factor : public Node
 {
 	private:
 	public:
-		Factor():Node(){}
-		virtual ~Factor(){}
-		Factor(const Factor& factor):Factor(){}
-}
+		Factor():Node(){};
+		virtual ~Factor(){};
+		Factor(const Factor& factor):Factor(){};
+};
 #endif

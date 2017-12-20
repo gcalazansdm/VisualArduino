@@ -7,8 +7,8 @@ class IfElseClauses : public Node
 {
 	private:
 	public:
-		IfElseClauses():Node(){}
-		virtual ~IfElseClauses(){}
-		IfElseClauses(const IfElseClauses& ifelseclauses):IfElseClauses(){}
-}
+		IfElseClauses():Node(){};
+		virtual ~IfElseClauses(){};
+		IfElseClauses(const IfElseClauses& ifelseclauses):IfElseClauses(){};
+};
 #endif

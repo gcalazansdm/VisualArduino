@@ -9,20 +9,17 @@
 #define L_BOOL     6
 #define L_ID       7
 
-class Type
-{
+class Tipo {
 	private:
 		int tipo_;
 	public:
-		Type(){}
-		Type(int tipo):Type(),tipo_ = tipo{}
-		virtual ~Type()
-		{
-		}
-		int compatible(Type t);
+		Tipo(){};
+		Tipo(int tipo):tipo_(tipo){};
+		virtual ~Tipo(){};
+		int compatible(Tipo t);
 		const int tipo(){
 			return tipo_
-		}
-		Type(const Type& type):Type(Type){}
+		};
+		Tipo(const Tipo& type):tipo_(type.tipo_){}
 };
 #endif

@@ -8,14 +8,13 @@ class VariablesTypesRule2 : public VariablesTypes
 {
 	private:
 	public:
-		VariablesTypesRule2(){}
-		VariablesTypesRule2():VariablesTypes(){}
+		VariablesTypesRule2(){};
 		virtual ~VariablesTypesRule2()
 		{
-		}
-		VariablesTypesRule2(const VariablesTypesRule2& variablestypesrule2):VariablesTypes(variablestypesrule2){}
+		};
+		VariablesTypesRule2(const VariablesTypesRule2& variablestypesrule2):VariablesTypes(variablestypesrule2){};
 		void accept(Visitor *v) {
 			v -> visit(this);
-		}
+		};
 };
 #endif

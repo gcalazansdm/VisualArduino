@@ -7,8 +7,8 @@ class ElseClauses : public Node
 {
 	private:
 	public:
-		ElseClauses():Node(){}
-		virtual ~ElseClauses(){}
-		ElseClauses(const ElseClauses& elseclauses):ElseClauses(){}
-}
+		ElseClauses():Node(){};
+		virtual ~ElseClauses(){};
+		ElseClauses(const ElseClauses& elseclauses):ElseClauses(){};
+};
 #endif

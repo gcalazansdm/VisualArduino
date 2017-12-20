@@ -1,6 +1,9 @@
 %{
    #include<string>
+   #include<Sintatico.c>
    string literal;
+   string id;
+
 %}
 %option noyywrap  
 %x STRING
@@ -50,7 +53,7 @@
 "porem" { return T_IFELSE;}
 "enquanto" { return T_WHI;}
 "para" { return T_FOR;}
-[A-Za-z][A-Za-z0-9_-] {return L_ID;}
+[A-Za-z][A-Za-z0-9_-] {id = yytext; return L_ID;}
 [\r\n ] {}
 [/][/][^$]* {}
 [']([^"]|"\\\"")['] {return L_CHAR;}

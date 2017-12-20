@@ -7,8 +7,8 @@ class BinaryLogicalOperator : public Node
 {
 	private:
 	public:
-		BinaryLogicalOperator():Node(){}
-		virtual ~BinaryLogicalOperator(){}
-		BinaryLogicalOperator(const BinaryLogicalOperator& binarylogicaloperator):BinaryLogicalOperator(){}
-}
+		BinaryLogicalOperator():Node(){};
+		virtual ~BinaryLogicalOperator(){};
+		BinaryLogicalOperator(const BinaryLogicalOperator& binarylogicaloperator):BinaryLogicalOperator(){};
+};
 #endif

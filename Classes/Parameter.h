@@ -7,8 +7,8 @@ class Parameter : public Node
 {
 	private:
 	public:
-		Parameter():Node(){}
-		virtual ~Parameter(){}
-		Parameter(const Parameter& parameter):Parameter(){}
-}
+		Parameter():Node(){};
+		virtual ~Parameter(){};
+		Parameter(const Parameter& parameter):Parameter(){};
+};
 #endif

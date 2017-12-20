@@ -7,8 +7,8 @@ class SelectionClause : public Node
 {
 	private:
 	public:
-		SelectionClause():Node(){}
-		virtual ~SelectionClause(){}
-		SelectionClause(const SelectionClause& selectionclause):SelectionClause(){}
-}
+		SelectionClause():Node(){};
+		virtual ~SelectionClause(){};
+		SelectionClause(const SelectionClause& selectionclause):SelectionClause(){};
+};
 #endif

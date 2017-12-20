@@ -7,8 +7,8 @@ class PinModeClause : public Node
 {
 	private:
 	public:
-		PinModeClause():Node(){}
-		virtual ~PinModeClause(){}
-		PinModeClause(const PinModeClause& pinmodeclause):PinModeClause(){}
-}
+		PinModeClause():Node(){};
+		virtual ~PinModeClause(){};
+		PinModeClause(const PinModeClause& pinmodeclause):PinModeClause(){};
+};
 #endif

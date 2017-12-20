@@ -7,8 +7,8 @@ class Eq : public Node
 {
 	private:
 	public:
-		Eq():Node(){}
-		virtual ~Eq(){}
-		Eq(const Eq& eq):Eq(){}
-}
+		Eq():Node(){};
+		virtual ~Eq(){};
+		Eq(const Eq& eq):Eq(){};
+};
 #endif

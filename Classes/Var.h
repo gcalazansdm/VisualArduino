@@ -7,8 +7,8 @@ class Var : public Node
 {
 	private:
 	public:
-		Var():Node(){}
-		virtual ~Var(){}
-		Var(const Var& var):Var(){}
-}
+		Var():Node(){};
+		virtual ~Var(){};
+		Var(const Var& var):Var(){};
+};
 #endif

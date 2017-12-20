@@ -7,8 +7,8 @@ class DigitalWriteClause : public Node
 {
 	private:
 	public:
-		DigitalWriteClause():Node(){}
-		virtual ~DigitalWriteClause(){}
-		DigitalWriteClause(const DigitalWriteClause& digitalwriteclause):DigitalWriteClause(){}
-}
+		DigitalWriteClause():Node(){};
+		virtual ~DigitalWriteClause(){};
+		DigitalWriteClause(const DigitalWriteClause& digitalwriteclause):DigitalWriteClause(){};
+};
 #endif

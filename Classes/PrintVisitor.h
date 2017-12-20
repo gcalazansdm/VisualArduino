@@ -7,6 +7,10 @@
 class PrintVisitor : public Visitor 
 {
 	public:
+		virtual void visit(program* e)
+		{
+			e -> mainbody() -> accept(this);
+		}
 		virtual void visit(MainBodyRule1* e)
 		{
 			e -> function() -> accept(this);
@@ -188,7 +192,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(PinModeClauseRule1* e)
 		{
-			e -> t_pinmode() -> accept(this);
+			std::cout << "PIN MODE";
 			std::cout << "(";
 			e -> values() -> accept(this);
 			std::cout << "int";
@@ -199,7 +203,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(PinModeClauseRule2* e)
 		{
-			e -> t_pinmode() -> accept(this);
+			std::cout << "PIN MODE";
 			std::cout << "(";
 			e -> values() -> accept(this);
 			std::cout << "int";
@@ -210,7 +214,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(DigitalWriteClauseRule1* e)
 		{
-			e -> t_digitalwrite() -> accept(this);
+			std::cout << "DIGITAL WRITE";
 			std::cout << "(";
 			e -> values() -> accept(this);
 			std::cout << "int";
@@ -221,7 +225,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(DigitalWriteClauseRule2* e)
 		{
-			e -> t_digitalwrite() -> accept(this);
+			std::cout << "DIGITAL WRITE";
 			std::cout << "(";
 			e -> values() -> accept(this);
 			std::cout << "int";

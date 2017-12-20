@@ -7,8 +7,8 @@ class VarFor : public Node
 {
 	private:
 	public:
-		VarFor():Node(){}
-		virtual ~VarFor(){}
-		VarFor(const VarFor& varfor):VarFor(){}
-}
+		VarFor():Node(){};
+		virtual ~VarFor(){};
+		VarFor(const VarFor& varfor):VarFor(){};
+};
 #endif

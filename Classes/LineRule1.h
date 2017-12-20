@@ -9,23 +9,23 @@ class LineRule1 : public Line
 	private:
 		Operation* operation_;
 	public:
-		LineRule1(){}
-		LineRule1( Operation* operation):Line(),operation_(operation){}
+		LineRule1(){};
+		LineRule1( Operation* operation):Line(),operation_(operation){};
 		virtual ~LineRule1()
 		{
 			delete operation;
-		}
-		LineRule1(const LineRule1& linerule1):Line(linerule1),operation_(line->operation_){}
+		};
+		LineRule1(const LineRule1& linerule1):Line(linerule1),operation_(line->operation_){};
 		void set_operation(Operation* operation)
 		{
 			operation_ = operation;
-		}
+		};
 		const Operation operation const ()
 		{
 			return operation_;
-		}
+		};
 		void accept(Visitor *v) {
 			v -> visit(this);
-		}
+		};
 };
 #endif

@@ -7,8 +7,8 @@ class Operation : public Node
 {
 	private:
 	public:
-		Operation():Node(){}
-		virtual ~Operation(){}
-		Operation(const Operation& operation):Operation(){}
-}
+		Operation():Node(){};
+		virtual ~Operation(){};
+		Operation(const Operation& operation):Operation(){};
+};
 #endif

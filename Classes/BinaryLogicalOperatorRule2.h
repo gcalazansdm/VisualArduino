@@ -8,14 +8,14 @@ class BinaryLogicalOperatorRule2 : public BinaryLogicalOperator
 {
 	private:
 	public:
-		BinaryLogicalOperatorRule2(){}
-		BinaryLogicalOperatorRule2():BinaryLogicalOperator(){}
+		BinaryLogicalOperatorRule2(){};
+		BinaryLogicalOperatorRule2():BinaryLogicalOperator(){};
 		virtual ~BinaryLogicalOperatorRule2()
 		{
-		}
-		BinaryLogicalOperatorRule2(const BinaryLogicalOperatorRule2& binarylogicaloperatorrule2):BinaryLogicalOperator(binarylogicaloperatorrule2){}
+		};
+		BinaryLogicalOperatorRule2(const BinaryLogicalOperatorRule2& binarylogicaloperatorrule2):BinaryLogicalOperator(binarylogicaloperatorrule2){};
 		void accept(Visitor *v) {
 			v -> visit(this);
-		}
+		};
 };
 #endif

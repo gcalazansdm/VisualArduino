@@ -7,8 +7,8 @@ class LocalBody : public Node
 {
 	private:
 	public:
-		LocalBody():Node(){}
-		virtual ~LocalBody(){}
-		LocalBody(const LocalBody& localbody):LocalBody(){}
-}
+		LocalBody():Node(){};
+		virtual ~LocalBody(){};
+		LocalBody(const LocalBody& localbody):LocalBody(){};
+};
 #endif

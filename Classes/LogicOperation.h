@@ -7,8 +7,8 @@ class LogicOperation : public Node
 {
 	private:
 	public:
-		LogicOperation():Node(){}
-		virtual ~LogicOperation(){}
-		LogicOperation(const LogicOperation& logicoperation):LogicOperation(){}
-}
+		LogicOperation():Node(){};
+		virtual ~LogicOperation(){};
+		LogicOperation(const LogicOperation& logicoperation):LogicOperation(){};
+};
 #endif

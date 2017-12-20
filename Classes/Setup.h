@@ -7,8 +7,8 @@ class Setup : public Node
 {
 	private:
 	public:
-		Setup():Node(){}
-		virtual ~Setup(){}
-		Setup(const Setup& setup):Setup(){}
-}
+		Setup():Node(){};
+		virtual ~Setup(){};
+		Setup(const Setup& setup):Setup(){};
+};
 #endif

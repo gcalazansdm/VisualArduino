@@ -1,19 +1,10 @@
 #include "Type.h"
-#include <math>
-#define L_INT      1
-#define L_FLOAT    2
-#define L_DOUBLE   3
-#define L_CHAR     4
-#define L_STRING   5
-#define L_BOOL     6
-#define L_ID       7
-
 
 int compatible(Type* t){
 	int a = 0;
 	int b = 0;
 	int c = 0;
-	switch(t.tipo()):
+	switch(t->tipo()):
 		case L_CHAR:
 		--a;
 		case L_INT:

@@ -7,8 +7,8 @@ class UnitaryOperators : public Node
 {
 	private:
 	public:
-		UnitaryOperators():Node(){}
-		virtual ~UnitaryOperators(){}
-		UnitaryOperators(const UnitaryOperators& unitaryoperators):UnitaryOperators(){}
-}
+		UnitaryOperators():Node(){};
+		virtual ~UnitaryOperators(){};
+		UnitaryOperators(const UnitaryOperators& unitaryoperators):UnitaryOperators(){};
+};
 #endif

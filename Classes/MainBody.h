@@ -7,8 +7,8 @@ class MainBody : public Node
 {
 	private:
 	public:
-		MainBody():Node(){}
-		virtual ~MainBody(){}
-		MainBody(const MainBody& mainbody):MainBody(){}
-}
+		MainBody():Node(){};
+		virtual ~MainBody(){};
+		MainBody(const MainBody& mainbody):MainBody(){};
+};
 #endif

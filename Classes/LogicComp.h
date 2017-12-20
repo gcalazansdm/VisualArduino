@@ -7,8 +7,8 @@ class LogicComp : public Node
 {
 	private:
 	public:
-		LogicComp():Node(){}
-		virtual ~LogicComp(){}
-		LogicComp(const LogicComp& logiccomp):LogicComp(){}
-}
+		LogicComp():Node(){};
+		virtual ~LogicComp(){};
+		LogicComp(const LogicComp& logiccomp):LogicComp(){};
+};
 #endif

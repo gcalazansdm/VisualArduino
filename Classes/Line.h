@@ -7,8 +7,8 @@ class Line : public Node
 {
 	private:
 	public:
-		Line():Node(){}
-		virtual ~Line(){}
-		Line(const Line& line):Line(){}
-}
+		Line():Node(){};
+		virtual ~Line(){};
+		Line(const Line& line):Line(){};
+};
 #endif

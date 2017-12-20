@@ -7,8 +7,8 @@ class Elem : public Node
 {
 	private:
 	public:
-		Elem():Node(){}
-		virtual ~Elem(){}
-		Elem(const Elem& elem):Elem(){}
-}
+		Elem():Node(){};
+		virtual ~Elem(){};
+		Elem(const Elem& elem):Elem(){};
+};
 #endif
