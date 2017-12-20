@@ -7,14 +7,13 @@ class ValuesRule3 : public Values
 {
 	private:
 	public:
-		ValuesRule3(){};
 		ValuesRule3( ):Values(){};
 		virtual ~ValuesRule3()
 		{
 		};
-		ValuesRule3(const ValuesRule3& valuesrule3):Values(valuesrule3){};
+		ValuesRule3(const ValuesRule3& valuesrule3):Values(valuesrule3){};//olá
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

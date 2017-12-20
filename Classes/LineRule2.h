@@ -9,23 +9,22 @@ class LineRule2 : public Line
 	private:
 		Var* var_;
 	public:
-		LineRule2(){};
 		LineRule2( Var* var):Line(),var_(var){};
 		virtual ~LineRule2()
 		{
 			delete var;
 		};
-		LineRule2(const LineRule2& linerule2):Line(linerule2),var_(line->var_){};
+		LineRule2(const LineRule2& linerule2):Line(linerule2),var_(linerule2.var()){};//olá
 		void set_var(Var* var)
 		{
 			var_ = var;
 		};
-		const Var var const ()
+		const Var* const var()
 		{
 			return var_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

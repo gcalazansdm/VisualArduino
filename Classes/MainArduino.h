@@ -11,19 +11,18 @@ class MainArduino : public Node
 		Setup* setup_;
 		Loop* loop_;
 	public:
-		MainArduino(){};
 		MainArduino( Setup* setup,Loop* loop):Node(),setup_(setup),loop_(loop){};
 		virtual ~MainArduino()
 		{
 			delete setup;
 			delete loop;
 		};
-		MainArduino(const MainArduino& mainarduino):Node(mainarduino),setup_(mainarduino->setup_),loop_(mainarduino->loop_){};
+		MainArduino(const MainArduino& mainarduino):Node(mainarduino),setup_(mainarduino.setup()),loop_(mainarduino.loop()){};//olá
 		void set_setup(Setup* setup)
 		{
 			setup_ = setup;
 		};
-		const Setup setup const ()
+		const Setup* const setup()
 		{
 			return setup_;
 		};
@@ -31,12 +30,12 @@ class MainArduino : public Node
 		{
 			loop_ = loop;
 		};
-		const Loop loop const ()
+		const Loop* const loop()
 		{
 			return loop_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

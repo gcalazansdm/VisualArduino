@@ -11,19 +11,18 @@ class LoopRule2 : public Loop
 		MainBody* mainbody_;
 		Loop* loop_;
 	public:
-		LoopRule2(){};
 		LoopRule2( MainBody* mainbody,Loop* loop):Loop(),mainbody_(mainbody),loop_(loop){};
 		virtual ~LoopRule2()
 		{
 			delete mainbody;
 			delete loop;
 		};
-		LoopRule2(const LoopRule2& looprule2):Loop(looprule2),mainbody_(loop->mainbody_),loop_(loop->loop_){};
+		LoopRule2(const LoopRule2& looprule2):Loop(looprule2),mainbody_(looprule2.mainbody()),loop_(looprule2.loop()){};//olá
 		void set_mainbody(MainBody* mainbody)
 		{
 			mainbody_ = mainbody;
 		};
-		const MainBody mainbody const ()
+		const MainBody* const mainbody()
 		{
 			return mainbody_;
 		};
@@ -31,12 +30,12 @@ class LoopRule2 : public Loop
 		{
 			loop_ = loop;
 		};
-		const Loop loop const ()
+		const Loop* const loop()
 		{
 			return loop_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

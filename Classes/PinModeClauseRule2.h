@@ -9,24 +9,22 @@ class PinModeClauseRule2 : public PinModeClause
 	private:
 		Values* values_;
 	public:
-		PinModeClauseRule2(){};
-		PinModeClauseRule2(Values* values):PinModeClause(),values_(values){};
+		PinModeClauseRule2( Values* values):PinModeClause(),values_(values){};
 		virtual ~PinModeClauseRule2()
 		{
-			delete t_pinmode;
 			delete values;
 		};
-		PinModeClauseRule2(const PinModeClauseRule2& pinmodeclauserule2):PinModeClause(pinmodeclauserule2),values_(pinmodeclause->values_){};
+		PinModeClauseRule2(const PinModeClauseRule2& pinmodeclauserule2):PinModeClause(pinmodeclauserule2),values_(pinmodeclauserule2.values()){};//olá
 		void set_values(Values* values)
 		{
 			values_ = values;
 		};
-		const Values values const ()
+		const Values* const values()
 		{
 			return values_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

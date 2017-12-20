@@ -11,19 +11,18 @@ class FactorRule1 : public Factor
 		Factor* factor_;
 		Elem* elem_;
 	public:
-		FactorRule1(){};
 		FactorRule1( Factor* factor,Elem* elem):Factor(),factor_(factor),elem_(elem){};
 		virtual ~FactorRule1()
 		{
 			delete factor;
 			delete elem;
 		};
-		FactorRule1(const FactorRule1& factorrule1):Factor(factorrule1),factor_(factor->factor_),elem_(factor->elem_){};
+		FactorRule1(const FactorRule1& factorrule1):Factor(factorrule1),factor_(factorrule1.factor()),elem_(factorrule1.elem()){};//olá
 		void set_factor(Factor* factor)
 		{
 			factor_ = factor;
 		};
-		const Factor factor const ()
+		const Factor* const factor()
 		{
 			return factor_;
 		};
@@ -31,12 +30,12 @@ class FactorRule1 : public Factor
 		{
 			elem_ = elem;
 		};
-		const Elem elem const ()
+		const Elem* const elem()
 		{
 			return elem_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

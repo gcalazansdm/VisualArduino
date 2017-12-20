@@ -1,8 +1,8 @@
 #ifndef PRINTVISITOR_H
 #define PRINTVISITOR_H
 
-#include <IOstream>
-#include<Visitor.h>
+#include <iostream>
+#include <Visitor.h>
 
 class PrintVisitor : public Visitor 
 {
@@ -192,7 +192,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(PinModeClauseRule1* e)
 		{
-			std::cout << "PIN MODE";
+			std::cout << "T_PINMODE";
 			std::cout << "(";
 			e -> values() -> accept(this);
 			std::cout << "int";
@@ -203,7 +203,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(PinModeClauseRule2* e)
 		{
-			std::cout << "PIN MODE";
+			std::cout << "T_PINMODE";
 			std::cout << "(";
 			e -> values() -> accept(this);
 			std::cout << "int";
@@ -214,7 +214,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(DigitalWriteClauseRule1* e)
 		{
-			std::cout << "DIGITAL WRITE";
+			std::cout << "T_DIGITALWRITE";
 			std::cout << "(";
 			e -> values() -> accept(this);
 			std::cout << "int";
@@ -225,7 +225,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(DigitalWriteClauseRule2* e)
 		{
-			std::cout << "DIGITAL WRITE";
+			std::cout << "T_DIGITALWRITE";
 			std::cout << "(";
 			e -> values() -> accept(this);
 			std::cout << "int";

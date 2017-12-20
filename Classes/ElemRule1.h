@@ -9,23 +9,22 @@ class ElemRule1 : public Elem
 	private:
 		Elem* elem_;
 	public:
-		ElemRule1(){};
 		ElemRule1( Elem* elem):Elem(),elem_(elem){};
 		virtual ~ElemRule1()
 		{
 			delete elem;
 		};
-		ElemRule1(const ElemRule1& elemrule1):Elem(elemrule1),elem_(elem->elem_){};
+		ElemRule1(const ElemRule1& elemrule1):Elem(elemrule1),elem_(elemrule1.elem()){};//olá
 		void set_elem(Elem* elem)
 		{
 			elem_ = elem;
 		};
-		const Elem elem const ()
+		const Elem* const elem()
 		{
 			return elem_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

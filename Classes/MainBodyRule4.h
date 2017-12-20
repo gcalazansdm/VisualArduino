@@ -9,23 +9,22 @@ class MainBodyRule4 : public MainBody
 	private:
 		Var* var_;
 	public:
-		MainBodyRule4(){};
 		MainBodyRule4( Var* var):MainBody(),var_(var){};
 		virtual ~MainBodyRule4()
 		{
 			delete var;
 		};
-		MainBodyRule4(const MainBodyRule4& mainbodyrule4):MainBody(mainbodyrule4),var_(mainbody->var_){};
+		MainBodyRule4(const MainBodyRule4& mainbodyrule4):MainBody(mainbodyrule4),var_(mainbodyrule4.var()){};//olá
 		void set_var(Var* var)
 		{
 			var_ = var;
 		};
-		const Var var const ()
+		const Var* const var()
 		{
 			return var_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

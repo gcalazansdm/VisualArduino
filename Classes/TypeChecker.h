@@ -7,7 +7,7 @@
 #include <map>
 #include <vector>
 
-class PrintVisitor : public Visitor 
+class TypeChecker : public Visitor 
 {
 	private:
 		std::vector<Type> stack_;
@@ -59,6 +59,8 @@ class PrintVisitor : public Visitor
 				{
 					stack_.push_back(t2);
 				}
+			}else{
+				throw TypeCheckExeption("Erro de sintaxe");
 			}
 			t1= stack_.top();
 			stack_.pop();
@@ -78,8 +80,11 @@ class PrintVisitor : public Visitor
 				}else
 				{
 					stack_.push_back(t2);
-				}
+				}		
+			}else{
+				throw TypeCheckExeption("Erro de sintaxe");
 			}
+
 		}
 		virtual void visit(VarRule1* e)
 		{
@@ -101,8 +106,10 @@ class PrintVisitor : public Visitor
 				}else
 				{
 					stack_.push_back(t2);
-				}
+				}			}else{
+				throw TypeCheckExeption("Erro de sintaxe");
 			}
+
 		}
 		virtual void visit(ValuesRule7* e){
 			idStack_.push_back(e->nome());
@@ -233,7 +240,10 @@ class PrintVisitor : public Visitor
 			if(result > -2)
 			{
 				stack_.push_back(t1);
+			}else{
+				throw TypeCheckExeption("Erro de sintaxe");
 			}
+
 		}
 		virtual void visit(UnitaryOperatorsRule1* e)
 		{
@@ -243,6 +253,8 @@ class PrintVisitor : public Visitor
 			if(result > -2)
 			{
 				stack_.push_back(t1);
+			}else{
+				throw TypeCheckExeption("Erro de sintaxe");
 			}
 		}
 		virtual void visit(OperationRule3* e)
@@ -288,6 +300,8 @@ class PrintVisitor : public Visitor
 				{
 					stack_.push_back(t2);
 				}
+			}else{
+				throw TypeCheckExeption("Erro de sintaxe");
 			}
 		}
 		virtual void visit(VarForRule1* e)
@@ -314,6 +328,8 @@ class PrintVisitor : public Visitor
 				{
 					stack_.push_back(t2);
 				}
+			}else{
+				throw TypeCheckExeption("Erro de sintaxe");
 			}
 		}
 		virtual void visit(CommandRule2* e)

@@ -9,23 +9,22 @@ class EqRule3 : public Eq
 	private:
 		Factor* factor_;
 	public:
-		EqRule3(){};
 		EqRule3( Factor* factor):Eq(),factor_(factor){};
 		virtual ~EqRule3()
 		{
 			delete factor;
 		};
-		EqRule3(const EqRule3& eqrule3):Eq(eqrule3),factor_(eq->factor_){};
+		EqRule3(const EqRule3& eqrule3):Eq(eqrule3),factor_(eqrule3.factor()){};//olá
 		void set_factor(Factor* factor)
 		{
 			factor_ = factor;
 		};
-		const Factor factor const ()
+		const Factor* const factor()
 		{
 			return factor_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

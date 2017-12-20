@@ -11,19 +11,18 @@ class EqRule2 : public Eq
 		Eq* eq_;
 		Factor* factor_;
 	public:
-		EqRule2(){};
 		EqRule2( Eq* eq,Factor* factor):Eq(),eq_(eq),factor_(factor){};
 		virtual ~EqRule2()
 		{
 			delete eq;
 			delete factor;
 		};
-		EqRule2(const EqRule2& eqrule2):Eq(eqrule2),eq_(eq->eq_),factor_(eq->factor_){};
+		EqRule2(const EqRule2& eqrule2):Eq(eqrule2),eq_(eqrule2.eq()),factor_(eqrule2.factor()){};//olá
 		void set_eq(Eq* eq)
 		{
 			eq_ = eq;
 		};
-		const Eq eq const ()
+		const Eq* const eq()
 		{
 			return eq_;
 		};
@@ -31,12 +30,12 @@ class EqRule2 : public Eq
 		{
 			factor_ = factor;
 		};
-		const Factor factor const ()
+		const Factor* const factor()
 		{
 			return factor_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

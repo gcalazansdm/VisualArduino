@@ -11,19 +11,18 @@ class FunctionRule2 : public Function
 		VariablesTypes* variablestypes_;
 		Parameters* parameters_;
 	public:
-		FunctionRule2(){};
 		FunctionRule2( VariablesTypes* variablestypes,Parameters* parameters):Function(),variablestypes_(variablestypes),parameters_(parameters){};
 		virtual ~FunctionRule2()
 		{
 			delete variablestypes;
 			delete parameters;
 		};
-		FunctionRule2(const FunctionRule2& functionrule2):Function(functionrule2),variablestypes_(function->variablestypes_),parameters_(function->parameters_){};
+		FunctionRule2(const FunctionRule2& functionrule2):Function(functionrule2),variablestypes_(functionrule2.variablestypes()),parameters_(functionrule2.parameters()){};//olá
 		void set_variablestypes(VariablesTypes* variablestypes)
 		{
 			variablestypes_ = variablestypes;
 		};
-		const VariablesTypes variablestypes const ()
+		const VariablesTypes* const variablestypes()
 		{
 			return variablestypes_;
 		};
@@ -31,12 +30,12 @@ class FunctionRule2 : public Function
 		{
 			parameters_ = parameters;
 		};
-		const Parameters parameters const ()
+		const Parameters* const parameters()
 		{
 			return parameters_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

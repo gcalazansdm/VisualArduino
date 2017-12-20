@@ -9,23 +9,22 @@ class CondictionRule1 : public Condiction
 	private:
 		SelectionClause* selectionclause_;
 	public:
-		CondictionRule1(){};
 		CondictionRule1( SelectionClause* selectionclause):Condiction(),selectionclause_(selectionclause){};
 		virtual ~CondictionRule1()
 		{
 			delete selectionclause;
 		};
-		CondictionRule1(const CondictionRule1& condictionrule1):Condiction(condictionrule1),selectionclause_(condiction->selectionclause_){};
+		CondictionRule1(const CondictionRule1& condictionrule1):Condiction(condictionrule1),selectionclause_(condictionrule1.selectionclause()){};//olá
 		void set_selectionclause(SelectionClause* selectionclause)
 		{
 			selectionclause_ = selectionclause;
 		};
-		const SelectionClause selectionclause const ()
+		const SelectionClause* const selectionclause()
 		{
 			return selectionclause_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

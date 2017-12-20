@@ -2,7 +2,6 @@
 #define DIGITALWRITECLAUSERULE2_H
 
 #include "DigitalWriteClause.h"
-
 #include "Values.h"
 
 class DigitalWriteClauseRule2 : public DigitalWriteClause
@@ -10,23 +9,22 @@ class DigitalWriteClauseRule2 : public DigitalWriteClause
 	private:
 		Values* values_;
 	public:
-		DigitalWriteClauseRule2(){};
-		DigitalWriteClauseRule2(Values* values):DigitalWriteClause(),values_(values){};
+		DigitalWriteClauseRule2( Values* values):DigitalWriteClause(),values_(values){};
 		virtual ~DigitalWriteClauseRule2()
 		{
 			delete values;
 		};
-		DigitalWriteClauseRule2(const DigitalWriteClauseRule2& digitalwriteclauserule2):DigitalWriteClause(digitalwriteclauserule2),values_(digitalwriteclause->values_){};
+		DigitalWriteClauseRule2(const DigitalWriteClauseRule2& digitalwriteclauserule2):DigitalWriteClause(digitalwriteclauserule2),values_(digitalwriteclauserule2.values()){};//olá
 		void set_values(Values* values)
 		{
 			values_ = values;
 		};
-		const Values values const ()
+		const Values* const values()
 		{
 			return values_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

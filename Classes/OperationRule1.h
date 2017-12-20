@@ -9,23 +9,22 @@ class OperationRule1 : public Operation
 	private:
 		Eq* eq_;
 	public:
-		OperationRule1(){};
 		OperationRule1( Eq* eq):Operation(),eq_(eq){};
 		virtual ~OperationRule1()
 		{
 			delete eq;
 		};
-		OperationRule1(const OperationRule1& operationrule1):Operation(operationrule1),eq_(operation->eq_){};
+		OperationRule1(const OperationRule1& operationrule1):Operation(operationrule1),eq_(operationrule1.eq()){};//olá
 		void set_eq(Eq* eq)
 		{
 			eq_ = eq;
 		};
-		const Eq eq const ()
+		const Eq* const eq()
 		{
 			return eq_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

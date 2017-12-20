@@ -16,7 +16,6 @@ class ForClause : public Node
 		UnitaryOperators* unitaryoperators_;
 		Command* command_;
 	public:
-		ForClause(){};
 		ForClause( VarFor* varfor,LogicOperation* logicoperation,UnitaryOperators* unitaryoperators,Command* command):Node(),varfor_(varfor),logicoperation_(logicoperation),unitaryoperators_(unitaryoperators),command_(command){};
 		virtual ~ForClause()
 		{
@@ -25,12 +24,12 @@ class ForClause : public Node
 			delete unitaryoperators;
 			delete command;
 		};
-		ForClause(const ForClause& forclause):Node(forclause),varfor_(forclause->varfor_),logicoperation_(forclause->logicoperation_),unitaryoperators_(forclause->unitaryoperators_),command_(forclause->command_){};
+		ForClause(const ForClause& forclause):Node(forclause),varfor_(forclause.varfor()),logicoperation_(forclause.logicoperation()),unitaryoperators_(forclause.unitaryoperators()),command_(forclause.command()){};//olá
 		void set_varfor(VarFor* varfor)
 		{
 			varfor_ = varfor;
 		};
-		const VarFor varfor const ()
+		const VarFor* const varfor()
 		{
 			return varfor_;
 		};
@@ -38,7 +37,7 @@ class ForClause : public Node
 		{
 			logicoperation_ = logicoperation;
 		};
-		const LogicOperation logicoperation const ()
+		const LogicOperation* const logicoperation()
 		{
 			return logicoperation_;
 		};
@@ -46,7 +45,7 @@ class ForClause : public Node
 		{
 			unitaryoperators_ = unitaryoperators;
 		};
-		const UnitaryOperators unitaryoperators const ()
+		const UnitaryOperators* const unitaryoperators()
 		{
 			return unitaryoperators_;
 		};
@@ -54,12 +53,12 @@ class ForClause : public Node
 		{
 			command_ = command;
 		};
-		const Command command const ()
+		const Command* const command()
 		{
 			return command_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

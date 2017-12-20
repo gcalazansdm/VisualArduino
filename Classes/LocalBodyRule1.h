@@ -11,19 +11,18 @@ class LocalBodyRule1 : public LocalBody
 		Line* line_;
 		LocalBody* localbody_;
 	public:
-		LocalBodyRule1(){};
 		LocalBodyRule1( Line* line,LocalBody* localbody):LocalBody(),line_(line),localbody_(localbody){};
 		virtual ~LocalBodyRule1()
 		{
 			delete line;
 			delete localbody;
 		};
-		LocalBodyRule1(const LocalBodyRule1& localbodyrule1):LocalBody(localbodyrule1),line_(localbody->line_),localbody_(localbody->localbody_){};
+		LocalBodyRule1(const LocalBodyRule1& localbodyrule1):LocalBody(localbodyrule1),line_(localbodyrule1.line()),localbody_(localbodyrule1.localbody()){};//olá
 		void set_line(Line* line)
 		{
 			line_ = line;
 		};
-		const Line line const ()
+		const Line* const line()
 		{
 			return line_;
 		};
@@ -31,12 +30,12 @@ class LocalBodyRule1 : public LocalBody
 		{
 			localbody_ = localbody;
 		};
-		const LocalBody localbody const ()
+		const LocalBody* const localbody()
 		{
 			return localbody_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

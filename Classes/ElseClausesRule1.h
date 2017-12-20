@@ -11,19 +11,18 @@ class ElseClausesRule1 : public ElseClauses
 		IfElseClauses* ifelseclauses_;
 		ElseClause* elseclause_;
 	public:
-		ElseClausesRule1(){};
 		ElseClausesRule1( IfElseClauses* ifelseclauses,ElseClause* elseclause):ElseClauses(),ifelseclauses_(ifelseclauses),elseclause_(elseclause){};
 		virtual ~ElseClausesRule1()
 		{
 			delete ifelseclauses;
 			delete elseclause;
 		};
-		ElseClausesRule1(const ElseClausesRule1& elseclausesrule1):ElseClauses(elseclausesrule1),ifelseclauses_(elseclauses->ifelseclauses_),elseclause_(elseclauses->elseclause_){};
+		ElseClausesRule1(const ElseClausesRule1& elseclausesrule1):ElseClauses(elseclausesrule1),ifelseclauses_(elseclausesrule1.ifelseclauses()),elseclause_(elseclausesrule1.elseclause()){};//olá
 		void set_ifelseclauses(IfElseClauses* ifelseclauses)
 		{
 			ifelseclauses_ = ifelseclauses;
 		};
-		const IfElseClauses ifelseclauses const ()
+		const IfElseClauses* const ifelseclauses()
 		{
 			return ifelseclauses_;
 		};
@@ -31,12 +30,12 @@ class ElseClausesRule1 : public ElseClauses
 		{
 			elseclause_ = elseclause;
 		};
-		const ElseClause elseclause const ()
+		const ElseClause* const elseclause()
 		{
 			return elseclause_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

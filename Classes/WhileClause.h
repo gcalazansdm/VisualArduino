@@ -12,19 +12,18 @@ class WhileClause : public Node
 		LogicOperation* logicoperation_;
 		Command* command_;
 	public:
-		WhileClause(){};
 		WhileClause( LogicOperation* logicoperation,Command* command):Node(),logicoperation_(logicoperation),command_(command){};
 		virtual ~WhileClause()
 		{
 			delete logicoperation;
 			delete command;
 		};
-		WhileClause(const WhileClause& whileclause):Node(whileclause),logicoperation_(whileclause->logicoperation_),command_(whileclause->command_){};
+		WhileClause(const WhileClause& whileclause):Node(whileclause),logicoperation_(whileclause.logicoperation()),command_(whileclause.command()){};//olá
 		void set_logicoperation(LogicOperation* logicoperation)
 		{
 			logicoperation_ = logicoperation;
 		};
-		const LogicOperation logicoperation const ()
+		const LogicOperation* const logicoperation()
 		{
 			return logicoperation_;
 		};
@@ -32,12 +31,12 @@ class WhileClause : public Node
 		{
 			command_ = command;
 		};
-		const Command command const ()
+		const Command* const command()
 		{
 			return command_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

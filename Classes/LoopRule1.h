@@ -10,23 +10,22 @@ class LoopRule1 : public Loop
 	private:
 		Loop* loop_;
 	public:
-		LoopRule1(){};
 		LoopRule1( Loop* loop):Loop(),loop_(loop){};
 		virtual ~LoopRule1()
 		{
 			delete loop;
 		};
-		LoopRule1(const LoopRule1& looprule1):Loop(looprule1),loop_(loop->loop_){};
+		LoopRule1(const LoopRule1& looprule1):Loop(looprule1),loop_(looprule1.loop()){};//olá
 		void set_loop(Loop* loop)
 		{
 			loop_ = loop;
 		};
-		const Loop loop const ()
+		const Loop* const loop()
 		{
 			return loop_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

@@ -13,7 +13,6 @@ class LogicCompRule1 : public LogicComp
 		BinaryCompOperator* binarycompoperator_;
 		Eq* eq_;
 	public:
-		LogicCompRule1(){};
 		LogicCompRule1( Eq* eq,BinaryCompOperator* binarycompoperator,Eq* eq):LogicComp(),eq_(eq),binarycompoperator_(binarycompoperator),eq_(eq){};
 		virtual ~LogicCompRule1()
 		{
@@ -21,12 +20,12 @@ class LogicCompRule1 : public LogicComp
 			delete binarycompoperator;
 			delete eq;
 		};
-		LogicCompRule1(const LogicCompRule1& logiccomprule1):LogicComp(logiccomprule1),eq_(logiccomp->eq_),binarycompoperator_(logiccomp->binarycompoperator_),eq_(logiccomp->eq_){};
+		LogicCompRule1(const LogicCompRule1& logiccomprule1):LogicComp(logiccomprule1),eq_(logiccomprule1.eq()),binarycompoperator_(logiccomprule1.binarycompoperator()),eq_(logiccomprule1.eq()){};//olá
 		void set_eq(Eq* eq)
 		{
 			eq_ = eq;
 		};
-		const Eq eq const ()
+		const Eq* const eq()
 		{
 			return eq_;
 		};
@@ -34,7 +33,7 @@ class LogicCompRule1 : public LogicComp
 		{
 			binarycompoperator_ = binarycompoperator;
 		};
-		const BinaryCompOperator binarycompoperator const ()
+		const BinaryCompOperator* const binarycompoperator()
 		{
 			return binarycompoperator_;
 		};
@@ -42,12 +41,12 @@ class LogicCompRule1 : public LogicComp
 		{
 			eq_ = eq;
 		};
-		const Eq eq const ()
+		const Eq* const eq()
 		{
 			return eq_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

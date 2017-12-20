@@ -11,19 +11,18 @@ class MainBodyRule2 : public MainBody
 		Var* var_;
 		MainBody* mainbody_;
 	public:
-		MainBodyRule2(){};
 		MainBodyRule2( Var* var,MainBody* mainbody):MainBody(),var_(var),mainbody_(mainbody){};
 		virtual ~MainBodyRule2()
 		{
 			delete var;
 			delete mainbody;
 		};
-		MainBodyRule2(const MainBodyRule2& mainbodyrule2):MainBody(mainbodyrule2),var_(mainbody->var_),mainbody_(mainbody->mainbody_){};
+		MainBodyRule2(const MainBodyRule2& mainbodyrule2):MainBody(mainbodyrule2),var_(mainbodyrule2.var()),mainbody_(mainbodyrule2.mainbody()){};//olá
 		void set_var(Var* var)
 		{
 			var_ = var;
 		};
-		const Var var const ()
+		const Var* const var()
 		{
 			return var_;
 		};
@@ -31,12 +30,12 @@ class MainBodyRule2 : public MainBody
 		{
 			mainbody_ = mainbody;
 		};
-		const MainBody mainbody const ()
+		const MainBody* const mainbody()
 		{
 			return mainbody_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

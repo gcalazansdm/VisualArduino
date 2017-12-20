@@ -9,23 +9,22 @@ class LogicOperationRule1 : public LogicOperation
 	private:
 		LogicOP* logicop_;
 	public:
-		LogicOperationRule1(){};
 		LogicOperationRule1( LogicOP* logicop):LogicOperation(),logicop_(logicop){};
 		virtual ~LogicOperationRule1()
 		{
 			delete logicop;
 		};
-		LogicOperationRule1(const LogicOperationRule1& logicoperationrule1):LogicOperation(logicoperationrule1),logicop_(logicoperation->logicop_){};
+		LogicOperationRule1(const LogicOperationRule1& logicoperationrule1):LogicOperation(logicoperationrule1),logicop_(logicoperationrule1.logicop()){};//olá
 		void set_logicop(LogicOP* logicop)
 		{
 			logicop_ = logicop;
 		};
-		const LogicOP logicop const ()
+		const LogicOP* const logicop()
 		{
 			return logicop_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

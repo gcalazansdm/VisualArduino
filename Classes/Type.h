@@ -18,7 +18,7 @@ class Tipo {
 		virtual ~Tipo(){};
 		int compatible(Tipo t);
 		const int tipo(){
-			return tipo_
+			return tipo_;
 		};
 		Tipo(const Tipo& type):tipo_(type.tipo_){}
 };

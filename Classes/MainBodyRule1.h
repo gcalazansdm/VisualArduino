@@ -11,19 +11,18 @@ class MainBodyRule1 : public MainBody
 		Function* function_;
 		MainBody* mainbody_;
 	public:
-		MainBodyRule1(){};
 		MainBodyRule1( Function* function,MainBody* mainbody):MainBody(),function_(function),mainbody_(mainbody){};
 		virtual ~MainBodyRule1()
 		{
 			delete function;
 			delete mainbody;
 		};
-		MainBodyRule1(const MainBodyRule1& mainbodyrule1):MainBody(mainbodyrule1),function_(mainbody->function_),mainbody_(mainbody->mainbody_){};
+		MainBodyRule1(const MainBodyRule1& mainbodyrule1):MainBody(mainbodyrule1),function_(mainbodyrule1.function()),mainbody_(mainbodyrule1.mainbody()){};//olá
 		void set_function(Function* function)
 		{
 			function_ = function;
 		};
-		const Function function const ()
+		const Function* const function()
 		{
 			return function_;
 		};
@@ -31,12 +30,12 @@ class MainBodyRule1 : public MainBody
 		{
 			mainbody_ = mainbody;
 		};
-		const MainBody mainbody const ()
+		const MainBody* const mainbody()
 		{
 			return mainbody_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif

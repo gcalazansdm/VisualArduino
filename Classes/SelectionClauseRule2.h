@@ -11,19 +11,18 @@ class SelectionClauseRule2 : public SelectionClause
 		IfClause* ifclause_;
 		ElseClauses* elseclauses_;
 	public:
-		SelectionClauseRule2(){};
 		SelectionClauseRule2( IfClause* ifclause,ElseClauses* elseclauses):SelectionClause(),ifclause_(ifclause),elseclauses_(elseclauses){};
 		virtual ~SelectionClauseRule2()
 		{
 			delete ifclause;
 			delete elseclauses;
 		};
-		SelectionClauseRule2(const SelectionClauseRule2& selectionclauserule2):SelectionClause(selectionclauserule2),ifclause_(selectionclause->ifclause_),elseclauses_(selectionclause->elseclauses_){};
+		SelectionClauseRule2(const SelectionClauseRule2& selectionclauserule2):SelectionClause(selectionclauserule2),ifclause_(selectionclauserule2.ifclause()),elseclauses_(selectionclauserule2.elseclauses()){};//olá
 		void set_ifclause(IfClause* ifclause)
 		{
 			ifclause_ = ifclause;
 		};
-		const IfClause ifclause const ()
+		const IfClause* const ifclause()
 		{
 			return ifclause_;
 		};
@@ -31,12 +30,12 @@ class SelectionClauseRule2 : public SelectionClause
 		{
 			elseclauses_ = elseclauses;
 		};
-		const ElseClauses elseclauses const ()
+		const ElseClauses* const elseclauses()
 		{
 			return elseclauses_;
 		};
 		void accept(Visitor *v) {
-			v -> visit(this);
+			v->visit(this);
 		};
 };
 #endif
