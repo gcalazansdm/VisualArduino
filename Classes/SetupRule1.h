@@ -2,19 +2,16 @@
 #define SETUPRULE1_H
 
 #include "Setup.h"
-#include <string>
 
 class SetupRule1 : public Setup
 {
 	private:
 	public:
-		SetupRule1():Setup(){};
+		SetupRule1( ):Setup(){}
 		virtual ~SetupRule1()
 		{
-		};
-		SetupRule1(const SetupRule1& setuprule1):Setup(setuprule1){};//olá
-		void accept(Visitor *v) {
-			v->visit(this);
-		};
+		}
+		SetupRule1(const SetupRule1& setuprule1):Setup(setuprule1){}//olá
+		void accept(Visitor *v);
 };
 #endif

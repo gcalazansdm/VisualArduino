@@ -1,8 +1,8 @@
 #ifndef PRINTVISITOR_H
 #define PRINTVISITOR_H
 
-#include <iostream>
-#include <Visitor.h>
+#include <IOstream>
+#include<Visitor.h>
 
 class PrintVisitor : public Visitor 
 {
@@ -369,7 +369,7 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(LogicOPRule3* e)
 		{
-			std::cout << "L_BOOL";
+			e -> l_bool() -> accept(this);
 		}
 		virtual void visit(LogicOPRule4* e)
 		{
@@ -443,27 +443,27 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(ValuesRule1* e)
 		{
-			std::cout << "L_INT";
+			e -> l_int() -> accept(this);
 		}
 		virtual void visit(ValuesRule2* e)
 		{
-			std::cout << "L_FLOAT";
+			e -> l_float() -> accept(this);
 		}
 		virtual void visit(ValuesRule3* e)
 		{
-			std::cout << "L_DOUBLE";
+			e -> l_double() -> accept(this);
 		}
 		virtual void visit(ValuesRule4* e)
 		{
-			std::cout << "L_CHAR";
+			e -> l_char() -> accept(this);
 		}
 		virtual void visit(ValuesRule5* e)
 		{
-			std::cout << "L_STRING";
+			e -> l_string() -> accept(this);
 		}
 		virtual void visit(ValuesRule6* e)
 		{
-			std::cout << "L_BOOL";
+			e -> l_bool() -> accept(this);
 		}
 		virtual void visit(ValuesRule7* e)
 		{

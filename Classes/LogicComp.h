@@ -9,6 +9,5 @@ class LogicComp : public Node
 	public:
 		LogicComp():Node(){};
 		virtual ~LogicComp(){};
-		LogicComp(const LogicComp& logiccomp):LogicComp(){};
 };
 #endif

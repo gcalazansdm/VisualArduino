@@ -9,6 +9,5 @@ class DigitalWriteClause : public Node
 	public:
 		DigitalWriteClause():Node(){};
 		virtual ~DigitalWriteClause(){};
-		DigitalWriteClause(const DigitalWriteClause& digitalwriteclause):DigitalWriteClause(){};
 };
 #endif

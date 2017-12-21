@@ -9,6 +9,5 @@ class Command : public Node
 	public:
 		Command():Node(){};
 		virtual ~Command(){};
-		Command(const Command& command):Command(){};
 };
 #endif

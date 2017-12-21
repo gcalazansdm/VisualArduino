@@ -9,6 +9,5 @@ class VariablesTypes : public Node
 	public:
 		VariablesTypes():Node(){};
 		virtual ~VariablesTypes(){};
-		VariablesTypes(const VariablesTypes& variablestypes):VariablesTypes(){};
 };
 #endif

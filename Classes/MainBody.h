@@ -9,6 +9,5 @@ class MainBody : public Node
 	public:
 		MainBody():Node(){};
 		virtual ~MainBody(){};
-		MainBody(const MainBody& mainbody):MainBody(){};
 };
 #endif

@@ -9,6 +9,5 @@ class Values : public Node
 	public:
 		Values():Node(){};
 		virtual ~Values(){};
-		Values(const Values& values):Values(){};
 };
 #endif

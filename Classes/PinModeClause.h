@@ -9,6 +9,5 @@ class PinModeClause : public Node
 	public:
 		PinModeClause():Node(){};
 		virtual ~PinModeClause(){};
-		PinModeClause(const PinModeClause& pinmodeclause):PinModeClause(){};
 };
 #endif

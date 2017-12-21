@@ -9,6 +9,5 @@ class BinaryCompOperator : public Node
 	public:
 		BinaryCompOperator():Node(){};
 		virtual ~BinaryCompOperator(){};
-		BinaryCompOperator(const BinaryCompOperator& binarycompoperator):BinaryCompOperator(){};
 };
 #endif

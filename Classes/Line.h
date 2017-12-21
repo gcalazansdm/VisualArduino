@@ -9,6 +9,5 @@ class Line : public Node
 	public:
 		Line():Node(){};
 		virtual ~Line(){};
-		Line(const Line& line):Line(){};
 };
 #endif

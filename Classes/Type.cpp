@@ -1,6 +1,7 @@
 #include "Type.h"
 #include <cmath>
-int compatible(Tipo* t){
+
+int Tipo::compatible(Tipo* t){
 	int a = 0;
 	int b = 0;
 	int c = 0;

@@ -9,6 +9,5 @@ class Parameter : public Node
 	public:
 		Parameter():Node(){};
 		virtual ~Parameter(){};
-		Parameter(const Parameter& parameter):Parameter(){};
 };
 #endif

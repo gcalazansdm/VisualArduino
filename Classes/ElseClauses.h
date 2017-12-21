@@ -9,6 +9,5 @@ class ElseClauses : public Node
 	public:
 		ElseClauses():Node(){};
 		virtual ~ElseClauses(){};
-		ElseClauses(const ElseClauses& elseclauses):ElseClauses(){};
 };
 #endif

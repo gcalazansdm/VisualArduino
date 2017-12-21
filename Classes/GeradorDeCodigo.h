@@ -3,20 +3,20 @@
 
 #include <Visitor.h>
 #include <string>
+#include <sstream>
 
 class PrintVisitor : public Visitor 
 {
 	private:
 		int i = 0;
-		std::string arquivo = "";
+		std::stringstream arquivo;
 	public:
 		virtual void visit(program* e)
 		{
-			arquivo = "";
 			i = 0;
-			FILE *file = fopen(argv[1], "w");
+			FILE *file = fopen("comand.c", "w");
 			e -> mainbody() -> accept(this);
-			fwrite(file,arquivo);
+			fprintf(file, arquivo.str().c_str());
 			fclose(file);
 		}
 		virtual void visit(MainBodyRule1* e)
@@ -27,7 +27,7 @@ class PrintVisitor : public Visitor
 		virtual void visit(MainBodyRule2* e)
 		{
 			e -> var() -> accept(this);
-			sprintf(arquivo,";");
+			arquivo << ";";
 			e -> mainbody() -> accept(this);
 		}
 		virtual void visit(MainBodyRule3* e)
@@ -37,46 +37,46 @@ class PrintVisitor : public Visitor
 		virtual void visit(MainBodyRule4* e)
 		{
 			e -> var() -> accept(this);
-			sprintf(arquivo,";");
+			arquivo << ";";
 		}
 		virtual void visit(MainArduino* e)
 		{
 			e -> setup() -> accept(this);
-			sprintf(arquivo,";");
+			arquivo << ";";
 			e -> loop() -> accept(this);
-			sprintf(arquivo,";");
+			arquivo << ";";
 		}
 		virtual void visit(FunctionRule1* e)
 		{
-			sprintf(arquivo,"");
+			arquivo << "funcao";
 			e -> variablestypes() -> accept(this);
-			sprintf(arquivo,"%s%d","L_ID",i++);
+			arquivo << "L_ID";
 			e -> parameters() -> accept(this);
 			e -> body() -> accept(this);
 		}
 		virtual void visit(FunctionRule2* e)
 		{
-			sprintf(arquivo,"");
+			arquivo << "funcao";
 			e -> variablestypes() -> accept(this);
-			sprintf(arquivo,"%s%d","L_ID",i++);
+			arquivo << "L_ID";
 			e -> parameters() -> accept(this);
-			sprintf(arquivo,";");
+			arquivo << ";";
 		}
 		virtual void visit(ParameterRule1* e)
 		{
-			sprintf(arquivo,"(");
+			arquivo << "(";
 			e -> parameters() -> accept(this);
-			sprintf(arquivo,")";
+			arquivo << ")";
 		}
 		virtual void visit(ParameterRule2* e)
 		{
-			std::cout << "(";
-			std::cout << ")";
+			arquivo << "(";
+			arquivo << ")";
 		}
 		virtual void visit(ParametersRule1* e)
 		{
 			e -> var() -> accept(this);
-			sprintf(arquivo,"%s",".");
+			arquivo << ".";
 			e -> parameters() -> accept(this);
 		}
 		virtual void visit(ParametersRule2* e)
@@ -85,25 +85,25 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(BodyRule1* e)
 		{
-			sprintf(arquivo,"%s","{");
+			arquivo << "{";
 			e -> localbody() -> accept(this);
-			sprintf(arquivo,"%s","}");
+			arquivo << "}";
 		}
 		virtual void visit(BodyRule2* e)
 		{
-			sprintf(arquivo,"%s","{");
-			sprintf(arquivo,"%s","}");	
+			arquivo << "{";
+			arquivo << "}";
 		}
 		virtual void visit(LocalBodyRule1* e)
 		{
 			e -> line() -> accept(this);
-			sprintf(arquivo,"%s",";");
+			arquivo << ";";
 			e -> localbody() -> accept(this);
 		}
 		virtual void visit(LocalBodyRule2* e)
 		{
 			e -> line() -> accept(this);
-			sprintf(arquivo,"%s",";");
+			arquivo << ";";
 		}
 		virtual void visit(LineRule1* e)
 		{
@@ -131,39 +131,37 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(LoopRule1* e)
 		{
-		
-			sprintf(arquivo,"%s","while");
-			sprintf(arquivo,"%s","(");
-			sprintf(arquivo,"%s","True");
-			sprintf(arquivo,"%s",")");
-			sprintf(arquivo,"%s","{");
+			arquivo << "repeticao";
+			arquivo << "(";
+			arquivo << ")";
+			arquivo << "}";
 			e -> loop() -> accept(this);
-			sprintf(arquivo,"%s","}");
+			arquivo << "{";
 		}
 		virtual void visit(LoopRule2* e)
 		{
-			sprintf(arquivo,"%s","while");
-			sprintf(arquivo,"%s","(");
-			sprintf(arquivo,"%s","True");
-			sprintf(arquivo,"%s",")");
-			sprintf(arquivo,"%s","{");
+			arquivo << "repeticao";
+			arquivo << "(";
+			arquivo << ")";
+			arquivo << "}";
 			e -> mainbody() -> accept(this);
 			e -> loop() -> accept(this);
-			sprintf(arquivo,"%s","}");
+			arquivo << "{";
 		}
 		virtual void visit(SetupRule1* e)
 		{
-			sprintf(arquivo,"%s","setup");
-			sprintf(arquivo,"%s","{");
-			sprintf(arquivo,"%s","}");
+			arquivo << "inicio";
+			arquivo << "(";
+			arquivo << ")";
+			arquivo << "}";
+			arquivo << "{";
 		}
 		virtual void visit(SetupRule2* e)
 		{
-		
-			sprintf(arquivo,"%s","setup");
-			sprintf(arquivo,"%s","{");
+			arquivo << "inicio";
+			arquivo << "(";
+			arquivo << ")";
 			e -> mainbody() -> accept(this);
-			sprintf(arquivo,"%s","}");
 		}
 		virtual void visit(SelectionClauseRule1* e)
 		{
@@ -194,115 +192,119 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(IfClause* e)
 		{
-			sprintf(arquivo,"%s","if");
-			sprintf(arquivo,"%s","(");
+			arquivo << "se";
+			arquivo << "(";
 			e -> logicoperation() -> accept(this);
-			sprintf(arquivo,"%s",")");
+			arquivo << ")";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(PinModeClauseRule1* e)
 		{
-			sprintf(arquivo,"%s","Pinmode");
-			sprintf(arquivo,"%s","(");
+			arquivo << "T_PINMODE";
+			arquivo << "(";
 			e -> values() -> accept(this);
-			sprintf(arquivo,"%s","int");
-			sprintf(arquivo,"%s",".");
-			sprintf(arquivo,"%s","in");
-			sprintf(arquivo,"%s",");");
+			arquivo << "int";
+			arquivo << ".";
+			arquivo << "ENTRADA";
+			arquivo << ")";
+			arquivo << ";";
 		}
 		virtual void visit(PinModeClauseRule2* e)
 		{
-			sprintf(arquivo,"%s","Pinmode");
-			sprintf(arquivo,"%s","(");
+			arquivo << "T_PINMODE";
+			arquivo << "(";
 			e -> values() -> accept(this);
-			sprintf(arquivo,"%s","int");
-			sprintf(arquivo,"%s",".");
-			sprintf(arquivo,"%s","out");
-			sprintf(arquivo,"%s",");");
+			arquivo << "int";
+			arquivo << ".";
+			arquivo << "SAIDA";
+			arquivo << ")";
+			arquivo << ";";
 		}
 		virtual void visit(DigitalWriteClauseRule1* e)
 		{
-			sprintf(arquivo,"%s","DigitalWrite");
-			sprintf(arquivo,"%s","(");
+			arquivo << "T_DIGITALWRITE";
+			arquivo << "(";
 			e -> values() -> accept(this);
-			sprintf(arquivo,"%s","int");
-			sprintf(arquivo,"%s",".");
-			sprintf(arquivo,"%s","HIGH");
-			sprintf(arquivo,"%s",");");
+			arquivo << "int";
+			arquivo << ".";
+			arquivo << "ALTO";
+			arquivo << ")";
+			arquivo << ";";
 		}
 		virtual void visit(DigitalWriteClauseRule2* e)
 		{
-			sprintf(arquivo,"%s","DigitalWrite");
-			sprintf(arquivo,"%s","(");
+			arquivo << "T_DIGITALWRITE";
+			arquivo << "(";
 			e -> values() -> accept(this);
-			sprintf(arquivo,"%s","int");
-			sprintf(arquivo,"%s",".");
-			sprintf(arquivo,"%s","Low");
-			sprintf(arquivo,"%s",");");
+			arquivo << "int";
+			arquivo << ".";
+			arquivo << "BAIXO";
+			arquivo << ")";
+			arquivo << ";";
 		}
 		virtual void visit(ElseClause* e)
 		{
-			sprintf(arquivo,"%s","else");
+			arquivo << "entao";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(IfElseClause* e)
 		{
-			sprintf(arquivo,"%s","else if");
-			sprintf(arquivo,"%s","(");
+			arquivo << "entretanto";
+			arquivo << "(";
 			e -> logicoperation() -> accept(this);
-			sprintf(arquivo,"%s",")");
+			arquivo << ")";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(WhileClause* e)
 		{
-			sprintf(arquivo,"%s","while");
-			sprintf(arquivo,"%s","(");
+			arquivo << "enquanto";
+			arquivo << "(";
 			e -> logicoperation() -> accept(this);
-			sprintf(arquivo,"%s",")");
+			arquivo << ")";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(ForClause* e)
 		{
-			sprintf(arquivo,"%s","for");
+			arquivo << "para";
 			e -> varfor() -> accept(this);
 			e -> logicoperation() -> accept(this);
-			sprintf(arquivo,"%s",";");
+			arquivo << ";";
 			e -> unitaryoperators() -> accept(this);
-			sprintf(arquivo,"%s",")");
+			arquivo << ")";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(CommandRule1* e)
 		{
-			sprintf(arquivo,"%s","{");
+			arquivo << "{";
 			e -> localbody() -> accept(this);
-			sprintf(arquivo,"%s","}");
+			arquivo << "}";
 		}
 		virtual void visit(CommandRule2* e)
 		{
 			e -> line() -> accept(this);
-			sprintf(arquivo,"%s",";");
+			arquivo << ";";
 		}
 		virtual void visit(VarForRule1* e)
 		{
-			sprintf(arquivo,"%s","(");
+			arquivo << "(";
 			e -> variablestypes() -> accept(this);
-			sprintf(arquivo,"%s%d","L_ID",i);
-			sprintf(arquivo,"%s","=");
+			arquivo << "L_ID";
+			arquivo << "=";
 			e -> operation() -> accept(this);
-			sprintf(arquivo,"%s",";");
+			arquivo << ";";
 		}
 		virtual void visit(VarForRule2* e)
 		{
-			sprintf(arquivo,"%s","(");
-			sprintf(arquivo,"%s%d","L_ID",i);
-			sprintf(arquivo,"%s","=");
+			arquivo << "(";
+			arquivo << "L_ID";
+			arquivo << "=";
 			e -> operation() -> accept(this);
-			std::cout << ";";
+			arquivo << ";";
 		}
 		virtual void visit(VarForRule3* e)
 		{
-			sprintf(arquivo,"%s","(");
-			sprintf(arquivo,"%s",";");
+			arquivo << "(";
+			arquivo << ";";
 		}
 		virtual void visit(LogicOperationRule1* e)
 		{
@@ -327,14 +329,12 @@ class PrintVisitor : public Visitor
 		virtual void visit(UnitaryOperatorsRule1* e)
 		{
 			e -> values() -> accept(this);
-			
-			sprintf(arquivo,"%s","++");
+			arquivo << "++";
 		}
 		virtual void visit(UnitaryOperatorsRule2* e)
 		{
 			e -> values() -> accept(this);
-			
-			sprintf(arquivo,"%s","--");
+			arquivo << "--";
 		}
 		virtual void visit(LogicCompRule1* e)
 		{
@@ -344,25 +344,25 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(LogicCompRule2* e)
 		{
-			sprintf(arquivo,"%s","(");
+			arquivo << "(";
 			e -> logiccomp() -> accept(this);
-			sprintf(arquivo,"%s",")");
+			arquivo << ")";
 		}
 		virtual void visit(BinaryCompOperatorRule1* e)
 		{
-			sprintf(arquivo,"%s",">");
+			arquivo << ">";
 		}
 		virtual void visit(BinaryCompOperatorRule2* e)
 		{
-			sprintf(arquivo,"%s","<");
+			arquivo << "<";
 		}
 		virtual void visit(BinaryCompOperatorRule3* e)
 		{
-			sprintf(arquivo,"%s",">=");
+			arquivo << ">=";
 		}
 		virtual void visit(BinaryCompOperatorRule4* e)
 		{
-			sprintf(arquivo,"%s","<=");
+			arquivo << "<=";
 		}
 		virtual void visit(LogicOPRule1* e)
 		{
@@ -377,36 +377,36 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(LogicOPRule3* e)
 		{
-			sprintf(arquivo,"%s%d","L_BOOL",i);
+			arquivo << "L_BOOL";
 		}
 		virtual void visit(LogicOPRule4* e)
 		{
-			sprintf(arquivo,"%s","(");
+			arquivo << "(";
 			e -> logicop() -> accept(this);
-			sprintf(arquivo,"%s",")");		
+			arquivo << ")";
 		}
 		virtual void visit(BinaryLogicalOperatorRule1* e)
 		{
-			sprintf(arquivo,"%s","&&");
+			arquivo << "e";
 		}
 		virtual void visit(BinaryLogicalOperatorRule2* e)
 		{
-			sprintf(arquivo,"%s","||");
+			arquivo << "ou";
 		}
 		virtual void visit(UnitaryLogicalOperator* e)
 		{
-			sprintf(arquivo,"%s","!");
+			arquivo << "nao";
 		}
 		virtual void visit(EqRule1* e)
 		{
 			e -> eq() -> accept(this);
-			sprintf(arquivo,"%s","+");
+			arquivo << "+";
 			e -> factor() -> accept(this);
 		}
 		virtual void visit(EqRule2* e)
 		{
 			e -> eq() -> accept(this);
-			sprintf(arquivo,"%s","-");
+			arquivo << "-";
 			e -> factor() -> accept(this);
 		}
 		virtual void visit(EqRule3* e)
@@ -416,13 +416,13 @@ class PrintVisitor : public Visitor
 		virtual void visit(FactorRule1* e)
 		{
 			e -> factor() -> accept(this);
-			sprintf(arquivo,"%s","/");
+			arquivo << "/";
 			e -> elem() -> accept(this);
 		}
 		virtual void visit(FactorRule2* e)
 		{
 			e -> factor() -> accept(this);
-			sprintf(arquivo,"%s","*");
+			arquivo << "*";
 			e -> elem() -> accept(this);
 		}
 		virtual void visit(FactorRule3* e)
@@ -431,19 +431,19 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(ElemRule1* e)
 		{
-			sprintf(arquivo,"%s","+");
+			arquivo << "+";
 			e -> elem() -> accept(this);
 		}
 		virtual void visit(ElemRule2* e)
 		{
-			sprintf(arquivo,"%s","-");
+			arquivo << "-";
 			e -> elem() -> accept(this);
 		}
 		virtual void visit(ElemRule3* e)
 		{
-			sprintf(arquivo,"%s","(");
+			arquivo << "(";
 			e -> eq() -> accept(this);
-			sprintf(arquivo,"%s",")");
+			arquivo << ")";
 		}
 		virtual void visit(ElemRule4* e)
 		{
@@ -451,67 +451,67 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(ValuesRule1* e)
 		{
-			sprintf(arquivo,"%s%d","L_INT",i);
+			arquivo << "L_INT";
 		}
 		virtual void visit(ValuesRule2* e)
 		{
-			sprintf(arquivo,"%s%d","L_FLOAT",i);
+			arquivo << "L_FLOAT";
 		}
 		virtual void visit(ValuesRule3* e)
 		{
-			sprintf(arquivo,"%s%d", "L_DOUBLE",i);
+			arquivo << "L_DOUBLE";
 		}
 		virtual void visit(ValuesRule4* e)
 		{
-			sprintf(arquivo,"%s%d", "L_CHAR",i);
+			arquivo << "L_CHAR";
 		}
 		virtual void visit(ValuesRule5* e)
 		{
-			sprintf(arquivo,"%s%d", "L_STRING",i);
+			arquivo << "L_STRING";
 		}
 		virtual void visit(ValuesRule6* e)
 		{
-			sprintf(arquivo,"%s%d", "L_BOOL",i);
+			arquivo << "L_BOOL";
 		}
 		virtual void visit(ValuesRule7* e)
 		{
-			sprintf(arquivo,"%s%d", "L_ID",i);	
+			arquivo << "L_ID";
 		}
 		virtual void visit(VarRule1* e)
 		{
 			e -> variablestypes() -> accept(this);
-			sprintf(arquivo,"%s%d", "L_ID",i);
+			arquivo << "L_ID";
 		}
 		virtual void visit(VarRule2* e)
 		{
 			e -> variablestypes() -> accept(this);
-			sprintf(arquivo,"%s%d", "L_ID",i);
-			sprintf(arquivo,"%s", "=");
+			arquivo << "L_ID";
+			arquivo << "=";
 			e -> operation() -> accept(this);
 		}
 		virtual void visit(VariablesTypesRule1* e)
 		{
-			sprintf(arquivo,"%s", "double");
+			arquivo << "double";
 		}
 		virtual void visit(VariablesTypesRule2* e)
 		{
-			sprintf(arquivo,"%s", "int");
+			arquivo << "int";
 		}
 		virtual void visit(VariablesTypesRule3* e)
 		{
-			sprintf(arquivo,"%s", "float");
+			arquivo << "float";
 		}
 		virtual void visit(VariablesTypesRule4* e)
 		{
-			sprintf(arquivo,"%s", "char");
+			arquivo << "char";
 		}
 		virtual void visit(VariablesTypesRule5* e)
 		{
-			sprintf(arquivo,"%s", "string");
+			arquivo << "string";
 		}
 		virtual void visit(VariablesTypesRule6* e)
 		{
-			sprintf(arquivo,"%s", "bolean");
+			arquivo << "boolean";
 		}
 };
 #endif

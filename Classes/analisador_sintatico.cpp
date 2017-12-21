@@ -66,6 +66,7 @@
 
   #include<string>
   #include<stdint.h>
+ // #include <stdbool.h>
   #include "Node.h"
   #include "MainBodyRule1.h"
   #include "MainBodyRule2.h"
@@ -157,9 +158,12 @@
   #include "VariablesTypesRule4.h"
   #include "VariablesTypesRule5.h"
   #include "VariablesTypesRule6.h"
+  //#include "TypeChecker.h"
+ // #include "PrintVisitor.h"
+ // #include "GeradorDeCodigo.h"
   Node *root = null
 
-#line 164 "analisador_sintatico.c" /* yacc.c:339  */
+#line 167 "../Classes/analisador_sintatico.cpp" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -249,7 +253,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 148 "Sintatico.y" /* yacc.c:355  */
+#line 151 "Sintatico.y" /* yacc.c:355  */
 
     int64_t integer;
     std::string str;
@@ -257,8 +261,46 @@ union YYSTYPE
     float float_point;
     double double_point;
     char caractere;
+	Node Program
+	MainBody MainBody
+	MainArduino MainArduino
+	Function Function
+	Parameter Parameter
+	Parameters Parameters
+	Body Body
+	LocalBody LocalBody
+	Line Line
+	Condiction Condiction
+	Loop Loop
+	Setup Setup
+	SelectionClause SelectionClause
+	ElseClauses ElseClauses
+	IfElseClauses IfElseClauses
+	IfClause IfClause
+	PinModeClause PinModeClause
+	DigitalWriteClause DigitalWriteClause
+	ElseClause ElseClause
+	IfElseClause IfElseClause
+	WhileClause WhileClause
+	ForClause ForClause
+	Command Command
+	VarFor VarFor
+	LogicOperation LogicOperation
+	Operation Operation
+	UnitaryOperators UnitaryOperators
+	LogicComp LogicComp
+	BinaryCompOperator BinaryCompOperator
+	LogicOP LogicOP
+	BinaryLogicalOperator BinaryLogicalOperator
+	UnitaryLogicalOperator UnitaryLogicalOperator
+	Eq Eq
+	Factor Factor
+	Elem Elem
+	Values Values
+	Var Var
+	VariablesTypes VariablesTypes
 
-#line 263 "analisador_sintatico.c" /* yacc.c:355  */
+#line 304 "../Classes/analisador_sintatico.cpp" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -275,7 +317,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 280 "analisador_sintatico.c" /* yacc.c:358  */
+#line 321 "../Classes/analisador_sintatico.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -577,15 +619,15 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   203,   203,   205,   206,   207,   208,   213,   214,   217,
-     218,   221,   222,   225,   226,   229,   230,   233,   234,   235,
-     238,   239,   240,   251,   252,   255,   256,   259,   260,   263,
-     273,   275,   277,   279,   281,   282,   285,   286,   287,   290,
-     291,   294,   295,   296,   299,   300,   303,   304,   307,   308,
-     309,   310,   313,   314,   315,   316,   319,   320,   323,   325,
-     326,   327,   330,   331,   332,   335,   336,   337,   338,   341,
-     342,   343,   344,   345,   346,   347,   350,   351,   354,   355,
-     356,   357,   358,   359
+       0,   244,   244,   246,   247,   248,   249,   254,   255,   258,
+     259,   262,   263,   266,   267,   270,   271,   274,   275,   276,
+     279,   280,   281,   292,   293,   296,   297,   300,   301,   304,
+     314,   316,   318,   320,   322,   323,   326,   327,   328,   331,
+     332,   335,   336,   337,   340,   341,   344,   345,   348,   349,
+     350,   351,   354,   355,   356,   357,   360,   361,   364,   366,
+     367,   368,   371,   372,   373,   376,   377,   378,   379,   382,
+     383,   384,   385,   386,   387,   388,   391,   392,   395,   396,
+     397,   398,   399,   400
 };
 #endif
 
@@ -1486,367 +1528,409 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 203 "Sintatico.y" /* yacc.c:1646  */
+#line 244 "Sintatico.y" /* yacc.c:1646  */
     {root = (yyvsp[0].MainBody);}
-#line 1493 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1534 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 205 "Sintatico.y" /* yacc.c:1646  */
+#line 246 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.MainBody) = new MainBodyRule1((yyvsp[-1].Function),(yyvsp[0].MainBody)); }
-#line 1499 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1540 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 206 "Sintatico.y" /* yacc.c:1646  */
+#line 247 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.MainBody) = new MainBodyRule2((yyvsp[-2].Var),(yyvsp[0].MainBody)); }
-#line 1505 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1546 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 207 "Sintatico.y" /* yacc.c:1646  */
+#line 248 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.MainBody) = (yyvsp[0].Function);}
-#line 1511 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1552 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 208 "Sintatico.y" /* yacc.c:1646  */
+#line 249 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.MainBody) = (yyvsp[-1].Var); }
-#line 1517 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1558 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 213 "Sintatico.y" /* yacc.c:1646  */
+#line 254 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Function) = new FuctionRule1((yyvsp[-3].VariablesTypes),(yyvsp[-2].str),(yyvsp[-1].Parameter));}
-#line 1523 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1564 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 214 "Sintatico.y" /* yacc.c:1646  */
+#line 255 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Function) = new FuctionRule2((yyvsp[-3].VariablesTypes),(yyvsp[-2].str)); }
-#line 1529 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1570 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 217 "Sintatico.y" /* yacc.c:1646  */
+#line 258 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Parameter) = (yyvsp[-1].Parameters); }
-#line 1535 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1576 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 218 "Sintatico.y" /* yacc.c:1646  */
+#line 259 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Parameter) = new ParameterRule2(); }
-#line 1541 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1582 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 221 "Sintatico.y" /* yacc.c:1646  */
+#line 262 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Parameters) = new ParameterRule1((yyvsp[-2].Var),(yyvsp[0].Parameters)); }
-#line 1547 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1588 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 222 "Sintatico.y" /* yacc.c:1646  */
+#line 263 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Parameters) = (yyvsp[0].Var); }
-#line 1553 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1594 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 225 "Sintatico.y" /* yacc.c:1646  */
+#line 266 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Body) = (yyvsp[-1].LocalBody);}
-#line 1559 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1600 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 226 "Sintatico.y" /* yacc.c:1646  */
+#line 267 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Body) = new BodyRule2();}
-#line 1565 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1606 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 229 "Sintatico.y" /* yacc.c:1646  */
+#line 270 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.LocalBody) = new LocalBodyRule1((yyvsp[-2].Line),(yyvsp[0].LocalBody));}
-#line 1571 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1612 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 230 "Sintatico.y" /* yacc.c:1646  */
+#line 271 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.LocalBody) = (yyvsp[-1].Line);}
-#line 1577 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1618 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 233 "Sintatico.y" /* yacc.c:1646  */
+#line 274 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Line) = (yyvsp[0].Operation);}
-#line 1583 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1624 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 234 "Sintatico.y" /* yacc.c:1646  */
+#line 275 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Line) = (yyvsp[0].Var);}
-#line 1589 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1630 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 235 "Sintatico.y" /* yacc.c:1646  */
+#line 276 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Line) = (yyvsp[0].Condiction);}
-#line 1595 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1636 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 238 "Sintatico.y" /* yacc.c:1646  */
+#line 279 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Condiction) = (yyvsp[0].SelectionClause);}
-#line 1601 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1642 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 239 "Sintatico.y" /* yacc.c:1646  */
+#line 280 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Condiction) = (yyvsp[0].WhileClause);}
-#line 1607 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1648 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 240 "Sintatico.y" /* yacc.c:1646  */
+#line 281 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Condiction) = (yyvsp[0].ForClause);}
-#line 1613 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1654 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 251 "Sintatico.y" /* yacc.c:1646  */
+#line 292 "Sintatico.y" /* yacc.c:1646  */
     {}
-#line 1619 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1660 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 252 "Sintatico.y" /* yacc.c:1646  */
+#line 293 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.SelectionClause) = new SelectionClauseRule2((yyvsp[-1].IfClause),(yyvsp[0].ElseClauses)); }
-#line 1625 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1666 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 255 "Sintatico.y" /* yacc.c:1646  */
+#line 296 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.ElseClauses) = (yyvsp[-1].IfElseClauses); }
-#line 1631 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1672 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 256 "Sintatico.y" /* yacc.c:1646  */
+#line 297 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.ElseClauses) = (yyvsp[0].ElseClause); }
-#line 1637 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1678 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 259 "Sintatico.y" /* yacc.c:1646  */
+#line 300 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.IfElseClauses) = (yyvsp[0].IfElseClauses); }
-#line 1643 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1684 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 260 "Sintatico.y" /* yacc.c:1646  */
+#line 301 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.IfElseClauses) = (yyvsp[0].IfElseClause); }
-#line 1649 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1690 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 263 "Sintatico.y" /* yacc.c:1646  */
+#line 304 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.IfClause) = new IfClause((yyvsp[-2].LogicOperation),(yyvsp[0].Command));}
-#line 1655 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1696 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 273 "Sintatico.y" /* yacc.c:1646  */
+#line 314 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.ElseClause) = (yyvsp[0].Command); }
-#line 1661 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1702 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 275 "Sintatico.y" /* yacc.c:1646  */
+#line 316 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.IfElseClause) = new IfElseClause( (yyvsp[-2].LogicOperation), (yyvsp[0].Command) ); }
-#line 1667 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1708 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 277 "Sintatico.y" /* yacc.c:1646  */
+#line 318 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.WhileClause) = new WhileClause( (yyvsp[-2].LogicOperation), (yyvsp[0].Command) ); }
-#line 1673 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1714 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 279 "Sintatico.y" /* yacc.c:1646  */
+#line 320 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.ForClause) = new ForClause((yyvsp[-5].VarFor), (yyvsp[-4].LogicOperation), (yyvsp[-2].UnitaryOperators) , (yyvsp[0].Command)); }
-#line 1679 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1720 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 281 "Sintatico.y" /* yacc.c:1646  */
+#line 322 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Command) = (yyvsp[-1].LocalBody); }
-#line 1685 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1726 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 282 "Sintatico.y" /* yacc.c:1646  */
+#line 323 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Command) = (yyvsp[-1].Line); }
-#line 1691 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1732 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 285 "Sintatico.y" /* yacc.c:1646  */
+#line 326 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.VarFor) = new VarForRule1((yyvsp[-4].VariablesTypes),(yyvsp[-1].Operation)); }
-#line 1697 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1738 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 286 "Sintatico.y" /* yacc.c:1646  */
+#line 327 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.VarFor) = (yyvsp[-1].Operation); }
-#line 1703 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1744 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 290 "Sintatico.y" /* yacc.c:1646  */
+#line 331 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.LogicOperation) = (yyvsp[0].LogicOP); }
-#line 1709 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1750 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 291 "Sintatico.y" /* yacc.c:1646  */
+#line 332 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.LogicOperation) = (yyvsp[0].LogicComp); }
-#line 1715 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1756 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 294 "Sintatico.y" /* yacc.c:1646  */
+#line 335 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Operation) = (yyvsp[0].Eq); }
-#line 1721 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1762 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 295 "Sintatico.y" /* yacc.c:1646  */
+#line 336 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Operation) = (yyvsp[0].LogicOperation); }
-#line 1727 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1768 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 296 "Sintatico.y" /* yacc.c:1646  */
+#line 337 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Operation) = (yyvsp[0].UnitaryOperators); }
-#line 1733 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1774 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 299 "Sintatico.y" /* yacc.c:1646  */
+#line 340 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.UnitaryOperators) = (yyvsp[-1].Values); }
-#line 1739 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1780 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 300 "Sintatico.y" /* yacc.c:1646  */
+#line 341 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.UnitaryOperators) = (yyvsp[-1].Values); }
-#line 1745 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1786 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 303 "Sintatico.y" /* yacc.c:1646  */
+#line 344 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.LogicComp) = new LogicCompRule1((yyvsp[-2].Eq),(yyvsp[-1].BinaryCompOperator),(yyvsp[0].Eq)); }
-#line 1751 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1792 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 304 "Sintatico.y" /* yacc.c:1646  */
+#line 345 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.LogicComp) = (yyvsp[-1].LogicComp); }
-#line 1757 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1798 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 313 "Sintatico.y" /* yacc.c:1646  */
+#line 354 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.LogicOP) = new LogicOPRule1((yyvsp[-2].LogicOP),(yyvsp[-1].BinaryLogicalOperator),(yyvsp[0].LogicOP)); }
-#line 1763 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1804 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 314 "Sintatico.y" /* yacc.c:1646  */
+#line 355 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.LogicOP) = new LogicOPRule2((yyvsp[-1].UnitaryLogicalOperator),(yyvsp[0].LogicOP)); }
-#line 1769 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1810 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 316 "Sintatico.y" /* yacc.c:1646  */
+#line 357 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.LogicOP) = (yyvsp[-1].LogicOP); }
-#line 1775 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1816 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 325 "Sintatico.y" /* yacc.c:1646  */
+#line 366 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Eq) = new EqRule1((yyvsp[-2].Eq),(yyvsp[0].Factor)); }
-#line 1781 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1822 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 326 "Sintatico.y" /* yacc.c:1646  */
+#line 367 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Eq) = new EqRule2((yyvsp[-2].Eq),(yyvsp[0].Factor)); }
-#line 1787 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1828 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 327 "Sintatico.y" /* yacc.c:1646  */
+#line 368 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Eq) = (yyvsp[0].Factor) }
-#line 1793 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1834 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 330 "Sintatico.y" /* yacc.c:1646  */
+#line 371 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Factor) = new FactorRule1((yyvsp[-2].Factor),(yyvsp[0].Elem)); }
-#line 1799 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1840 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 331 "Sintatico.y" /* yacc.c:1646  */
+#line 372 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Factor) = new FactorRule2((yyvsp[-2].Factor),(yyvsp[0].Elem)); }
-#line 1805 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1846 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 332 "Sintatico.y" /* yacc.c:1646  */
+#line 373 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Factor) = (yyvsp[0].Elem); }
-#line 1811 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1852 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 335 "Sintatico.y" /* yacc.c:1646  */
+#line 376 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Elem) = (yyvsp[0].Elem); }
-#line 1817 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1858 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 336 "Sintatico.y" /* yacc.c:1646  */
+#line 377 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Elem) = (yyvsp[0].Elem); }
-#line 1823 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1864 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 337 "Sintatico.y" /* yacc.c:1646  */
+#line 378 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Elem) = (yyvsp[-1].Eq); }
-#line 1829 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1870 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 338 "Sintatico.y" /* yacc.c:1646  */
+#line 379 "Sintatico.y" /* yacc.c:1646  */
     { (yyval.Elem) = (yyvsp[0].Values); }
-#line 1835 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1876 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 69:
+#line 382 "Sintatico.y" /* yacc.c:1646  */
+    { (yyval.Values) =  new ValuesRule1((yyvsp[0].integer));}
+#line 1882 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 70:
+#line 383 "Sintatico.y" /* yacc.c:1646  */
+    { (yyval.Values) =  new ValuesRule2((yyvsp[0].float_point));}
+#line 1888 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 71:
+#line 384 "Sintatico.y" /* yacc.c:1646  */
+    { (yyval.Values) =  new ValuesRule3((yyvsp[0].double_point));}
+#line 1894 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 72:
+#line 385 "Sintatico.y" /* yacc.c:1646  */
+    { (yyval.Values) =  new ValuesRule4((yyvsp[0].caractere));}
+#line 1900 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 73:
+#line 386 "Sintatico.y" /* yacc.c:1646  */
+    { (yyval.Values) =  new ValuesRule5((yyvsp[0].str));}
+#line 1906 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 74:
+#line 387 "Sintatico.y" /* yacc.c:1646  */
+    { (yyval.Values) =  new ValuesRule6((yyvsp[0].logic));}
+#line 1912 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 75:
+#line 388 "Sintatico.y" /* yacc.c:1646  */
+    { (yyval.Values) =  new ValuesRule7((yyvsp[0].str));}
+#line 1918 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 350 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Var) = (yyvsp[-1].VariablesTypes); }
-#line 1841 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 391 "Sintatico.y" /* yacc.c:1646  */
+    { (yyval.Var) = new VarRule1((yyvsp[-1].VariablesTypes),(yyvsp[0].str)); }
+#line 1924 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 351 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Var) = new VarRule2((yyvsp[-3].VariablesTypes),(yyvsp[0].Operation)); }
-#line 1847 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 392 "Sintatico.y" /* yacc.c:1646  */
+    { (yyval.Var) = new VarRule2((yyvsp[-3].VariablesTypes),(yyvsp[-2].str),(yyvsp[0].Operation)); }
+#line 1930 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
 
-#line 1851 "analisador_sintatico.c" /* yacc.c:1646  */
+#line 1934 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2074,4 +2158,26 @@ yyreturn:
 #endif
   return yyresult;
 }
+#line 402 "Sintatico.y" /* yacc.c:1906  */
 
+int main(int argc, char **argv) {
+  extern FILE *yyin;
+  if(argc != 2) {
+    printf("Uso: %s arquivo_de_entrada\n", argv[0]);
+    return 1;
+  }
+  
+  if ((yyin = fopen(argv[1], "r")) == NULL) {
+    fprintf(stderr, "Erro ao tentar abrir o arquivo %s!\n", argv[1]);
+    return 1;
+  }
+  
+  if (yyparse()) {
+    fprintf(stderr, "Não foi possível compilar %s!\n", argv[1]);
+    return 1;
+  }
+  //root->accept(new PrintVisitor());
+ // root->accept(new TypeChecker());
+ // roo
+  return 0;
+}

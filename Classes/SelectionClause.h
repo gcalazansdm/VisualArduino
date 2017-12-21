@@ -9,6 +9,5 @@ class SelectionClause : public Node
 	public:
 		SelectionClause():Node(){};
 		virtual ~SelectionClause(){};
-		SelectionClause(const SelectionClause& selectionclause):SelectionClause(){};
 };
 #endif

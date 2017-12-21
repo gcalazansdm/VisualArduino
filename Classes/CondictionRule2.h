@@ -9,22 +9,20 @@ class CondictionRule2 : public Condiction
 	private:
 		WhileClause* whileclause_;
 	public:
-		CondictionRule2( WhileClause* whileclause):Condiction(),whileclause_(whileclause){};
+		CondictionRule2( WhileClause* whileclause):Condiction(),whileclause_(whileclause){}
 		virtual ~CondictionRule2()
 		{
-			delete whileclause;
-		};
-		CondictionRule2(const CondictionRule2& condictionrule2):Condiction(condictionrule2),whileclause_(condictionrule2.whileclause()){};//olá
+			delete whileclause_;
+		}
+		CondictionRule2(const CondictionRule2& condictionrule2):Condiction(condictionrule2),whileclause_(condictionrule2.whileclause_){}//olá
 		void set_whileclause(WhileClause* whileclause)
 		{
 			whileclause_ = whileclause;
-		};
+		}
 		const WhileClause* const whileclause()
 		{
 			return whileclause_;
-		};
-		void accept(Visitor *v) {
-			v->visit(this);
-		};
+		}
+		void accept(Visitor *v);
 };
 #endif

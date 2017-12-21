@@ -6,14 +6,21 @@
 class ValuesRule6 : public Values
 {
 	private:
+		bool l_bool_;
 	public:
-		ValuesRule6( ):Values(){};
+		ValuesRule6( bool l_bool):Values(),l_bool_(l_bool){}
 		virtual ~ValuesRule6()
 		{
-		};
-		ValuesRule6(const ValuesRule6& valuesrule6):Values(valuesrule6){};//olá
-		void accept(Visitor *v) {
-			v->visit(this);
-		};
+		}
+		ValuesRule6(const ValuesRule6& valuesrule6):Values(valuesrule6),l_bool_(valuesrule6.l_bool_){}//olá
+		void set_l_bool(bool l_bool)
+		{
+			l_bool_ = l_bool;
+		}
+		const bool l_bool()
+		{
+			return l_bool_;
+		}
+		void accept(Visitor *v);
 };
 #endif

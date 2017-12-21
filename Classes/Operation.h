@@ -9,6 +9,5 @@ class Operation : public Node
 	public:
 		Operation():Node(){};
 		virtual ~Operation(){};
-		Operation(const Operation& operation):Operation(){};
 };
 #endif

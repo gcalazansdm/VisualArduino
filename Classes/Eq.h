@@ -9,6 +9,5 @@ class Eq : public Node
 	public:
 		Eq():Node(){};
 		virtual ~Eq(){};
-		Eq(const Eq& eq):Eq(){};
 };
 #endif

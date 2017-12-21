@@ -9,6 +9,5 @@ class Elem : public Node
 	public:
 		Elem():Node(){};
 		virtual ~Elem(){};
-		Elem(const Elem& elem):Elem(){};
 };
 #endif

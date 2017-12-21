@@ -9,6 +9,5 @@ class Var : public Node
 	public:
 		Var():Node(){};
 		virtual ~Var(){};
-		Var(const Var& var):Var(){};
 };
 #endif

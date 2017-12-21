@@ -9,6 +9,5 @@ class Function : public Node
 	public:
 		Function():Node(){};
 		virtual ~Function(){};
-		Function(const Function& function):Function(){};
 };
 #endif

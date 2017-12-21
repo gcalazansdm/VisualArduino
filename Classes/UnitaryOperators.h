@@ -9,6 +9,5 @@ class UnitaryOperators : public Node
 	public:
 		UnitaryOperators():Node(){};
 		virtual ~UnitaryOperators(){};
-		UnitaryOperators(const UnitaryOperators& unitaryoperators):UnitaryOperators(){};
 };
 #endif

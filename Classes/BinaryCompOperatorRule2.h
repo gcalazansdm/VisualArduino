@@ -7,13 +7,11 @@ class BinaryCompOperatorRule2 : public BinaryCompOperator
 {
 	private:
 	public:
-		BinaryCompOperatorRule2( ):BinaryCompOperator(){};
+		BinaryCompOperatorRule2( ):BinaryCompOperator(){}
 		virtual ~BinaryCompOperatorRule2()
 		{
-		};
-		BinaryCompOperatorRule2(const BinaryCompOperatorRule2& binarycompoperatorrule2):BinaryCompOperator(binarycompoperatorrule2){};//olá
-		void accept(Visitor *v) {
-			v->visit(this);
-		};
+		}
+		BinaryCompOperatorRule2(const BinaryCompOperatorRule2& binarycompoperatorrule2):BinaryCompOperator(binarycompoperatorrule2){}//olá
+		void accept(Visitor *v);
 };
 #endif

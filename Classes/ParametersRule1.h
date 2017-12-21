@@ -11,31 +11,29 @@ class ParametersRule1 : public Parameters
 		Var* var_;
 		Parameters* parameters_;
 	public:
-		ParametersRule1( Var* var,Parameters* parameters):Parameters(),var_(var),parameters_(parameters){};
+		ParametersRule1( Var* var,Parameters* parameters):Parameters(),var_(var),parameters_(parameters){}
 		virtual ~ParametersRule1()
 		{
-			delete var;
-			delete parameters;
-		};
-		ParametersRule1(const ParametersRule1& parametersrule1):Parameters(parametersrule1),var_(parametersrule1.var()),parameters_(parametersrule1.parameters()){};//olá
+			delete var_;
+			delete parameters_;
+		}
+		ParametersRule1(const ParametersRule1& parametersrule1):Parameters(parametersrule1),var_(parametersrule1.var_),parameters_(parametersrule1.parameters_){}//olá
 		void set_var(Var* var)
 		{
 			var_ = var;
-		};
+		}
 		const Var* const var()
 		{
 			return var_;
-		};
+		}
 		void set_parameters(Parameters* parameters)
 		{
 			parameters_ = parameters;
-		};
+		}
 		const Parameters* const parameters()
 		{
 			return parameters_;
-		};
-		void accept(Visitor *v) {
-			v->visit(this);
-		};
+		}
+		void accept(Visitor *v);
 };
 #endif

@@ -9,6 +9,5 @@ class Body : public Node
 	public:
 		Body():Node(){};
 		virtual ~Body(){};
-		Body(const Body& body):Body(){};
 };
 #endif

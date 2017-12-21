@@ -9,6 +9,5 @@ class Factor : public Node
 	public:
 		Factor():Node(){};
 		virtual ~Factor(){};
-		Factor(const Factor& factor):Factor(){};
 };
 #endif

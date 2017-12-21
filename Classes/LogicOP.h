@@ -9,6 +9,5 @@ class LogicOP : public Node
 	public:
 		LogicOP():Node(){};
 		virtual ~LogicOP(){};
-		LogicOP(const LogicOP& logicop):LogicOP(){};
 };
 #endif

@@ -1,7 +1,8 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include "Visitor.h"
+//#include "Visitor.h"
+class Visitor;
 
 class Node {
 	private:

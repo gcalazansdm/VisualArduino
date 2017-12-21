@@ -11,42 +11,40 @@ class LogicOPRule1 : public LogicOP
 	private:
 		LogicOP* logicop_;
 		BinaryLogicalOperator* binarylogicaloperator_;
-		LogicOP* logicop_;
+		LogicOP* logicop0_;
 	public:
-		LogicOPRule1( LogicOP* logicop,BinaryLogicalOperator* binarylogicaloperator,LogicOP* logicop):LogicOP(),logicop_(logicop),binarylogicaloperator_(binarylogicaloperator),logicop_(logicop){};
+		LogicOPRule1( LogicOP* logicop,BinaryLogicalOperator* binarylogicaloperator,LogicOP* logicop0):LogicOP(),logicop_(logicop),binarylogicaloperator_(binarylogicaloperator),logicop0_(logicop0){}
 		virtual ~LogicOPRule1()
 		{
-			delete logicop;
-			delete binarylogicaloperator;
-			delete logicop;
-		};
-		LogicOPRule1(const LogicOPRule1& logicoprule1):LogicOP(logicoprule1),logicop_(logicoprule1.logicop()),binarylogicaloperator_(logicoprule1.binarylogicaloperator()),logicop_(logicoprule1.logicop()){};//olá
+			delete logicop_;
+			delete binarylogicaloperator_;
+			delete logicop0_;
+		}
+		LogicOPRule1(const LogicOPRule1& logicoprule1):LogicOP(logicoprule1),logicop_(logicoprule1.logicop_),binarylogicaloperator_(logicoprule1.binarylogicaloperator_),logicop0_(logicoprule1.logicop0_){}//olá
 		void set_logicop(LogicOP* logicop)
 		{
 			logicop_ = logicop;
-		};
+		}
 		const LogicOP* const logicop()
 		{
 			return logicop_;
-		};
+		}
 		void set_binarylogicaloperator(BinaryLogicalOperator* binarylogicaloperator)
 		{
 			binarylogicaloperator_ = binarylogicaloperator;
-		};
+		}
 		const BinaryLogicalOperator* const binarylogicaloperator()
 		{
 			return binarylogicaloperator_;
-		};
-		void set_logicop(LogicOP* logicop)
+		}
+		void set_logicop0(LogicOP* logicop0)
 		{
-			logicop_ = logicop;
-		};
-		const LogicOP* const logicop()
+			logicop0_ = logicop0;
+		}
+		const LogicOP* const logicop0()
 		{
-			return logicop_;
-		};
-		void accept(Visitor *v) {
-			v->visit(this);
-		};
+			return logicop0_;
+		}
+		void accept(Visitor *v);
 };
 #endif

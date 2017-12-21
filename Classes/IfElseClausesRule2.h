@@ -9,22 +9,20 @@ class IfElseClausesRule2 : public IfElseClauses
 	private:
 		IfElseClause* ifelseclause_;
 	public:
-		IfElseClausesRule2( IfElseClause* ifelseclause):IfElseClauses(),ifelseclause_(ifelseclause){};
+		IfElseClausesRule2( IfElseClause* ifelseclause):IfElseClauses(),ifelseclause_(ifelseclause){}
 		virtual ~IfElseClausesRule2()
 		{
-			delete ifelseclause;
-		};
-		IfElseClausesRule2(const IfElseClausesRule2& ifelseclausesrule2):IfElseClauses(ifelseclausesrule2),ifelseclause_(ifelseclausesrule2.ifelseclause()){};//olá
+			delete ifelseclause_;
+		}
+		IfElseClausesRule2(const IfElseClausesRule2& ifelseclausesrule2):IfElseClauses(ifelseclausesrule2),ifelseclause_(ifelseclausesrule2.ifelseclause_){}//olá
 		void set_ifelseclause(IfElseClause* ifelseclause)
 		{
 			ifelseclause_ = ifelseclause;
-		};
+		}
 		const IfElseClause* const ifelseclause()
 		{
 			return ifelseclause_;
-		};
-		void accept(Visitor *v) {
-			v->visit(this);
-		};
+		}
+		void accept(Visitor *v);
 };
 #endif

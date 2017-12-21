@@ -9,6 +9,5 @@ class LocalBody : public Node
 	public:
 		LocalBody():Node(){};
 		virtual ~LocalBody(){};
-		LocalBody(const LocalBody& localbody):LocalBody(){};
 };
 #endif

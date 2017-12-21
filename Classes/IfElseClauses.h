@@ -9,6 +9,5 @@ class IfElseClauses : public Node
 	public:
 		IfElseClauses():Node(){};
 		virtual ~IfElseClauses(){};
-		IfElseClauses(const IfElseClauses& ifelseclauses):IfElseClauses(){};
 };
 #endif

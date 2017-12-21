@@ -9,6 +9,5 @@ class Setup : public Node
 	public:
 		Setup():Node(){};
 		virtual ~Setup(){};
-		Setup(const Setup& setup):Setup(){};
 };
 #endif

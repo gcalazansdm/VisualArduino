@@ -9,6 +9,5 @@ class Condiction : public Node
 	public:
 		Condiction():Node(){};
 		virtual ~Condiction(){};
-		Condiction(const Condiction& condiction):Condiction(){};
 };
 #endif

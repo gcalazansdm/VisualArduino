@@ -9,6 +9,5 @@ class Loop : public Node
 	public:
 		Loop():Node(){};
 		virtual ~Loop(){};
-		Loop(const Loop& loop):Loop(){};
 };
 #endif

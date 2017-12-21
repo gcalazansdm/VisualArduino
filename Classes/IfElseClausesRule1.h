@@ -11,31 +11,29 @@ class IfElseClausesRule1 : public IfElseClauses
 		IfElseClause* ifelseclause_;
 		IfElseClauses* ifelseclauses_;
 	public:
-		IfElseClausesRule1( IfElseClause* ifelseclause,IfElseClauses* ifelseclauses):IfElseClauses(),ifelseclause_(ifelseclause),ifelseclauses_(ifelseclauses){};
+		IfElseClausesRule1( IfElseClause* ifelseclause,IfElseClauses* ifelseclauses):IfElseClauses(),ifelseclause_(ifelseclause),ifelseclauses_(ifelseclauses){}
 		virtual ~IfElseClausesRule1()
 		{
-			delete ifelseclause;
-			delete ifelseclauses;
-		};
-		IfElseClausesRule1(const IfElseClausesRule1& ifelseclausesrule1):IfElseClauses(ifelseclausesrule1),ifelseclause_(ifelseclausesrule1.ifelseclause()),ifelseclauses_(ifelseclausesrule1.ifelseclauses()){};//olá
+			delete ifelseclause_;
+			delete ifelseclauses_;
+		}
+		IfElseClausesRule1(const IfElseClausesRule1& ifelseclausesrule1):IfElseClauses(ifelseclausesrule1),ifelseclause_(ifelseclausesrule1.ifelseclause_),ifelseclauses_(ifelseclausesrule1.ifelseclauses_){}//olá
 		void set_ifelseclause(IfElseClause* ifelseclause)
 		{
 			ifelseclause_ = ifelseclause;
-		};
+		}
 		const IfElseClause* const ifelseclause()
 		{
 			return ifelseclause_;
-		};
+		}
 		void set_ifelseclauses(IfElseClauses* ifelseclauses)
 		{
 			ifelseclauses_ = ifelseclauses;
-		};
+		}
 		const IfElseClauses* const ifelseclauses()
 		{
 			return ifelseclauses_;
-		};
-		void accept(Visitor *v) {
-			v->visit(this);
-		};
+		}
+		void accept(Visitor *v);
 };
 #endif

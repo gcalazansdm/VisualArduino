@@ -9,6 +9,5 @@ class BinaryLogicalOperator : public Node
 	public:
 		BinaryLogicalOperator():Node(){};
 		virtual ~BinaryLogicalOperator(){};
-		BinaryLogicalOperator(const BinaryLogicalOperator& binarylogicaloperator):BinaryLogicalOperator(){};
 };
 #endif
