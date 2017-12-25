@@ -36,14 +36,14 @@ int Tipo::compatible(Tipo* t){
 		if(a*c == 0){
 			return 0;
 		}
-		return a*c/abs(a*c);
+		return a*c/std::abs(a*c);
 		break;
 		case L_BOOL:
 		c = -8;
 		if(a*c == 0){
 			return -2;
 		}
-		return a*c/abs(a*c);
+		return a*c/std::abs(a*c);
 		break;
 		case L_STRING:
 		if(b== 1){

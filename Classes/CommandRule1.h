@@ -19,7 +19,7 @@ class CommandRule1 : public Command
 		{
 			localbody_ = localbody;
 		}
-		const LocalBody* const localbody()
+		LocalBody* localbody()
 		{
 			return localbody_;
 		}

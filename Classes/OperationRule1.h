@@ -19,7 +19,7 @@ class OperationRule1 : public Operation
 		{
 			eq_ = eq;
 		}
-		const Eq* const eq()
+		Eq* eq()
 		{
 			return eq_;
 		}

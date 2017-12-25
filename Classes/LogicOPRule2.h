@@ -22,7 +22,7 @@ class LogicOPRule2 : public LogicOP
 		{
 			unitarylogicaloperator_ = unitarylogicaloperator;
 		}
-		const UnitaryLogicalOperator* const unitarylogicaloperator()
+		UnitaryLogicalOperator* unitarylogicaloperator()
 		{
 			return unitarylogicaloperator_;
 		}
@@ -30,7 +30,7 @@ class LogicOPRule2 : public LogicOP
 		{
 			logicop_ = logicop;
 		}
-		const LogicOP* const logicop()
+		LogicOP* logicop()
 		{
 			return logicop_;
 		}

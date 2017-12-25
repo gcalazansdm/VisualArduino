@@ -19,7 +19,7 @@ class SelectionClauseRule1 : public SelectionClause
 		{
 			ifclause_ = ifclause;
 		}
-		const IfClause* const ifclause()
+		IfClause* ifclause()
 		{
 			return ifclause_;
 		}

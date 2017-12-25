@@ -22,7 +22,7 @@ class IfElseClausesRule1 : public IfElseClauses
 		{
 			ifelseclause_ = ifelseclause;
 		}
-		const IfElseClause* const ifelseclause()
+		IfElseClause* ifelseclause()
 		{
 			return ifelseclause_;
 		}
@@ -30,7 +30,7 @@ class IfElseClausesRule1 : public IfElseClauses
 		{
 			ifelseclauses_ = ifelseclauses;
 		}
-		const IfElseClauses* const ifelseclauses()
+		IfElseClauses* ifelseclauses()
 		{
 			return ifelseclauses_;
 		}

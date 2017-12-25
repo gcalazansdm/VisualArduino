@@ -7,7 +7,11 @@ class UnitaryLogicalOperator : public Node
 {
 	private:
 	public:
-		UnitaryLogicalOperator():Node(){};
-		virtual ~UnitaryLogicalOperator(){};
+		UnitaryLogicalOperator( ):Node(){}
+		virtual ~UnitaryLogicalOperator()
+		{
+		}
+		UnitaryLogicalOperator(const UnitaryLogicalOperator& unitarylogicaloperator):Node(unitarylogicaloperator){}//olá
+		void accept(Visitor *v);
 };
 #endif

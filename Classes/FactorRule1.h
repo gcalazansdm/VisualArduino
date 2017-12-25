@@ -22,7 +22,7 @@ class FactorRule1 : public Factor
 		{
 			factor_ = factor;
 		}
-		const Factor* const factor()
+		Factor* factor()
 		{
 			return factor_;
 		}
@@ -30,7 +30,7 @@ class FactorRule1 : public Factor
 		{
 			elem_ = elem;
 		}
-		const Elem* const elem()
+		Elem* elem()
 		{
 			return elem_;
 		}

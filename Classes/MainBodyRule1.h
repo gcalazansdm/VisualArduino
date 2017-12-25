@@ -22,7 +22,7 @@ class MainBodyRule1 : public MainBody
 		{
 			function_ = function;
 		}
-		const Function* const function()
+		Function* function()
 		{
 			return function_;
 		}
@@ -30,7 +30,7 @@ class MainBodyRule1 : public MainBody
 		{
 			mainbody_ = mainbody;
 		}
-		const MainBody* const mainbody()
+		MainBody* mainbody()
 		{
 			return mainbody_;
 		}

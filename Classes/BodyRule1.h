@@ -19,7 +19,7 @@ class BodyRule1 : public Body
 		{
 			localbody_ = localbody;
 		}
-		const LocalBody* const localbody()
+		LocalBody* localbody()
 		{
 			return localbody_;
 		}

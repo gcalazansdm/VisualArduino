@@ -19,7 +19,7 @@ class MainBodyRule3 : public MainBody
 		{
 			function_ = function;
 		}
-		const Function* const function()
+		Function* function()
 		{
 			return function_;
 		}

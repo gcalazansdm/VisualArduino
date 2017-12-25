@@ -19,7 +19,7 @@ class MainBodyRule4 : public MainBody
 		{
 			var_ = var;
 		}
-		const Var* const var()
+		Var* var()
 		{
 			return var_;
 		}

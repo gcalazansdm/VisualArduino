@@ -19,7 +19,7 @@ class LoopRule1 : public Loop
 		{
 			loop_ = loop;
 		}
-		const Loop* const loop()
+		Loop* loop()
 		{
 			return loop_;
 		}

@@ -17,7 +17,7 @@ class ValuesRule2 : public Values
 		{
 			l_float_ = l_float;
 		}
-		const float l_float()
+		float l_float()
 		{
 			return l_float_;
 		}

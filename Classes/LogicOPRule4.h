@@ -19,7 +19,7 @@ class LogicOPRule4 : public LogicOP
 		{
 			logicop_ = logicop;
 		}
-		const LogicOP* const logicop()
+		LogicOP* logicop()
 		{
 			return logicop_;
 		}

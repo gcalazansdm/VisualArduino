@@ -17,7 +17,7 @@ class ValuesRule4 : public Values
 		{
 			l_char_ = l_char;
 		}
-		const char l_char()
+		char l_char()
 		{
 			return l_char_;
 		}

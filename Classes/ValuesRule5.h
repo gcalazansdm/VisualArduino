@@ -18,7 +18,7 @@ class ValuesRule5 : public Values
 		{
 			l_string_ = l_string;
 		}
-		const std::string l_string()
+		std::string l_string()
 		{
 			return l_string_;
 		}

@@ -1,8 +1,8 @@
 #ifndef PRINTVISITOR_H
 #define PRINTVISITOR_H
 
-#include <IOstream>
-#include<Visitor.h>
+#include <iostream>
+#include "Visitor.h"
 
 class PrintVisitor : public Visitor 
 {
@@ -19,7 +19,7 @@ class PrintVisitor : public Visitor
 		virtual void visit(MainBodyRule2* e)
 		{
 			e -> var() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 			e -> mainbody() -> accept(this);
 		}
 		virtual void visit(MainBodyRule3* e)
@@ -29,46 +29,46 @@ class PrintVisitor : public Visitor
 		virtual void visit(MainBodyRule4* e)
 		{
 			e -> var() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 		}
 		virtual void visit(MainArduino* e)
 		{
 			e -> setup() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 			e -> loop() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 		}
 		virtual void visit(FunctionRule1* e)
 		{
-			std::cout << "funcao";
+			std::cout << "funcao ";
 			e -> variablestypes() -> accept(this);
-			std::cout << "L_ID";
+			std::cout << e -> l_id();
 			e -> parameters() -> accept(this);
 			e -> body() -> accept(this);
 		}
 		virtual void visit(FunctionRule2* e)
 		{
-			std::cout << "funcao";
+			std::cout << "funcao ";
 			e -> variablestypes() -> accept(this);
-			std::cout << "L_ID";
+			std::cout << e -> l_id();
 			e -> parameters() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 		}
 		virtual void visit(ParameterRule1* e)
 		{
-			std::cout << "(";
+			std::cout << "( ";
 			e -> parameters() -> accept(this);
-			std::cout << ")";
+			std::cout << ") ";
 		}
 		virtual void visit(ParameterRule2* e)
 		{
-			std::cout << "(";
-			std::cout << ")";
+			std::cout << "( ";
+			std::cout << ") ";
 		}
 		virtual void visit(ParametersRule1* e)
 		{
 			e -> var() -> accept(this);
-			std::cout << ".";
+			std::cout << ". ";
 			e -> parameters() -> accept(this);
 		}
 		virtual void visit(ParametersRule2* e)
@@ -77,25 +77,25 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(BodyRule1* e)
 		{
-			std::cout << "{";
+			std::cout << "{ ";
 			e -> localbody() -> accept(this);
-			std::cout << "}";
+			std::cout << "} ";
 		}
 		virtual void visit(BodyRule2* e)
 		{
-			std::cout << "{";
-			std::cout << "}";
+			std::cout << "{ ";
+			std::cout << "} ";
 		}
 		virtual void visit(LocalBodyRule1* e)
 		{
 			e -> line() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 			e -> localbody() -> accept(this);
 		}
 		virtual void visit(LocalBodyRule2* e)
 		{
 			e -> line() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 		}
 		virtual void visit(LineRule1* e)
 		{
@@ -123,36 +123,36 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(LoopRule1* e)
 		{
-			std::cout << "repeticao";
-			std::cout << "(";
-			std::cout << ")";
-			std::cout << "}";
+			std::cout << "repeticao ";
+			std::cout << "( ";
+			std::cout << ") ";
+			std::cout << "} ";
 			e -> loop() -> accept(this);
-			std::cout << "{";
+			std::cout << "{ ";
 		}
 		virtual void visit(LoopRule2* e)
 		{
-			std::cout << "repeticao";
-			std::cout << "(";
-			std::cout << ")";
-			std::cout << "}";
+			std::cout << "repeticao ";
+			std::cout << "( ";
+			std::cout << ") ";
+			std::cout << "} ";
 			e -> mainbody() -> accept(this);
 			e -> loop() -> accept(this);
-			std::cout << "{";
+			std::cout << "{ ";
 		}
 		virtual void visit(SetupRule1* e)
 		{
-			std::cout << "inicio";
-			std::cout << "(";
-			std::cout << ")";
-			std::cout << "}";
-			std::cout << "{";
+			std::cout << "inicio ";
+			std::cout << "( ";
+			std::cout << ") ";
+			std::cout << "} ";
+			std::cout << "{ ";
 		}
 		virtual void visit(SetupRule2* e)
 		{
-			std::cout << "inicio";
-			std::cout << "(";
-			std::cout << ")";
+			std::cout << "inicio ";
+			std::cout << "( ";
+			std::cout << ") ";
 			e -> mainbody() -> accept(this);
 		}
 		virtual void visit(SelectionClauseRule1* e)
@@ -184,119 +184,119 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(IfClause* e)
 		{
-			std::cout << "se";
-			std::cout << "(";
+			std::cout << "se ";
+			std::cout << "( ";
 			e -> logicoperation() -> accept(this);
-			std::cout << ")";
+			std::cout << ") ";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(PinModeClauseRule1* e)
 		{
-			std::cout << "T_PINMODE";
-			std::cout << "(";
+			std::cout << "T_PINMODE ";
+			std::cout << "( ";
 			e -> values() -> accept(this);
-			std::cout << "int";
-			std::cout << ".";
-			std::cout << "ENTRADA";
-			std::cout << ")";
-			std::cout << ";";
+			std::cout << "int ";
+			std::cout << ". ";
+			std::cout << "ENTRADA ";
+			std::cout << ") ";
+			std::cout <<  "; ";
 		}
 		virtual void visit(PinModeClauseRule2* e)
 		{
-			std::cout << "T_PINMODE";
-			std::cout << "(";
+			std::cout << "T_PINMODE ";
+			std::cout << "( ";
 			e -> values() -> accept(this);
-			std::cout << "int";
-			std::cout << ".";
-			std::cout << "SAIDA";
-			std::cout << ")";
-			std::cout << ";";
+			std::cout << "int ";
+			std::cout << ". ";
+			std::cout << "SAIDA ";
+			std::cout << ") ";
+			std::cout <<  "; ";
 		}
 		virtual void visit(DigitalWriteClauseRule1* e)
 		{
-			std::cout << "T_DIGITALWRITE";
-			std::cout << "(";
+			std::cout << "T_DIGITALWRITE ";
+			std::cout << "( ";
 			e -> values() -> accept(this);
-			std::cout << "int";
-			std::cout << ".";
-			std::cout << "ALTO";
-			std::cout << ")";
-			std::cout << ";";
+			std::cout << "int ";
+			std::cout << ". ";
+			std::cout << "ALTO ";
+			std::cout << ") ";
+			std::cout <<  "; ";
 		}
 		virtual void visit(DigitalWriteClauseRule2* e)
 		{
-			std::cout << "T_DIGITALWRITE";
-			std::cout << "(";
+			std::cout << "T_DIGITALWRITE ";
+			std::cout << "( ";
 			e -> values() -> accept(this);
-			std::cout << "int";
-			std::cout << ".";
-			std::cout << "BAIXO";
-			std::cout << ")";
-			std::cout << ";";
+			std::cout << "int ";
+			std::cout << ". ";
+			std::cout << "BAIXO ";
+			std::cout << ") ";
+			std::cout <<  "; ";
 		}
 		virtual void visit(ElseClause* e)
 		{
-			std::cout << "entao";
+			std::cout << "entao ";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(IfElseClause* e)
 		{
-			std::cout << "entretanto";
-			std::cout << "(";
+			std::cout << "entretanto ";
+			std::cout << "( ";
 			e -> logicoperation() -> accept(this);
-			std::cout << ")";
+			std::cout << ") ";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(WhileClause* e)
 		{
-			std::cout << "enquanto";
-			std::cout << "(";
+			std::cout << "enquanto ";
+			std::cout << "( ";
 			e -> logicoperation() -> accept(this);
-			std::cout << ")";
+			std::cout << ") ";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(ForClause* e)
 		{
-			std::cout << "para";
+			std::cout << "para ";
 			e -> varfor() -> accept(this);
 			e -> logicoperation() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 			e -> unitaryoperators() -> accept(this);
-			std::cout << ")";
+			std::cout << ") ";
 			e -> command() -> accept(this);
 		}
 		virtual void visit(CommandRule1* e)
 		{
-			std::cout << "{";
+			std::cout << "{ ";
 			e -> localbody() -> accept(this);
-			std::cout << "}";
+			std::cout << "} ";
 		}
 		virtual void visit(CommandRule2* e)
 		{
 			e -> line() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 		}
 		virtual void visit(VarForRule1* e)
 		{
-			std::cout << "(";
+			std::cout << "( ";
 			e -> variablestypes() -> accept(this);
-			std::cout << "L_ID";
-			std::cout << "=";
+			std::cout << e -> l_id();
+			std::cout << "= ";
 			e -> operation() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 		}
 		virtual void visit(VarForRule2* e)
 		{
-			std::cout << "(";
-			std::cout << "L_ID";
-			std::cout << "=";
+			std::cout << "( ";
+			std::cout << e -> l_id();
+			std::cout << "= ";
 			e -> operation() -> accept(this);
-			std::cout << ";";
+			std::cout <<  "; ";
 		}
 		virtual void visit(VarForRule3* e)
 		{
-			std::cout << "(";
-			std::cout << ";";
+			std::cout << "( ";
+			std::cout <<  "; ";
 		}
 		virtual void visit(LogicOperationRule1* e)
 		{
@@ -321,12 +321,12 @@ class PrintVisitor : public Visitor
 		virtual void visit(UnitaryOperatorsRule1* e)
 		{
 			e -> values() -> accept(this);
-			std::cout << "++";
+			std::cout << "++ ";
 		}
 		virtual void visit(UnitaryOperatorsRule2* e)
 		{
 			e -> values() -> accept(this);
-			std::cout << "--";
+			std::cout << "-- ";
 		}
 		virtual void visit(LogicCompRule1* e)
 		{
@@ -336,25 +336,25 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(LogicCompRule2* e)
 		{
-			std::cout << "(";
+			std::cout << "( ";
 			e -> logiccomp() -> accept(this);
-			std::cout << ")";
+			std::cout << ") ";
 		}
 		virtual void visit(BinaryCompOperatorRule1* e)
 		{
-			std::cout << ">";
+			std::cout << "> ";
 		}
 		virtual void visit(BinaryCompOperatorRule2* e)
 		{
-			std::cout << "<";
+			std::cout << "< ";
 		}
 		virtual void visit(BinaryCompOperatorRule3* e)
 		{
-			std::cout << ">=";
+			std::cout << ">= ";
 		}
 		virtual void visit(BinaryCompOperatorRule4* e)
 		{
-			std::cout << "<=";
+			std::cout << "<= ";
 		}
 		virtual void visit(LogicOPRule1* e)
 		{
@@ -369,36 +369,36 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(LogicOPRule3* e)
 		{
-			e -> l_bool() -> accept(this);
+			std::cout << e -> l_bool();
 		}
 		virtual void visit(LogicOPRule4* e)
 		{
-			std::cout << "(";
+			std::cout << "( ";
 			e -> logicop() -> accept(this);
-			std::cout << ")";
+			std::cout << ") ";
 		}
 		virtual void visit(BinaryLogicalOperatorRule1* e)
 		{
-			std::cout << "e";
+			std::cout << "e ";
 		}
 		virtual void visit(BinaryLogicalOperatorRule2* e)
 		{
-			std::cout << "ou";
+			std::cout << "ou ";
 		}
 		virtual void visit(UnitaryLogicalOperator* e)
 		{
-			std::cout << "nao";
+			std::cout << "nao ";
 		}
 		virtual void visit(EqRule1* e)
 		{
 			e -> eq() -> accept(this);
-			std::cout << "+";
+			std::cout << "+ ";
 			e -> factor() -> accept(this);
 		}
 		virtual void visit(EqRule2* e)
 		{
 			e -> eq() -> accept(this);
-			std::cout << "-";
+			std::cout << "- ";
 			e -> factor() -> accept(this);
 		}
 		virtual void visit(EqRule3* e)
@@ -408,13 +408,13 @@ class PrintVisitor : public Visitor
 		virtual void visit(FactorRule1* e)
 		{
 			e -> factor() -> accept(this);
-			std::cout << "/";
+			std::cout << "/ ";
 			e -> elem() -> accept(this);
 		}
 		virtual void visit(FactorRule2* e)
 		{
 			e -> factor() -> accept(this);
-			std::cout << "*";
+			std::cout << "* ";
 			e -> elem() -> accept(this);
 		}
 		virtual void visit(FactorRule3* e)
@@ -423,19 +423,19 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(ElemRule1* e)
 		{
-			std::cout << "+";
+			std::cout << "+ ";
 			e -> elem() -> accept(this);
 		}
 		virtual void visit(ElemRule2* e)
 		{
-			std::cout << "-";
+			std::cout << "- ";
 			e -> elem() -> accept(this);
 		}
 		virtual void visit(ElemRule3* e)
 		{
-			std::cout << "(";
+			std::cout << "( ";
 			e -> eq() -> accept(this);
-			std::cout << ")";
+			std::cout << ") ";
 		}
 		virtual void visit(ElemRule4* e)
 		{
@@ -443,67 +443,67 @@ class PrintVisitor : public Visitor
 		}
 		virtual void visit(ValuesRule1* e)
 		{
-			e -> l_int() -> accept(this);
+			std::cout << e -> l_int();
 		}
 		virtual void visit(ValuesRule2* e)
 		{
-			e -> l_float() -> accept(this);
+			std::cout << e -> l_float();
 		}
 		virtual void visit(ValuesRule3* e)
 		{
-			e -> l_double() -> accept(this);
+			std::cout << e -> l_double();
 		}
 		virtual void visit(ValuesRule4* e)
 		{
-			e -> l_char() -> accept(this);
+			std::cout << e -> l_char();
 		}
 		virtual void visit(ValuesRule5* e)
 		{
-			e -> l_string() -> accept(this);
+			std::cout << e -> l_string();
 		}
 		virtual void visit(ValuesRule6* e)
 		{
-			e -> l_bool() -> accept(this);
+			std::cout << e -> l_bool();
 		}
 		virtual void visit(ValuesRule7* e)
 		{
-			std::cout << "L_ID";
+			std::cout << e -> l_id();
 		}
 		virtual void visit(VarRule1* e)
 		{
 			e -> variablestypes() -> accept(this);
-			std::cout << "L_ID";
+			std::cout << e -> l_id();
 		}
 		virtual void visit(VarRule2* e)
 		{
 			e -> variablestypes() -> accept(this);
-			std::cout << "L_ID";
-			std::cout << "=";
+			std::cout << e -> l_id();
+			std::cout << "= ";
 			e -> operation() -> accept(this);
 		}
 		virtual void visit(VariablesTypesRule1* e)
 		{
-			std::cout << "double";
+			std::cout << "double ";
 		}
 		virtual void visit(VariablesTypesRule2* e)
 		{
-			std::cout << "int";
+			std::cout << "int ";
 		}
 		virtual void visit(VariablesTypesRule3* e)
 		{
-			std::cout << "float";
+			std::cout << "float ";
 		}
 		virtual void visit(VariablesTypesRule4* e)
 		{
-			std::cout << "char";
+			std::cout << "char ";
 		}
 		virtual void visit(VariablesTypesRule5* e)
 		{
-			std::cout << "string";
+			std::cout << "string ";
 		}
 		virtual void visit(VariablesTypesRule6* e)
 		{
-			std::cout << "boolean";
+			std::cout << "boolean ";
 		}
 };
 #endif

@@ -22,7 +22,7 @@ class SelectionClauseRule2 : public SelectionClause
 		{
 			ifclause_ = ifclause;
 		}
-		const IfClause* const ifclause()
+		IfClause* ifclause()
 		{
 			return ifclause_;
 		}
@@ -30,7 +30,7 @@ class SelectionClauseRule2 : public SelectionClause
 		{
 			elseclauses_ = elseclauses;
 		}
-		const ElseClauses* const elseclauses()
+		ElseClauses* elseclauses()
 		{
 			return elseclauses_;
 		}

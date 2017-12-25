@@ -22,7 +22,7 @@ class LocalBodyRule1 : public LocalBody
 		{
 			line_ = line;
 		}
-		const Line* const line()
+		Line* line()
 		{
 			return line_;
 		}
@@ -30,7 +30,7 @@ class LocalBodyRule1 : public LocalBody
 		{
 			localbody_ = localbody;
 		}
-		const LocalBody* const localbody()
+		LocalBody* localbody()
 		{
 			return localbody_;
 		}

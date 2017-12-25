@@ -22,7 +22,7 @@ class EqRule2 : public Eq
 		{
 			eq_ = eq;
 		}
-		const Eq* const eq()
+		Eq* eq()
 		{
 			return eq_;
 		}
@@ -30,7 +30,7 @@ class EqRule2 : public Eq
 		{
 			factor_ = factor;
 		}
-		const Factor* const factor()
+		Factor* factor()
 		{
 			return factor_;
 		}

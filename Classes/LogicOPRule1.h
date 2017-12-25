@@ -25,7 +25,7 @@ class LogicOPRule1 : public LogicOP
 		{
 			logicop_ = logicop;
 		}
-		const LogicOP* const logicop()
+		LogicOP* logicop()
 		{
 			return logicop_;
 		}
@@ -33,7 +33,7 @@ class LogicOPRule1 : public LogicOP
 		{
 			binarylogicaloperator_ = binarylogicaloperator;
 		}
-		const BinaryLogicalOperator* const binarylogicaloperator()
+		BinaryLogicalOperator* binarylogicaloperator()
 		{
 			return binarylogicaloperator_;
 		}
@@ -41,7 +41,7 @@ class LogicOPRule1 : public LogicOP
 		{
 			logicop0_ = logicop0;
 		}
-		const LogicOP* const logicop0()
+		LogicOP* logicop0()
 		{
 			return logicop0_;
 		}

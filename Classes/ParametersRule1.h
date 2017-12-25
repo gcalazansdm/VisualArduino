@@ -22,7 +22,7 @@ class ParametersRule1 : public Parameters
 		{
 			var_ = var;
 		}
-		const Var* const var()
+		Var* var()
 		{
 			return var_;
 		}
@@ -30,7 +30,7 @@ class ParametersRule1 : public Parameters
 		{
 			parameters_ = parameters;
 		}
-		const Parameters* const parameters()
+		Parameters* parameters()
 		{
 			return parameters_;
 		}

@@ -17,7 +17,7 @@ class ValuesRule3 : public Values
 		{
 			l_double_ = l_double;
 		}
-		const double l_double()
+		double l_double()
 		{
 			return l_double_;
 		}

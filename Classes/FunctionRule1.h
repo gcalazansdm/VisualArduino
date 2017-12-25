@@ -3,37 +3,47 @@
 
 #include "Function.h"
 #include "VariablesTypes.h"
-#include "Parameters.h"
+#include <string>
+#include "Parameter.h"
 #include "Body.h"
 
 class FunctionRule1 : public Function
 {
 	private:
 		VariablesTypes* variablestypes_;
-		Parameters* parameters_;
+		std::string l_id_;
+		Parameter* parameters_;
 		Body* body_;
 	public:
-		FunctionRule1( VariablesTypes* variablestypes,Parameters* parameters,Body* body):Function(),variablestypes_(variablestypes),parameters_(parameters),body_(body){}
+		FunctionRule1( VariablesTypes* variablestypes,std::string l_id,Parameter* parameters,Body* body):Function(),variablestypes_(variablestypes),l_id_(l_id),parameters_(parameters),body_(body){}
 		virtual ~FunctionRule1()
 		{
 			delete variablestypes_;
 			delete parameters_;
 			delete body_;
 		}
-		FunctionRule1(const FunctionRule1& functionrule1):Function(functionrule1),variablestypes_(functionrule1.variablestypes_),parameters_(functionrule1.parameters_),body_(functionrule1.body_){}//olá
+		FunctionRule1(const FunctionRule1& functionrule1):Function(functionrule1),variablestypes_(functionrule1.variablestypes_),l_id_(functionrule1.l_id_),parameters_(functionrule1.parameters_),body_(functionrule1.body_){}//olá
 		void set_variablestypes(VariablesTypes* variablestypes)
 		{
 			variablestypes_ = variablestypes;
 		}
-		const VariablesTypes* const variablestypes()
+		VariablesTypes* variablestypes()
 		{
 			return variablestypes_;
 		}
-		void set_parameters(Parameters* parameters)
+		void set_l_id(std::string l_id)
+		{
+			l_id_ = l_id;
+		}
+		std::string l_id()
+		{
+			return l_id_;
+		}
+		void set_parameters(Parameter* parameters)
 		{
 			parameters_ = parameters;
 		}
-		const Parameters* const parameters()
+		Parameter* parameters()
 		{
 			return parameters_;
 		}
@@ -41,7 +51,7 @@ class FunctionRule1 : public Function
 		{
 			body_ = body;
 		}
-		const Body* const body()
+		Body* body()
 		{
 			return body_;
 		}

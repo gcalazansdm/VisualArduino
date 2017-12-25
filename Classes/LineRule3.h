@@ -19,7 +19,7 @@ class LineRule3 : public Line
 		{
 			condiction_ = condiction;
 		}
-		const Condiction* const condiction()
+		Condiction* condiction()
 		{
 			return condiction_;
 		}

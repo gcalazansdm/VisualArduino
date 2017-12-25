@@ -19,7 +19,7 @@ class EqRule3 : public Eq
 		{
 			factor_ = factor;
 		}
-		const Factor* const factor()
+		Factor* factor()
 		{
 			return factor_;
 		}

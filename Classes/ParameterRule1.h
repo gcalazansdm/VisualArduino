@@ -19,7 +19,7 @@ class ParameterRule1 : public Parameter
 		{
 			parameters_ = parameters;
 		}
-		const Parameters* const parameters()
+		Parameters* parameters()
 		{
 			return parameters_;
 		}

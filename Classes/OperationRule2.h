@@ -19,7 +19,7 @@ class OperationRule2 : public Operation
 		{
 			logicoperation_ = logicoperation;
 		}
-		const LogicOperation* const logicoperation()
+		LogicOperation* logicoperation()
 		{
 			return logicoperation_;
 		}

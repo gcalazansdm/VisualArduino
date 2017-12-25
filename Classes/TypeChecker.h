@@ -1,142 +1,70 @@
 #ifndef TYPECHECKER_H
 #define TYPECHECKER_H
-#include <math.h>
+
 #include "Visitor.h"
-#include "TypeCheckExeption.h"
-#include "Type.h"
-#include <map>
-#include <vector>
 
 class TypeChecker : public Visitor 
 {
 	private:
 		std::vector<Type> stack_;
-		std::vector<Type> idStack_;
-		std::vector<std::string,Type> map_;
+		std::vector<std::stringType> map_;
 	public:
 		virtual void visit(VariablesTypesRule6* e)
 		{
-			stack_.push_back(new Type(6));
 		}
 		virtual void visit(VariablesTypesRule5* e)
 		{
-			stack_.push_back(new Type(5));
 		}
 		virtual void visit(VariablesTypesRule4* e)
 		{
-			stack_.push_back(new Type(4));	
 		}
 		virtual void visit(VariablesTypesRule3* e)
 		{
-			stack_.push_back(new Type(2));	
 		}
 		virtual void visit(VariablesTypesRule2* e)
 		{
-			stack_.push_back(new Type(1));	
 		}
 		virtual void visit(VariablesTypesRule1* e)
 		{
-			stack_.push_back(new Type(3));	
 		}
 		virtual void visit(VarRule2* e)
 		{
 			e -> variablestypes() -> accept(this);
-			Type t2= stack_.top();
-			stack_.pop();
-			if(stack_.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack_.top();
-			stack_.pop();
-			int result = t1.compatible(&t2);
-			if(result > -2)
-			{
-				if(result > 0)
-				{
-					stack_.push_back(t1);
-				}else
-				{
-					stack_.push_back(t2);
-				}
-			}else{
-				throw TypeCheckExeption("Erro de sintaxe");
-			}
-			t1= stack_.top();
-			stack_.pop();
+			e -> l_id();
 			e -> operation() -> accept(this);
-			if(stack_.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			t2= stack_.top();
-			stack_.pop();
-			int result = t1.compatible(&t2);
-			if(result > -2)
-			{
-				if(result > 0)
-				{
-					stack_.push_back(t1);
-				}else
-				{
-					stack_.push_back(t2);
-				}		
-			}else{
-				throw TypeCheckExeption("Erro de sintaxe");
-			}
-
 		}
 		virtual void visit(VarRule1* e)
 		{
-            e -> variablestypes() -> accept(this);
-			if(stack_.empty())
-			{
-				throw TypeCheckExeption("Esperado Dado");
-			}
-			Type t1= stack_.top();
-			stack_.pop();
-			Type t2= stack_.top();
-			stack_.pop();
-			int result = t1.compatible(&t2);
-			if(result > -2)
-			{
-				if(result > 0)
-				{
-					stack_.push_back(t1);
-				}else
-				{
-					stack_.push_back(t2);
-				}			}else{
-				throw TypeCheckExeption("Erro de sintaxe");
-			}
-
+			e -> variablestypes() -> accept(this);
+			e -> l_id();
 		}
-		virtual void visit(ValuesRule7* e){
-			idStack_.push_back(e->nome());
+		virtual void visit(ValuesRule7* e)
+		{
+			e -> l_id();
 		}
 		virtual void visit(ValuesRule6* e)
 		{
-			stack_.push_back(new Type(6));		
+			e -> l_bool();
 		}
 		virtual void visit(ValuesRule5* e)
 		{
-			stack_.push_back(new Type(5));
+			e -> l_string();
 		}
 		virtual void visit(ValuesRule4* e)
 		{
-			stack_.push_back(new Type(4));
+			e -> l_char();
 		}
 		virtual void visit(ValuesRule3* e)
 		{
-			stack_.push_back(new Type(3));
+			e -> l_double();
 		}
 		virtual void visit(ValuesRule2* e)
 		{
-			stack_.push_back(new Type(2));
+			e -> l_float();
 		}
 		virtual void visit(ValuesRule1* e)
 		{
-			stack_.push_back(new Type(1));
+			e -> l_int();
 		}
 		virtual void visit(ElemRule4* e)
 		{
@@ -197,7 +125,7 @@ class TypeChecker : public Visitor
 		}
 		virtual void visit(LogicOPRule3* e)
 		{
-			stack_.push_back(new Type(6));
+			e -> l_bool();
 		}
 		virtual void visit(LogicOPRule2* e)
 		{
@@ -235,27 +163,10 @@ class TypeChecker : public Visitor
 		virtual void visit(UnitaryOperatorsRule2* e)
 		{
 			e -> values() -> accept(this);
-			Type t = map_[s1];
-			int result = t.compatible(&new Type(1));
-			if(result > -2)
-			{
-				stack_.push_back(t1);
-			}else{
-				throw TypeCheckExeption("Erro de sintaxe");
-			}
-
 		}
 		virtual void visit(UnitaryOperatorsRule1* e)
 		{
 			e -> values() -> accept(this);
-			Type t = map_[s1];
-			int result = t.compatible(&new Type(1));
-			if(result > -2)
-			{
-				stack_.push_back(t1);
-			}else{
-				throw TypeCheckExeption("Erro de sintaxe");
-			}
 		}
 		virtual void visit(OperationRule3* e)
 		{
@@ -281,56 +192,15 @@ class TypeChecker : public Visitor
 		{
 		}
 		virtual void visit(VarForRule2* e)
-		{ 
-			std::string s1= "$";
-			strcat (str,idStack_.top());
-			idStack_.pop();
-
-			Type t1=map_.[s1];
+		{
+			e -> l_id();
 			e -> operation() -> accept(this);
-			Type t2= stack_.top();
-			stack_.pop();
-			int result = t1.compatible(&t2);
-			if(result > -2)
-			{
-				if(result > 0)
-				{
-					stack_.push_back(t1);
-				}else
-				{
-					stack_.push_back(t2);
-				}
-			}else{
-				throw TypeCheckExeption("Erro de sintaxe");
-			}
 		}
 		virtual void visit(VarForRule1* e)
 		{
 			e -> variablestypes() -> accept(this);
-			Type t1= stack_.top();
-			stack_.pop();
-
-  			std::string s1= "$";
-			strcat (str,idStack_.top());
-			idStack_.pop();
-
-			map_.insert(std::pair<std::string,Type>(s1,t1));
+			e -> l_id();
 			e -> operation() -> accept(this);
-			Type t2= stack_.top();
-			stack_.pop();
-			int result = t1.compatible(&t2);
-			if(result > -2)
-			{
-				if(result > 0)
-				{
-					stack_.push_back(t1);
-				}else
-				{
-					stack_.push_back(t2);
-				}
-			}else{
-				throw TypeCheckExeption("Erro de sintaxe");
-			}
 		}
 		virtual void visit(CommandRule2* e)
 		{
@@ -363,22 +233,18 @@ class TypeChecker : public Visitor
 		}
 		virtual void visit(DigitalWriteClauseRule2* e)
 		{
-			e -> t_digitalwrite() -> accept(this);
 			e -> values() -> accept(this);
 		}
 		virtual void visit(DigitalWriteClauseRule1* e)
 		{
-			e -> t_digitalwrite() -> accept(this);
 			e -> values() -> accept(this);
 		}
 		virtual void visit(PinModeClauseRule2* e)
 		{
-			e -> t_pinmode() -> accept(this);
 			e -> values() -> accept(this);
 		}
 		virtual void visit(PinModeClauseRule1* e)
 		{
-			e -> t_pinmode() -> accept(this);
 			e -> values() -> accept(this);
 		}
 		virtual void visit(IfClause* e)
@@ -488,27 +354,13 @@ class TypeChecker : public Visitor
 		virtual void visit(FunctionRule2* e)
 		{
 			e -> variablestypes() -> accept(this);
-			Type t1= stack_.top();
-			stack_.pop();
-
-  			std::string s1= "$";
-			strcat (str,idStack_.top());
-			idStack_.pop();
-
-			map_.insert(std::pair<std::string,Type>(s1,t1));
+			e -> l_id();
 			e -> parameters() -> accept(this);
 		}
 		virtual void visit(FunctionRule1* e)
 		{
 			e -> variablestypes() -> accept(this);
-			Type t1= stack_.top();
-			stack_.pop();
-
-  			std::string s1= "$";
-			strcat (str,idStack_.top());
-			idStack_.pop();
-
-			map_.insert(std::pair<std::string,Type>(s1,t1));
+			e -> l_id();
 			e -> parameters() -> accept(this);
 			e -> body() -> accept(this);
 		}

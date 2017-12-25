@@ -19,7 +19,7 @@ class UnitaryOperatorsRule2 : public UnitaryOperators
 		{
 			values_ = values;
 		}
-		const Values* const values()
+		Values* values()
 		{
 			return values_;
 		}

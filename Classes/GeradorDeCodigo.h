@@ -1,11 +1,11 @@
-#ifndef PRINTVISITOR_H
-#define PRINTVISITOR_H
+#ifndef GeradorDecodigo_H
+#define GeradorDecodigo_H
 
-#include <Visitor.h>
+#include "Visitor.h"
 #include <string>
 #include <sstream>
 
-class PrintVisitor : public Visitor 
+class GeradorDeCodigo : public Visitor 
 {
 	private:
 		int i = 0;
@@ -14,9 +14,13 @@ class PrintVisitor : public Visitor
 		virtual void visit(program* e)
 		{
 			i = 0;
-			FILE *file = fopen("comand.c", "w");
+			printf("%s\n", "oi");
+			FILE *file = fopen("123.txt", "w+");
+			printf("%s\n", "oi");
 			e -> mainbody() -> accept(this);
-			fprintf(file, arquivo.str().c_str());
+			printf("%s\n", "oi");
+			fprintf(file, "%s", arquivo.str().c_str());
+			printf("%s\n", "oi");
 			fclose(file);
 		}
 		virtual void visit(MainBodyRule1* e)

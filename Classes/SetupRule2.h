@@ -19,7 +19,7 @@ class SetupRule2 : public Setup
 		{
 			mainbody_ = mainbody;
 		}
-		const MainBody* const mainbody()
+		MainBody* mainbody()
 		{
 			return mainbody_;
 		}

@@ -17,7 +17,7 @@ class ValuesRule1 : public Values
 		{
 			l_int_ = l_int;
 		}
-		const int l_int()
+		int l_int()
 		{
 			return l_int_;
 		}

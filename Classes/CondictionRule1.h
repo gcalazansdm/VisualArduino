@@ -19,7 +19,7 @@ class CondictionRule1 : public Condiction
 		{
 			selectionclause_ = selectionclause;
 		}
-		const SelectionClause* const selectionclause()
+		SelectionClause* selectionclause()
 		{
 			return selectionclause_;
 		}

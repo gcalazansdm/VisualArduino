@@ -19,7 +19,7 @@ class CommandRule2 : public Command
 		{
 			line_ = line;
 		}
-		const Line* const line()
+		Line* line()
 		{
 			return line_;
 		}

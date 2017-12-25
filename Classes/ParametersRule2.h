@@ -19,7 +19,7 @@ class ParametersRule2 : public Parameters
 		{
 			var_ = var;
 		}
-		const Var* const var()
+		Var* var()
 		{
 			return var_;
 		}

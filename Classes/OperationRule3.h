@@ -19,7 +19,7 @@ class OperationRule3 : public Operation
 		{
 			unitaryoperators_ = unitaryoperators;
 		}
-		const UnitaryOperators* const unitaryoperators()
+		UnitaryOperators* unitaryoperators()
 		{
 			return unitaryoperators_;
 		}

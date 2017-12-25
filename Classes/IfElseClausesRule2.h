@@ -19,7 +19,7 @@ class IfElseClausesRule2 : public IfElseClauses
 		{
 			ifelseclause_ = ifelseclause;
 		}
-		const IfElseClause* const ifelseclause()
+		IfElseClause* ifelseclause()
 		{
 			return ifelseclause_;
 		}

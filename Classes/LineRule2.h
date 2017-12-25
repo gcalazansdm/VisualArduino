@@ -19,7 +19,7 @@ class LineRule2 : public Line
 		{
 			var_ = var;
 		}
-		const Var* const var()
+		Var* var()
 		{
 			return var_;
 		}

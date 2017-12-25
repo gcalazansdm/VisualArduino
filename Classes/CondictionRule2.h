@@ -19,7 +19,7 @@ class CondictionRule2 : public Condiction
 		{
 			whileclause_ = whileclause;
 		}
-		const WhileClause* const whileclause()
+		WhileClause* whileclause()
 		{
 			return whileclause_;
 		}

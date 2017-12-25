@@ -19,7 +19,7 @@ class LineRule1 : public Line
 		{
 			operation_ = operation;
 		}
-		const Operation* const operation()
+		Operation* operation()
 		{
 			return operation_;
 		}

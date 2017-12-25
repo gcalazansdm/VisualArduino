@@ -19,7 +19,7 @@ class PinModeClauseRule1 : public PinModeClause
 		{
 			values_ = values;
 		}
-		const Values* const values()
+		Values* values()
 		{
 			return values_;
 		}

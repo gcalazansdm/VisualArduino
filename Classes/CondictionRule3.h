@@ -19,7 +19,7 @@ class CondictionRule3 : public Condiction
 		{
 			forclause_ = forclause;
 		}
-		const ForClause* const forclause()
+		ForClause* forclause()
 		{
 			return forclause_;
 		}

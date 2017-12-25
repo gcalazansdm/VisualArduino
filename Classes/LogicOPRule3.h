@@ -17,7 +17,7 @@ class LogicOPRule3 : public LogicOP
 		{
 			l_bool_ = l_bool;
 		}
-		const bool l_bool()
+		bool l_bool()
 		{
 			return l_bool_;
 		}

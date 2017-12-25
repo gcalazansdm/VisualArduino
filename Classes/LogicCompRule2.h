@@ -19,7 +19,7 @@ class LogicCompRule2 : public LogicComp
 		{
 			logiccomp_ = logiccomp;
 		}
-		const LogicComp* const logiccomp()
+		LogicComp* logiccomp()
 		{
 			return logiccomp_;
 		}

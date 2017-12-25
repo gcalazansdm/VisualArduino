@@ -62,11 +62,11 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "Sintatico.y" /* yacc.c:339  */
+#line 1 "../Analizadores/Sintatico.y" /* yacc.c:339  */
 
   #include<string>
   #include<stdint.h>
- // #include <stdbool.h>
+  #include<stdbool.h>
   #include "Node.h"
   #include "MainBodyRule1.h"
   #include "MainBodyRule2.h"
@@ -158,12 +158,19 @@
   #include "VariablesTypesRule4.h"
   #include "VariablesTypesRule5.h"
   #include "VariablesTypesRule6.h"
-  //#include "TypeChecker.h"
- // #include "PrintVisitor.h"
- // #include "GeradorDeCodigo.h"
-  Node *root = null
+  #include "program.h"
+//  #include "TypeChecker.h"
+  #include "PrintVisitor.h"
+  #include "GeradorDeCodigo.h"
+  Node *root = NULL;
+  extern int yylex();
 
-#line 167 "../Classes/analisador_sintatico.cpp" /* yacc.c:339  */
+  int yyerror(const char *s) {
+     printf("yyerror : %s\n",s); 
+  }
+
+
+#line 174 "../Classes/analisador_sintatico.cpp" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -181,7 +188,10 @@
 # define YYERROR_VERBOSE 0
 #endif
 
-
+/* In a future release of Bison, this section will be replaced
+   by #include "analisador_sintatico.hpp".  */
+#ifndef YY_YY_CLASSES_ANALISADOR_SINTATICO_HPP_INCLUDED
+# define YY_YY_CLASSES_ANALISADOR_SINTATICO_HPP_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -221,30 +231,32 @@ extern int yydebug;
     OP_BOOL_IS = 281,
     OP_BOOL_DIFF = 282,
     OP_BOOL_GRE = 283,
-    OP_BOOL_EQGRE = 284,
-    OP_BOOL_LESS = 285,
-    OP_BOOL_EQLESS = 286,
-    OP_BOOL_AND = 287,
-    OP_BOOL_OR = 288,
-    OP_BOOL_NOT = 289,
-    OP_EQ = 290,
-    OP_SUM = 291,
-    OP_SUB = 292,
-    OP_DIV = 293,
-    OP_MUL = 294,
-    OP_POT = 295,
-    A_LPAR = 296,
-    A_LKEY = 297,
-    A_RPAR = 298,
-    A_RKEY = 299,
-    A_SEMICOLON = 300,
-    A_COMMA = 301,
-    A_OUT = 302,
-    A_INP = 303,
-    A_HIGH = 304,
-    A_LOW = 305,
-    A_LOOP = 306,
-    A_SETUP = 307
+    OP_BOOL_EQUAL = 284,
+    OP_BOOL_DIF = 285,
+    OP_BOOL_EQGRE = 286,
+    OP_BOOL_LESS = 287,
+    OP_BOOL_EQLESS = 288,
+    OP_BOOL_AND = 289,
+    OP_BOOL_OR = 290,
+    OP_BOOL_NOT = 291,
+    OP_EQ = 292,
+    OP_SUM = 293,
+    OP_SUB = 294,
+    OP_DIV = 295,
+    OP_MUL = 296,
+    OP_POT = 297,
+    A_LPAR = 298,
+    A_LKEY = 299,
+    A_RPAR = 300,
+    A_RKEY = 301,
+    A_SEMICOLON = 302,
+    A_COMMA = 303,
+    A_OUT = 304,
+    A_INP = 305,
+    A_HIGH = 306,
+    A_LOW = 307,
+    A_LOOP = 308,
+    A_SETUP = 309
   };
 #endif
 
@@ -253,54 +265,55 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 151 "Sintatico.y" /* yacc.c:355  */
+#line 160 "../Analizadores/Sintatico.y" /* yacc.c:355  */
 
     int64_t integer;
-    std::string str;
+    std::string* str;
     bool logic;
     float float_point;
     double double_point;
     char caractere;
-	Node Program
-	MainBody MainBody
-	MainArduino MainArduino
-	Function Function
-	Parameter Parameter
-	Parameters Parameters
-	Body Body
-	LocalBody LocalBody
-	Line Line
-	Condiction Condiction
-	Loop Loop
-	Setup Setup
-	SelectionClause SelectionClause
-	ElseClauses ElseClauses
-	IfElseClauses IfElseClauses
-	IfClause IfClause
-	PinModeClause PinModeClause
-	DigitalWriteClause DigitalWriteClause
-	ElseClause ElseClause
-	IfElseClause IfElseClause
-	WhileClause WhileClause
-	ForClause ForClause
-	Command Command
-	VarFor VarFor
-	LogicOperation LogicOperation
-	Operation Operation
-	UnitaryOperators UnitaryOperators
-	LogicComp LogicComp
-	BinaryCompOperator BinaryCompOperator
-	LogicOP LogicOP
-	BinaryLogicalOperator BinaryLogicalOperator
-	UnitaryLogicalOperator UnitaryLogicalOperator
-	Eq Eq
-	Factor Factor
-	Elem Elem
-	Values Values
-	Var Var
-	VariablesTypes VariablesTypes
+    program *program_t;
+    MainBody *mainbody_t;
+    MainArduino *mainarduino_t;
+    Function *function_t;
+    Parameter *parameter_t;
+    Parameters *parameters_t;
+    Body *body_t;
+    LocalBody *localbody_t;
+    Line *line_t;
+    Condiction *condiction_t;
+    Loop *loop_t;
+    Setup *setup_t;
+    SelectionClause *selectionclause_t;
+    ElseClauses *elseclauses_t;
+    IfElseClauses *ifelseclauses_t;
+    IfClause *ifclause_t;
+    PinModeClause *pinmodeclause_t;
+    DigitalWriteClause *digitalwriteclause_t;
+    ElseClause *elseclause_t;
+    IfElseClause *ifelseclause_t;
+    WhileClause *whileclause_t;
+    ForClause *forclause_t;
+    Command *command_t;
+    VarFor *varfor_t;
+    LogicOperation *logicoperation_t;
+    Operation *operation_t;
+    UnitaryOperators *unitaryoperators_t;
+    LogicComp *logiccomp_t;
+    BinaryCompOperator *binarycompoperator_t;
+    LogicOP *logicop_t;
+    BinaryLogicalOperator *binarylogicaloperator_t;
+    UnitaryLogicalOperator *unitarylogicaloperator_t;
+    Eq *eq_t;
+    Factor *factor_t;
+    Elem *elem_t;
+    Values *values_t;
+    Var *var_t;
+    VariablesTypes *variablestypes_t;
 
-#line 304 "../Classes/analisador_sintatico.cpp" /* yacc.c:355  */
+
+#line 317 "../Classes/analisador_sintatico.cpp" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -313,11 +326,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-
+#endif /* !YY_YY_CLASSES_ANALISADOR_SINTATICO_HPP_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 321 "../Classes/analisador_sintatico.cpp" /* yacc.c:358  */
+#line 334 "../Classes/analisador_sintatico.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -559,21 +572,21 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  14
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   263
+#define YYLAST   244
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  53
+#define YYNTOKENS  55
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  34
+#define YYNNTS  32
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  83
+#define YYNRULES  76
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  149
+#define YYNSTATES  137
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   307
+#define YYMAXUTOK   309
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -612,22 +625,21 @@ static const yytype_uint8 yytranslate[] =
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
-      45,    46,    47,    48,    49,    50,    51,    52
+      45,    46,    47,    48,    49,    50,    51,    52,    53,    54
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   244,   244,   246,   247,   248,   249,   254,   255,   258,
-     259,   262,   263,   266,   267,   270,   271,   274,   275,   276,
-     279,   280,   281,   292,   293,   296,   297,   300,   301,   304,
-     314,   316,   318,   320,   322,   323,   326,   327,   328,   331,
-     332,   335,   336,   337,   340,   341,   344,   345,   348,   349,
-     350,   351,   354,   355,   356,   357,   360,   361,   364,   366,
-     367,   368,   371,   372,   373,   376,   377,   378,   379,   382,
-     383,   384,   385,   386,   387,   388,   391,   392,   395,   396,
-     397,   398,   399,   400
+       0,   254,   254,   256,   257,   258,   259,   262,   263,   266,
+     267,   270,   271,   274,   275,   278,   279,   282,   283,   284,
+     287,   288,   289,   292,   293,   296,   297,   300,   301,   304,
+     306,   308,   310,   312,   314,   315,   318,   319,   320,   323,
+     324,   327,   328,   329,   332,   333,   336,   337,   340,   341,
+     342,   343,   346,   355,   356,   357,   360,   361,   362,   365,
+     366,   367,   368,   371,   372,   373,   374,   375,   376,   379,
+     380,   383,   384,   385,   386,   387,   388
 };
 #endif
 
@@ -640,18 +652,18 @@ static const char *const yytname[] =
   "L_STRING", "L_BOOL", "L_ID", "T_BOOL", "T_INT", "T_PINMODE", "T_DOUBLE",
   "T_FLOAT", "T_CHAR", "T_STRING", "T_FUNC", "T_IF", "T_ELSE",
   "T_DIGITALWRITE", "T_IFELSE", "T_WHI", "T_FOR", "L_DEC", "L_INC",
-  "OP_BOOL_IS", "OP_BOOL_DIFF", "OP_BOOL_GRE", "OP_BOOL_EQGRE",
-  "OP_BOOL_LESS", "OP_BOOL_EQLESS", "OP_BOOL_AND", "OP_BOOL_OR",
-  "OP_BOOL_NOT", "OP_EQ", "OP_SUM", "OP_SUB", "OP_DIV", "OP_MUL", "OP_POT",
-  "A_LPAR", "A_LKEY", "A_RPAR", "A_RKEY", "A_SEMICOLON", "A_COMMA",
-  "A_OUT", "A_INP", "A_HIGH", "A_LOW", "A_LOOP", "A_SETUP", "$accept",
-  "Program", "MainBody", "Function", "Parameter", "Parameters", "Body",
-  "LocalBody", "Line", "Condiction", "SelectionClause", "ElseClauses",
-  "IfElseClauses", "IfClause", "ElseClause", "IfElseClause", "WhileClause",
-  "ForClause", "Command", "VarFor", "LogicOperation", "Operation",
-  "UnitaryOperators", "LogicComp", "BinaryCompOperator", "LogicOP",
-  "BinaryLogicalOperator", "UnitaryLogicalOperator", "Eq", "Factor",
-  "Elem", "Values", "Var", "VariablesTypes", YY_NULLPTR
+  "OP_BOOL_IS", "OP_BOOL_DIFF", "OP_BOOL_GRE", "OP_BOOL_EQUAL",
+  "OP_BOOL_DIF", "OP_BOOL_EQGRE", "OP_BOOL_LESS", "OP_BOOL_EQLESS",
+  "OP_BOOL_AND", "OP_BOOL_OR", "OP_BOOL_NOT", "OP_EQ", "OP_SUM", "OP_SUB",
+  "OP_DIV", "OP_MUL", "OP_POT", "A_LPAR", "A_LKEY", "A_RPAR", "A_RKEY",
+  "A_SEMICOLON", "A_COMMA", "A_OUT", "A_INP", "A_HIGH", "A_LOW", "A_LOOP",
+  "A_SETUP", "$accept", "Program", "MainBody", "Function", "Parameter",
+  "Parameters", "Body", "LocalBody", "Line", "Condiction",
+  "SelectionClause", "ElseClauses", "IfElseClauses", "IfClause",
+  "ElseClause", "IfElseClause", "WhileClause", "ForClause", "Command",
+  "VarFor", "LogicOperation", "Operation", "UnitaryOperators", "LogicComp",
+  "BinaryCompOperator", "LogicOP", "Eq", "Factor", "Elem", "Values", "Var",
+  "VariablesTypes", YY_NULLPTR
 };
 #endif
 
@@ -665,16 +677,16 @@ static const yytype_uint16 yytoknum[] =
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
      295,   296,   297,   298,   299,   300,   301,   302,   303,   304,
-     305,   306,   307
+     305,   306,   307,   308,   309
 };
 # endif
 
-#define YYPACT_NINF -120
+#define YYPACT_NINF -88
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-120)))
+  (!!((Yystate) == (-88)))
 
-#define YYTABLE_NINF -55
+#define YYTABLE_NINF -1
 
 #define yytable_value_is_error(Yytable_value) \
   0
@@ -683,21 +695,20 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-     231,  -120,  -120,  -120,  -120,  -120,  -120,   247,    19,  -120,
-     231,   -16,    24,    58,  -120,  -120,   231,    38,    44,  -120,
-     146,     2,    -4,  -120,  -120,  -120,  -120,  -120,   184,  -120,
-    -120,   185,   185,   146,  -120,  -120,  -120,  -120,   -22,    34,
-     203,     5,  -120,    53,  -120,    50,    54,    47,  -120,  -120,
-    -120,   185,  -120,  -120,  -120,    61,    16,   177,  -120,  -120,
-      34,  -120,    34,   -22,  -120,  -120,  -120,  -120,   185,   185,
-     185,   185,   185,  -120,  -120,  -120,   247,    65,    74,    79,
-    -120,    80,    76,  -120,  -120,    78,  -120,  -120,  -120,  -120,
-      59,  -120,  -120,  -120,   -22,     5,     5,    77,  -120,  -120,
-    -120,   146,   146,    21,   146,  -120,   163,   123,    82,  -120,
-     116,  -120,   119,    99,   203,   100,   109,  -120,   138,   103,
-    -120,   163,   111,  -120,   146,  -120,  -120,   123,   123,   146,
-     126,   246,   114,  -120,   120,  -120,  -120,   117,   146,   132,
-      53,  -120,   123,  -120,   139,   123,  -120,  -120,  -120
+      77,   -88,   -88,   -88,   -88,   -88,   -88,   228,    27,   -88,
+      77,     4,    37,    49,   -88,   -88,    77,    30,    33,   -88,
+     134,   195,    15,   -88,   -88,   -88,   -88,   -88,   -88,   -88,
+     175,   175,   194,   -88,   -88,   -88,   -88,   -88,   155,   -32,
+     -88,    45,   -88,    36,    54,    34,   -88,   -88,   175,   -88,
+     -88,   -88,    58,   184,   -88,   -88,   -88,   -88,   175,   175,
+     175,   175,   175,   -88,   -88,   -88,   228,    35,    61,    62,
+     -88,    63,    64,   -88,   -88,    -1,   -88,   -88,   -88,   -88,
+     -28,   -88,   -88,   -32,   -32,    46,   -88,   -88,   -88,   134,
+     134,    19,   134,   -88,   153,   111,    65,   -88,    93,   -88,
+     102,    83,   155,    85,    94,   -88,   123,    88,   -88,   153,
+      89,   -88,   134,   -88,   -88,   111,   111,   134,   107,   221,
+      99,   -88,   101,   -88,   -88,   100,   134,   103,    45,   -88,
+     111,   -88,   104,   111,   -88,   -88,   -88
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -705,139 +716,132 @@ static const yytype_int16 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,    83,    79,    78,    80,    81,    82,     0,     0,     2,
-       5,     0,     0,     0,     1,     3,     6,    76,     0,     4,
-       0,     0,     0,    69,    71,    70,    72,    73,    74,    75,
-      58,     0,     0,     0,    42,    77,    43,    40,    39,     0,
-      41,    61,    64,    68,    10,     0,    12,     0,     8,     7,
-      74,     0,    65,    68,    66,     0,     0,     0,    56,    57,
-       0,    54,     0,    53,    48,    50,    49,    51,     0,     0,
+       0,    76,    72,    71,    73,    74,    75,     0,     0,     2,
+       5,     0,     0,     0,     1,     3,     6,    69,     0,     4,
+       0,     0,     0,    63,    65,    64,    66,    67,    52,    68,
+       0,     0,     0,    42,    70,    43,    40,    39,    41,    55,
+      58,    62,    10,     0,    12,     0,     8,     7,     0,    59,
+      62,    60,     0,     0,    48,    50,    49,    51,     0,     0,
        0,     0,     0,    45,    44,     9,     0,     0,     0,     0,
       14,     0,     0,    19,    20,    23,    21,    22,    17,    18,
-       0,    47,    55,    67,    52,    59,    60,    46,    62,    63,
-      11,     0,     0,     0,     0,    13,    16,     0,     0,    24,
-       0,    26,    28,     0,     0,     0,     0,    38,     0,     0,
-      15,     0,     0,    30,     0,    25,    27,     0,     0,     0,
-       0,     0,     0,    35,     0,    29,    32,     0,     0,     0,
-       0,    34,     0,    37,     0,     0,    31,    36,    33
+       0,    47,    61,    53,    54,    46,    56,    57,    11,     0,
+       0,     0,     0,    13,    16,     0,     0,    24,     0,    26,
+      28,     0,     0,     0,     0,    38,     0,     0,    15,     0,
+       0,    30,     0,    25,    27,     0,     0,     0,     0,     0,
+       0,    35,     0,    29,    32,     0,     0,     0,     0,    34,
+       0,    37,     0,     0,    31,    36,    33
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-    -120,  -120,    12,  -120,  -120,   122,  -120,   -82,   -42,  -120,
-    -120,  -120,    83,  -120,    86,  -120,  -120,  -120,  -119,  -120,
-     -12,   -19,    70,   169,  -120,    43,  -120,  -120,   -30,    48,
-     -25,   -20,     4,    -5
+     -88,   -88,    -4,   -88,   -88,    86,   -88,   -87,   -41,   -88,
+     -88,   -88,    53,   -88,    67,   -88,   -88,   -88,   -51,   -88,
+     -76,   -19,    51,   142,   -88,   -88,   -29,    42,    -7,   -20,
+       5,    -5
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     8,     9,    10,    22,    45,    49,    81,   122,    83,
-      84,   109,   110,    85,   111,   112,    86,    87,   123,   104,
-      34,    88,    36,    37,    70,    38,    60,    39,    40,    41,
-      42,    53,    89,    12
+      -1,     8,     9,    10,    22,    43,    47,    71,   110,    73,
+      74,    97,    98,    75,    99,   100,    76,    77,   111,    92,
+      33,    78,    35,    36,    60,    37,    38,    39,    40,    50,
+      79,    12
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
      positive, shift that token.  If negative, reduce the rule whose
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
-static const yytype_int16 yytable[] =
+static const yytype_uint8 yytable[] =
 {
-      43,    35,    13,    57,    11,    82,    52,    54,   135,   136,
-      58,    59,     1,     2,    11,     3,     4,     5,     6,    14,
-      11,    90,    15,   146,   120,    46,   148,    43,    19,    16,
-     116,     1,     2,    17,     3,     4,     5,     6,    47,   132,
-      97,    48,    61,    71,    72,    44,    98,    99,    58,    59,
-      23,    24,    25,    26,    27,    28,    29,     1,     2,    92,
-       3,     4,     5,     6,    82,    77,   117,    18,    30,    78,
-      79,   114,   114,    20,   114,    62,    56,    73,    74,    82,
-      46,    30,    63,    31,    32,    21,    43,    43,    33,   113,
-     115,    80,   119,    75,   114,    68,    69,   107,   118,   108,
-      76,    43,    93,    94,    91,    56,   101,    43,    43,    43,
-     137,   140,   134,    68,    69,   102,    95,    96,    43,   144,
-     103,   106,    43,   124,   105,    43,    23,    24,    25,    26,
-      27,    28,    29,     1,     2,   107,     3,     4,     5,     6,
-     108,    77,   127,   128,   129,    78,    79,   130,   131,    23,
-      24,    25,    26,    27,    28,    29,   133,    30,   141,    31,
-      32,   138,   143,   142,    33,   121,    23,    24,    25,    26,
-      27,    28,    29,     1,     2,   145,     3,     4,     5,     6,
-      30,    77,    31,    32,   147,    78,    79,    33,    23,    24,
-      25,    26,    27,    50,    29,   126,   125,    30,   100,    31,
-      32,   139,    55,     0,    33,    64,    65,    66,    67,     0,
-       0,     0,     0,    68,    69,     0,   -54,   -54,     0,     0,
-      93,    31,    32,     0,     0,     0,    51,   -54,     0,   -54,
-     -54,    64,    65,    66,    67,     0,     0,     0,     0,    68,
-      69,     1,     2,     0,     3,     4,     5,     6,     7,    23,
-      24,    25,    26,    27,    50,    29,     0,     1,     2,     0,
-       3,     4,     5,     6
+      41,    34,    13,    53,    72,    11,    15,   108,    61,    62,
+      58,    59,    19,   101,   103,    11,   107,    82,    95,    80,
+      96,    11,   120,    49,    51,    41,    44,    14,   104,     1,
+       2,    85,     3,     4,     5,     6,   122,    23,    24,    25,
+      26,    27,    28,    29,     1,     2,    17,     3,     4,     5,
+       6,    16,    67,    72,    86,    87,    68,    69,    18,    45,
+     102,   102,    46,   102,   123,   124,   105,    20,    72,    63,
+      64,    44,    30,    31,    41,    41,    21,    32,    89,   134,
+      70,    65,   136,   102,    58,    59,   106,     1,     2,    41,
+       3,     4,     5,     6,     7,    41,    41,    41,   125,   128,
+      83,    84,    66,    81,    90,    91,    41,   132,   112,    93,
+      41,    94,    95,    41,    23,    24,    25,    26,    27,    28,
+      29,     1,     2,    96,     3,     4,     5,     6,   115,    67,
+     116,   117,   118,    68,    69,   119,   121,    23,    24,    25,
+      26,    27,    28,    29,   126,   129,   130,   131,   133,    30,
+      31,   135,    88,   114,    32,   109,    23,    24,    25,    26,
+      27,    28,    29,     1,     2,   113,     3,     4,     5,     6,
+     127,    67,    30,    31,    52,    68,    69,    32,    23,    24,
+      25,    26,    27,    54,    29,     0,    55,    56,    57,     0,
+       0,    30,    31,    58,    59,     0,    32,    23,    24,    25,
+      26,    27,     0,    29,     0,     1,     2,     0,     3,     4,
+       5,     6,    54,    30,    31,    55,    56,    57,    48,     0,
+       0,     0,    58,    59,    23,    24,    25,    26,    27,    82,
+      29,     0,    30,    31,     0,     0,     0,    32,     1,     2,
+      42,     3,     4,     5,     6
 };
 
 static const yytype_int16 yycheck[] =
 {
-      20,    20,     7,    33,     0,    47,    31,    32,   127,   128,
-      32,    33,    10,    11,    10,    13,    14,    15,    16,     0,
-      16,    51,    10,   142,   106,    21,   145,    47,    16,    45,
-       9,    10,    11,     9,    13,    14,    15,    16,    42,   121,
-      70,    45,     8,    38,    39,    43,    71,    72,    32,    33,
-       3,     4,     5,     6,     7,     8,     9,    10,    11,    43,
-      13,    14,    15,    16,   106,    18,    45,     9,    34,    22,
-      23,   101,   102,    35,   104,    41,    33,    24,    25,   121,
-      76,    34,    39,    36,    37,    41,   106,   107,    41,   101,
-     102,    44,   104,    43,   124,    36,    37,    19,   103,    21,
-      46,   121,    43,    60,    43,    62,    41,   127,   128,   129,
-     129,   131,   124,    36,    37,    41,    68,    69,   138,   138,
-      41,    45,   142,    41,    44,   145,     3,     4,     5,     6,
-       7,     8,     9,    10,    11,    19,    13,    14,    15,    16,
-      21,    18,    43,    43,    35,    22,    23,     9,    45,     3,
-       4,     5,     6,     7,     8,     9,    45,    34,    44,    36,
-      37,    35,    45,    43,    41,    42,     3,     4,     5,     6,
-       7,     8,     9,    10,    11,    43,    13,    14,    15,    16,
-      34,    18,    36,    37,    45,    22,    23,    41,     3,     4,
-       5,     6,     7,     8,     9,   112,   110,    34,    76,    36,
-      37,   131,    33,    -1,    41,    28,    29,    30,    31,    -1,
-      -1,    -1,    -1,    36,    37,    -1,    32,    33,    -1,    -1,
-      43,    36,    37,    -1,    -1,    -1,    41,    43,    -1,    45,
-      46,    28,    29,    30,    31,    -1,    -1,    -1,    -1,    36,
-      37,    10,    11,    -1,    13,    14,    15,    16,    17,     3,
-       4,     5,     6,     7,     8,     9,    -1,    10,    11,    -1,
-      13,    14,    15,    16
+      20,    20,     7,    32,    45,     0,    10,    94,    40,    41,
+      38,    39,    16,    89,    90,    10,    92,    45,    19,    48,
+      21,    16,   109,    30,    31,    45,    21,     0,     9,    10,
+      11,    60,    13,    14,    15,    16,   112,     3,     4,     5,
+       6,     7,     8,     9,    10,    11,     9,    13,    14,    15,
+      16,    47,    18,    94,    61,    62,    22,    23,     9,    44,
+      89,    90,    47,    92,   115,   116,    47,    37,   109,    24,
+      25,    66,    38,    39,    94,    95,    43,    43,    43,   130,
+      46,    45,   133,   112,    38,    39,    91,    10,    11,   109,
+      13,    14,    15,    16,    17,   115,   116,   117,   117,   119,
+      58,    59,    48,    45,    43,    43,   126,   126,    43,    46,
+     130,    47,    19,   133,     3,     4,     5,     6,     7,     8,
+       9,    10,    11,    21,    13,    14,    15,    16,    45,    18,
+      45,    37,     9,    22,    23,    47,    47,     3,     4,     5,
+       6,     7,     8,     9,    37,    46,    45,    47,    45,    38,
+      39,    47,    66,   100,    43,    44,     3,     4,     5,     6,
+       7,     8,     9,    10,    11,    98,    13,    14,    15,    16,
+     119,    18,    38,    39,    32,    22,    23,    43,     3,     4,
+       5,     6,     7,    28,     9,    -1,    31,    32,    33,    -1,
+      -1,    38,    39,    38,    39,    -1,    43,     3,     4,     5,
+       6,     7,    -1,     9,    -1,    10,    11,    -1,    13,    14,
+      15,    16,    28,    38,    39,    31,    32,    33,    43,    -1,
+      -1,    -1,    38,    39,     3,     4,     5,     6,     7,    45,
+       9,    -1,    38,    39,    -1,    -1,    -1,    43,    10,    11,
+      45,    13,    14,    15,    16
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    10,    11,    13,    14,    15,    16,    17,    54,    55,
-      56,    85,    86,    86,     0,    55,    45,     9,     9,    55,
-      35,    41,    57,     3,     4,     5,     6,     7,     8,     9,
-      34,    36,    37,    41,    73,    74,    75,    76,    78,    80,
-      81,    82,    83,    84,    43,    58,    85,    42,    45,    59,
-       8,    41,    83,    84,    83,    76,    78,    81,    32,    33,
-      79,     8,    41,    78,    28,    29,    30,    31,    36,    37,
-      77,    38,    39,    24,    25,    43,    46,    18,    22,    23,
-      44,    60,    61,    62,    63,    66,    69,    70,    74,    85,
-      81,    43,    43,    43,    78,    82,    82,    81,    83,    83,
-      58,    41,    41,    41,    72,    44,    45,    19,    21,    64,
-      65,    67,    68,    73,    81,    73,     9,    45,    86,    73,
-      60,    42,    61,    71,    41,    67,    65,    43,    43,    35,
-       9,    45,    60,    45,    73,    71,    71,    74,    35,    75,
-      84,    44,    43,    45,    74,    43,    71,    45,    71
+       0,    10,    11,    13,    14,    15,    16,    17,    56,    57,
+      58,    85,    86,    86,     0,    57,    47,     9,     9,    57,
+      37,    43,    59,     3,     4,     5,     6,     7,     8,     9,
+      38,    39,    43,    75,    76,    77,    78,    80,    81,    82,
+      83,    84,    45,    60,    85,    44,    47,    61,    43,    83,
+      84,    83,    78,    81,    28,    31,    32,    33,    38,    39,
+      79,    40,    41,    24,    25,    45,    48,    18,    22,    23,
+      46,    62,    63,    64,    65,    68,    71,    72,    76,    85,
+      81,    45,    45,    82,    82,    81,    83,    83,    60,    43,
+      43,    43,    74,    46,    47,    19,    21,    66,    67,    69,
+      70,    75,    81,    75,     9,    47,    86,    75,    62,    44,
+      63,    73,    43,    69,    67,    45,    45,    37,     9,    47,
+      62,    47,    75,    73,    73,    76,    37,    77,    84,    46,
+      45,    47,    76,    45,    73,    47,    73
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    53,    54,    55,    55,    55,    55,    56,    56,    57,
-      57,    58,    58,    59,    59,    60,    60,    61,    61,    61,
-      62,    62,    62,    63,    63,    64,    64,    65,    65,    66,
-      67,    68,    69,    70,    71,    71,    72,    72,    72,    73,
-      73,    74,    74,    74,    75,    75,    76,    76,    77,    77,
-      77,    77,    78,    78,    78,    78,    79,    79,    80,    81,
-      81,    81,    82,    82,    82,    83,    83,    83,    83,    84,
-      84,    84,    84,    84,    84,    84,    85,    85,    86,    86,
-      86,    86,    86,    86
+       0,    55,    56,    57,    57,    57,    57,    58,    58,    59,
+      59,    60,    60,    61,    61,    62,    62,    63,    63,    63,
+      64,    64,    64,    65,    65,    66,    66,    67,    67,    68,
+      69,    70,    71,    72,    73,    73,    74,    74,    74,    75,
+      75,    76,    76,    76,    77,    77,    78,    78,    79,    79,
+      79,    79,    80,    81,    81,    81,    82,    82,    82,    83,
+      83,    83,    83,    84,    84,    84,    84,    84,    84,    85,
+      85,    86,    86,    86,    86,    86,    86
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -848,10 +852,9 @@ static const yytype_uint8 yyr2[] =
        1,     1,     1,     1,     2,     2,     1,     2,     1,     5,
        2,     5,     5,     7,     3,     2,     6,     5,     2,     1,
        1,     1,     1,     1,     2,     2,     3,     3,     1,     1,
-       1,     1,     3,     2,     1,     3,     1,     1,     1,     3,
-       3,     1,     3,     3,     1,     2,     2,     3,     1,     1,
-       1,     1,     1,     1,     1,     1,     2,     4,     1,     1,
-       1,     1,     1,     1
+       1,     1,     1,     3,     3,     1,     3,     3,     1,     2,
+       2,     3,     1,     1,     1,     1,     1,     1,     1,     2,
+       4,     1,     1,     1,     1,     1,     1
 };
 
 
@@ -1528,409 +1531,427 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 244 "Sintatico.y" /* yacc.c:1646  */
-    {root = (yyvsp[0].MainBody);}
-#line 1534 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 254 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    {printf("program"); root = (yyvsp[0].mainbody_t);}
+#line 1537 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 246 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.MainBody) = new MainBodyRule1((yyvsp[-1].Function),(yyvsp[0].MainBody)); }
-#line 1540 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 256 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.mainbody_t) = new MainBodyRule1((yyvsp[-1].function_t),(yyvsp[0].mainbody_t)); }
+#line 1543 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 247 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.MainBody) = new MainBodyRule2((yyvsp[-2].Var),(yyvsp[0].MainBody)); }
-#line 1546 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 257 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.mainbody_t) = new MainBodyRule2((yyvsp[-2].var_t),(yyvsp[0].mainbody_t)); }
+#line 1549 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 248 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.MainBody) = (yyvsp[0].Function);}
-#line 1552 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 258 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.mainbody_t) = new MainBodyRule3((yyvsp[0].function_t));}
+#line 1555 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 249 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.MainBody) = (yyvsp[-1].Var); }
-#line 1558 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 259 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.mainbody_t) = new MainBodyRule4((yyvsp[-1].var_t)); }
+#line 1561 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 254 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Function) = new FuctionRule1((yyvsp[-3].VariablesTypes),(yyvsp[-2].str),(yyvsp[-1].Parameter));}
-#line 1564 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 262 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.function_t) = new FunctionRule1((yyvsp[-3].variablestypes_t),*((yyvsp[-2].str)),(yyvsp[-1].parameter_t),(yyvsp[0].body_t));}
+#line 1567 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 255 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Function) = new FuctionRule2((yyvsp[-3].VariablesTypes),(yyvsp[-2].str)); }
-#line 1570 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 263 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.function_t) = new FunctionRule2((yyvsp[-3].variablestypes_t),*((yyvsp[-2].str)),(yyvsp[-1].parameter_t)); }
+#line 1573 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 258 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Parameter) = (yyvsp[-1].Parameters); }
-#line 1576 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 266 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.parameter_t) = new ParameterRule1((yyvsp[-1].parameters_t)); }
+#line 1579 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 259 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Parameter) = new ParameterRule2(); }
-#line 1582 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 267 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    {  (yyval.parameter_t) = new ParameterRule2(); }
+#line 1585 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 262 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Parameters) = new ParameterRule1((yyvsp[-2].Var),(yyvsp[0].Parameters)); }
-#line 1588 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 270 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.parameters_t) = new ParametersRule1((yyvsp[-2].var_t),(yyvsp[0].parameters_t)); }
+#line 1591 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 263 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Parameters) = (yyvsp[0].Var); }
-#line 1594 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 271 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.parameters_t) = new ParametersRule2((yyvsp[0].var_t)); }
+#line 1597 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 266 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Body) = (yyvsp[-1].LocalBody);}
-#line 1600 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 274 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.body_t) = new BodyRule1((yyvsp[-1].localbody_t));}
+#line 1603 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 267 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Body) = new BodyRule2();}
-#line 1606 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 275 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.body_t) = new BodyRule2();}
+#line 1609 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 270 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.LocalBody) = new LocalBodyRule1((yyvsp[-2].Line),(yyvsp[0].LocalBody));}
-#line 1612 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 278 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.localbody_t) = new LocalBodyRule1((yyvsp[-2].line_t),(yyvsp[0].localbody_t));}
+#line 1615 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 271 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.LocalBody) = (yyvsp[-1].Line);}
-#line 1618 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 279 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.localbody_t) = new LocalBodyRule2((yyvsp[-1].line_t));}
+#line 1621 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 274 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Line) = (yyvsp[0].Operation);}
-#line 1624 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 282 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.line_t) = new LineRule1((yyvsp[0].operation_t));}
+#line 1627 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 275 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Line) = (yyvsp[0].Var);}
-#line 1630 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 283 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.line_t) = new LineRule2((yyvsp[0].var_t));}
+#line 1633 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 276 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Line) = (yyvsp[0].Condiction);}
-#line 1636 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 284 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.line_t) = new LineRule3((yyvsp[0].condiction_t));}
+#line 1639 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 279 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Condiction) = (yyvsp[0].SelectionClause);}
-#line 1642 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 287 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.condiction_t) = new CondictionRule1((yyvsp[0].selectionclause_t));}
+#line 1645 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 280 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Condiction) = (yyvsp[0].WhileClause);}
-#line 1648 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 288 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.condiction_t) = new CondictionRule2((yyvsp[0].whileclause_t));}
+#line 1651 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 281 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Condiction) = (yyvsp[0].ForClause);}
-#line 1654 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 289 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.condiction_t) = new CondictionRule3((yyvsp[0].forclause_t));}
+#line 1657 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 292 "Sintatico.y" /* yacc.c:1646  */
+#line 292 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
     {}
-#line 1660 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 1663 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 293 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.SelectionClause) = new SelectionClauseRule2((yyvsp[-1].IfClause),(yyvsp[0].ElseClauses)); }
-#line 1666 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 293 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.selectionclause_t) = new SelectionClauseRule2((yyvsp[-1].ifclause_t),(yyvsp[0].elseclauses_t)); }
+#line 1669 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 296 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.ElseClauses) = (yyvsp[-1].IfElseClauses); }
-#line 1672 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 296 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.elseclauses_t) = new ElseClausesRule1((yyvsp[-1].ifelseclauses_t),(yyvsp[0].elseclause_t)); }
+#line 1675 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 297 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.ElseClauses) = (yyvsp[0].ElseClause); }
-#line 1678 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 297 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.elseclauses_t) = new ElseClausesRule2((yyvsp[0].elseclause_t)); }
+#line 1681 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 300 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.IfElseClauses) = (yyvsp[0].IfElseClauses); }
-#line 1684 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 300 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.ifelseclauses_t) = new IfElseClausesRule1((yyvsp[-1].ifelseclause_t), (yyvsp[0].ifelseclauses_t)); }
+#line 1687 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 301 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.IfElseClauses) = (yyvsp[0].IfElseClause); }
-#line 1690 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 301 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.ifelseclauses_t) = new IfElseClausesRule2((yyvsp[0].ifelseclause_t)); }
+#line 1693 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 304 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.IfClause) = new IfClause((yyvsp[-2].LogicOperation),(yyvsp[0].Command));}
-#line 1696 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 304 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.ifclause_t) = new IfClause((yyvsp[-2].logicoperation_t),(yyvsp[0].command_t));}
+#line 1699 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 314 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.ElseClause) = (yyvsp[0].Command); }
-#line 1702 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 306 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.elseclause_t) = new ElseClause((yyvsp[0].command_t)); }
+#line 1705 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 316 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.IfElseClause) = new IfElseClause( (yyvsp[-2].LogicOperation), (yyvsp[0].Command) ); }
-#line 1708 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 308 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.ifelseclause_t) = new IfElseClause( (yyvsp[-2].logicoperation_t), (yyvsp[0].command_t) ); }
+#line 1711 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 318 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.WhileClause) = new WhileClause( (yyvsp[-2].LogicOperation), (yyvsp[0].Command) ); }
-#line 1714 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 310 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.whileclause_t) = new WhileClause( (yyvsp[-2].logicoperation_t), (yyvsp[0].command_t) ); }
+#line 1717 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 320 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.ForClause) = new ForClause((yyvsp[-5].VarFor), (yyvsp[-4].LogicOperation), (yyvsp[-2].UnitaryOperators) , (yyvsp[0].Command)); }
-#line 1720 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 312 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.forclause_t) = new ForClause((yyvsp[-5].varfor_t), (yyvsp[-4].logicoperation_t), (yyvsp[-2].unitaryoperators_t) , (yyvsp[0].command_t)); }
+#line 1723 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 322 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Command) = (yyvsp[-1].LocalBody); }
-#line 1726 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 314 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.command_t) = new CommandRule1((yyvsp[-1].localbody_t)); }
+#line 1729 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 323 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Command) = (yyvsp[-1].Line); }
-#line 1732 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 315 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.command_t) = new CommandRule2((yyvsp[-1].line_t)); }
+#line 1735 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 326 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.VarFor) = new VarForRule1((yyvsp[-4].VariablesTypes),(yyvsp[-1].Operation)); }
-#line 1738 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 318 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.varfor_t) = new VarForRule1((yyvsp[-4].variablestypes_t),*(yyvsp[-3].str),(yyvsp[-1].operation_t)); }
+#line 1741 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 327 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.VarFor) = (yyvsp[-1].Operation); }
-#line 1744 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 319 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.varfor_t) = new VarForRule2(*(yyvsp[-3].str),(yyvsp[-1].operation_t)); }
+#line 1747 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 331 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.LogicOperation) = (yyvsp[0].LogicOP); }
-#line 1750 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 323 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.logicoperation_t) = new LogicOperationRule1((yyvsp[0].logicop_t)); }
+#line 1753 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 332 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.LogicOperation) = (yyvsp[0].LogicComp); }
-#line 1756 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 324 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.logicoperation_t) = new LogicOperationRule2((yyvsp[0].logiccomp_t)); }
+#line 1759 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 335 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Operation) = (yyvsp[0].Eq); }
-#line 1762 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 327 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.operation_t) = new OperationRule1((yyvsp[0].eq_t)); }
+#line 1765 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 336 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Operation) = (yyvsp[0].LogicOperation); }
-#line 1768 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 328 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.operation_t) = new OperationRule2((yyvsp[0].logicoperation_t)); }
+#line 1771 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 337 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Operation) = (yyvsp[0].UnitaryOperators); }
-#line 1774 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 329 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.operation_t) = new OperationRule3((yyvsp[0].unitaryoperators_t)); }
+#line 1777 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 340 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.UnitaryOperators) = (yyvsp[-1].Values); }
-#line 1780 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 332 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.unitaryoperators_t) = new UnitaryOperatorsRule1((yyvsp[-1].values_t)); }
+#line 1783 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 341 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.UnitaryOperators) = (yyvsp[-1].Values); }
-#line 1786 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 333 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.unitaryoperators_t) = new UnitaryOperatorsRule2((yyvsp[-1].values_t)); }
+#line 1789 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 344 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.LogicComp) = new LogicCompRule1((yyvsp[-2].Eq),(yyvsp[-1].BinaryCompOperator),(yyvsp[0].Eq)); }
-#line 1792 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 336 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.logiccomp_t) = new LogicCompRule1((yyvsp[-2].eq_t),(yyvsp[-1].binarycompoperator_t),(yyvsp[0].eq_t)); }
+#line 1795 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 345 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.LogicComp) = (yyvsp[-1].LogicComp); }
-#line 1798 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 337 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.logiccomp_t) = new LogicCompRule2((yyvsp[-1].logiccomp_t)); }
+#line 1801 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 354 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.LogicOP) = new LogicOPRule1((yyvsp[-2].LogicOP),(yyvsp[-1].BinaryLogicalOperator),(yyvsp[0].LogicOP)); }
-#line 1804 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 346 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.logicop_t) =  new LogicOPRule3((yyvsp[0].logic));}
+#line 1807 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 355 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.LogicOP) = new LogicOPRule2((yyvsp[-1].UnitaryLogicalOperator),(yyvsp[0].LogicOP)); }
-#line 1810 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 355 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.eq_t) = new EqRule1((yyvsp[-2].eq_t),(yyvsp[0].factor_t)); }
+#line 1813 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 54:
+#line 356 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.eq_t) = new EqRule2((yyvsp[-2].eq_t),(yyvsp[0].factor_t)); }
+#line 1819 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 357 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.LogicOP) = (yyvsp[-1].LogicOP); }
-#line 1816 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 357 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.eq_t) = new EqRule3((yyvsp[0].factor_t)); }
+#line 1825 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 56:
+#line 360 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.factor_t) = new FactorRule1((yyvsp[-2].factor_t),(yyvsp[0].elem_t)); }
+#line 1831 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 57:
+#line 361 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.factor_t) = new FactorRule2((yyvsp[-2].factor_t),(yyvsp[0].elem_t)); }
+#line 1837 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+    break;
+
+  case 58:
+#line 362 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    {  (yyval.factor_t) = new FactorRule3((yyvsp[0].elem_t));  }
+#line 1843 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 366 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Eq) = new EqRule1((yyvsp[-2].Eq),(yyvsp[0].Factor)); }
-#line 1822 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 365 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.elem_t) = new ElemRule1((yyvsp[0].elem_t)); }
+#line 1849 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 367 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Eq) = new EqRule2((yyvsp[-2].Eq),(yyvsp[0].Factor)); }
-#line 1828 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 366 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.elem_t) = new ElemRule2((yyvsp[0].elem_t)); }
+#line 1855 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 368 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Eq) = (yyvsp[0].Factor) }
-#line 1834 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 367 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.elem_t) = new ElemRule3((yyvsp[-1].eq_t)); }
+#line 1861 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 371 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Factor) = new FactorRule1((yyvsp[-2].Factor),(yyvsp[0].Elem)); }
-#line 1840 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 368 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.elem_t) = new ElemRule4((yyvsp[0].values_t)); }
+#line 1867 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 372 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Factor) = new FactorRule2((yyvsp[-2].Factor),(yyvsp[0].Elem)); }
-#line 1846 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 371 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.values_t) =  new ValuesRule1((yyvsp[0].integer));}
+#line 1873 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 373 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Factor) = (yyvsp[0].Elem); }
-#line 1852 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 372 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.values_t) =  new ValuesRule2((yyvsp[0].float_point));}
+#line 1879 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 376 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Elem) = (yyvsp[0].Elem); }
-#line 1858 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 373 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.values_t) =  new ValuesRule3((yyvsp[0].double_point));}
+#line 1885 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 377 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Elem) = (yyvsp[0].Elem); }
-#line 1864 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 374 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.values_t) =  new ValuesRule4((yyvsp[0].caractere));}
+#line 1891 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 378 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Elem) = (yyvsp[-1].Eq); }
-#line 1870 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 375 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.values_t) =  new ValuesRule5(*((yyvsp[0].str)));}
+#line 1897 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 379 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Elem) = (yyvsp[0].Values); }
-#line 1876 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 376 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.values_t) =  new ValuesRule7(*((yyvsp[0].str)));}
+#line 1903 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 382 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Values) =  new ValuesRule1((yyvsp[0].integer));}
-#line 1882 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 379 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.var_t) = new VarRule1((yyvsp[-1].variablestypes_t),*(yyvsp[0].str)); }
+#line 1909 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 383 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Values) =  new ValuesRule2((yyvsp[0].float_point));}
-#line 1888 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 380 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.var_t) = new VarRule2((yyvsp[-3].variablestypes_t),*(yyvsp[-2].str),(yyvsp[0].operation_t)); }
+#line 1915 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 384 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Values) =  new ValuesRule3((yyvsp[0].double_point));}
-#line 1894 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 383 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.variablestypes_t) = new VariablesTypesRule1(); }
+#line 1921 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 385 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Values) =  new ValuesRule4((yyvsp[0].caractere));}
-#line 1900 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 384 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    {(yyval.variablestypes_t) = new VariablesTypesRule2(); }
+#line 1927 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 386 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Values) =  new ValuesRule5((yyvsp[0].str));}
-#line 1906 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 385 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    {  (yyval.variablestypes_t) = new VariablesTypesRule3();}
+#line 1933 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 387 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Values) =  new ValuesRule6((yyvsp[0].logic));}
-#line 1912 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 386 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.variablestypes_t) = new VariablesTypesRule4();}
+#line 1939 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 388 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Values) =  new ValuesRule7((yyvsp[0].str));}
-#line 1918 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 387 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.variablestypes_t) = new VariablesTypesRule5();}
+#line 1945 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 391 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Var) = new VarRule1((yyvsp[-1].VariablesTypes),(yyvsp[0].str)); }
-#line 1924 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
-    break;
-
-  case 77:
-#line 392 "Sintatico.y" /* yacc.c:1646  */
-    { (yyval.Var) = new VarRule2((yyvsp[-3].VariablesTypes),(yyvsp[-2].str),(yyvsp[0].Operation)); }
-#line 1930 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 388 "../Analizadores/Sintatico.y" /* yacc.c:1646  */
+    { (yyval.variablestypes_t) = new VariablesTypesRule6();}
+#line 1951 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
     break;
 
 
-#line 1934 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
+#line 1955 "../Classes/analisador_sintatico.cpp" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2158,7 +2179,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 402 "Sintatico.y" /* yacc.c:1906  */
+#line 390 "../Analizadores/Sintatico.y" /* yacc.c:1906  */
 
 int main(int argc, char **argv) {
   extern FILE *yyin;
@@ -2173,11 +2194,12 @@ int main(int argc, char **argv) {
   }
   
   if (yyparse()) {
-    fprintf(stderr, "Não foi possível compilar %s!\n", argv[1]);
+    fprintf(stderr, "Não foi possível compilar dazd %s!\n", argv[1]);
     return 1;
   }
-  //root->accept(new PrintVisitor());
- // root->accept(new TypeChecker());
- // roo
+
+  root->accept(new PrintVisitor());
+  //root->accept(new TypeChecker());
+  root->accept(new GeradorDeCodigo());
   return 0;
 }

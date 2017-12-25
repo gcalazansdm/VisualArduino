@@ -22,7 +22,7 @@ class LoopRule2 : public Loop
 		{
 			mainbody_ = mainbody;
 		}
-		const MainBody* const mainbody()
+		MainBody* mainbody()
 		{
 			return mainbody_;
 		}
@@ -30,7 +30,7 @@ class LoopRule2 : public Loop
 		{
 			loop_ = loop;
 		}
-		const Loop* const loop()
+		Loop* loop()
 		{
 			return loop_;
 		}

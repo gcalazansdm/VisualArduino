@@ -25,7 +25,7 @@ class LogicCompRule1 : public LogicComp
 		{
 			eq_ = eq;
 		}
-		const Eq* const eq()
+		Eq* eq()
 		{
 			return eq_;
 		}
@@ -33,7 +33,7 @@ class LogicCompRule1 : public LogicComp
 		{
 			binarycompoperator_ = binarycompoperator;
 		}
-		const BinaryCompOperator* const binarycompoperator()
+		BinaryCompOperator* binarycompoperator()
 		{
 			return binarycompoperator_;
 		}
@@ -41,7 +41,7 @@ class LogicCompRule1 : public LogicComp
 		{
 			eq0_ = eq0;
 		}
-		const Eq* const eq0()
+		Eq* eq0()
 		{
 			return eq0_;
 		}

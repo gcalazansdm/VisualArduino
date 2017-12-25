@@ -19,7 +19,7 @@ class DigitalWriteClauseRule2 : public DigitalWriteClause
 		{
 			values_ = values;
 		}
-		const Values* const values()
+		Values* values()
 		{
 			return values_;
 		}

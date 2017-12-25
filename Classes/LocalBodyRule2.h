@@ -19,7 +19,7 @@ class LocalBodyRule2 : public LocalBody
 		{
 			line_ = line;
 		}
-		const Line* const line()
+		Line* line()
 		{
 			return line_;
 		}

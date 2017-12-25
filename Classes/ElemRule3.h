@@ -19,7 +19,7 @@ class ElemRule3 : public Elem
 		{
 			eq_ = eq;
 		}
-		const Eq* const eq()
+		Eq* eq()
 		{
 			return eq_;
 		}
