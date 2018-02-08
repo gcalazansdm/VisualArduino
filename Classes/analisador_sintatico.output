@@ -1,0 +1,1959 @@
+Não-terminais inúteis na gramática
+
+   BinaryLogicalOperator
+   UnitaryLogicalOperator
+   DigitalWriteClause
+   Loop
+   MainArduino
+   PinModeClause
+   Setup
+
+
+Terminais sem uso na gramática
+
+   T_PINMODE
+   T_DIGITALWRITE
+   OP_BOOL_IS
+   OP_BOOL_DIFF
+   OP_BOOL_EQUAL
+   OP_BOOL_DIF
+   OP_BOOL_AND
+   OP_BOOL_OR
+   OP_BOOL_NOT
+   OP_POT
+   A_OUT
+   A_INP
+   A_HIGH
+   A_LOW
+   A_LOOP
+   A_SETUP
+
+
+Regras inúteis na gramática
+
+   76 BinaryLogicalOperator: OP_BOOL_AND
+   77                      | OP_BOOL_OR
+
+   78 UnitaryLogicalOperator: OP_BOOL_NOT
+
+
+Gramática
+
+    0 $accept: Program $end
+
+    1 Program: MainBody
+
+    2 MainBody: Function MainBody
+    3         | Var A_SEMICOLON MainBody
+    4         | Function
+    5         | Var A_SEMICOLON
+
+    6 Function: T_FUNC VariablesTypes L_ID Parameter Body
+    7         | T_FUNC VariablesTypes L_ID Parameter A_SEMICOLON
+
+    8 Parameter: A_LPAR Parameters A_RPAR
+    9          | A_LPAR A_RPAR
+
+   10 Parameters: Var A_COMMA Parameters
+   11           | Var
+
+   12 Body: A_LKEY LocalBody A_RKEY
+   13     | A_LKEY A_RKEY
+
+   14 LocalBody: Line A_SEMICOLON LocalBody
+   15          | Line A_SEMICOLON
+
+   16 Line: Operation
+   17     | Var
+   18     | Condiction
+
+   19 Condiction: SelectionClause
+   20           | WhileClause
+   21           | ForClause
+
+   22 SelectionClause: IfClause
+   23                | IfClause ElseClauses
+
+   24 ElseClauses: IfElseClauses ElseClause
+   25            | ElseClause
+
+   26 IfElseClauses: IfElseClause IfElseClauses
+   27              | IfElseClause
+
+   28 IfClause: T_IF A_LPAR LogicOperation A_RPAR Command
+
+   29 ElseClause: T_ELSE Command
+
+   30 IfElseClause: T_IFELSE A_LPAR LogicOperation A_RPAR Command
+
+   31 WhileClause: T_WHI A_LPAR LogicOperation A_RPAR Command
+
+   32 ForClause: T_FOR VarFor LogicOperation A_SEMICOLON UnitaryOperators A_RPAR Command
+
+   33 Command: A_LKEY LocalBody A_RKEY
+   34        | Line A_SEMICOLON
+
+   35 VarFor: A_LPAR VariablesTypes L_ID OP_EQ Operation A_SEMICOLON
+   36       | A_LPAR L_ID OP_EQ Operation A_SEMICOLON
+   37       | A_LPAR A_SEMICOLON
+
+   38 LogicOperation: LogicOP
+   39               | LogicComp
+
+   40 Operation: Eq
+   41          | LogicOperation
+   42          | UnitaryOperators
+
+   43 UnitaryOperators: Values L_INC
+   44                 | Values L_DEC
+
+   45 LogicComp: Eq BinaryCompOperator Eq
+   46          | A_LPAR LogicComp A_RPAR
+
+   47 BinaryCompOperator: OP_BOOL_GRE
+   48                   | OP_BOOL_LESS
+   49                   | OP_BOOL_EQGRE
+   50                   | OP_BOOL_EQLESS
+
+   51 LogicOP: L_BOOL
+
+   52 Eq: Eq OP_SUM Factor
+   53   | Eq OP_SUB Factor
+   54   | Factor
+
+   55 Factor: Factor OP_DIV Elem
+   56       | Factor OP_MUL Elem
+   57       | Elem
+
+   58 Elem: OP_SUM Elem
+   59     | OP_SUB Elem
+   60     | A_LPAR Eq A_RPAR
+   61     | Values
+
+   62 Values: L_INT
+   63       | L_FLOAT
+   64       | L_DOUBLE
+   65       | L_CHAR
+   66       | L_STRING
+   67       | L_ID
+
+   68 Var: VariablesTypes L_ID
+   69    | VariablesTypes L_ID OP_EQ Operation
+
+   70 VariablesTypes: T_DOUBLE
+   71               | T_INT
+   72               | T_FLOAT
+   73               | T_CHAR
+   74               | T_STRING
+   75               | T_BOOL
+
+
+Terminais, com as regras onde eles aparecem
+
+$end (0) 0
+error (256)
+L_INT (258) 62
+L_DOUBLE (259) 64
+L_FLOAT (260) 63
+L_CHAR (261) 65
+L_STRING (262) 66
+L_BOOL (263) 51
+L_ID (264) 6 7 35 36 67 68 69
+T_BOOL (265) 75
+T_INT (266) 71
+T_PINMODE (267)
+T_DOUBLE (268) 70
+T_FLOAT (269) 72
+T_CHAR (270) 73
+T_STRING (271) 74
+T_FUNC (272) 6 7
+T_IF (273) 28
+T_ELSE (274) 29
+T_DIGITALWRITE (275)
+T_IFELSE (276) 30
+T_WHI (277) 31
+T_FOR (278) 32
+L_DEC (279) 44
+L_INC (280) 43
+OP_BOOL_IS (281)
+OP_BOOL_DIFF (282)
+OP_BOOL_GRE (283) 47
+OP_BOOL_EQUAL (284)
+OP_BOOL_DIF (285)
+OP_BOOL_EQGRE (286) 49
+OP_BOOL_LESS (287) 48
+OP_BOOL_EQLESS (288) 50
+OP_BOOL_AND (289)
+OP_BOOL_OR (290)
+OP_BOOL_NOT (291)
+OP_EQ (292) 35 36 69
+OP_SUM (293) 52 58
+OP_SUB (294) 53 59
+OP_DIV (295) 55
+OP_MUL (296) 56
+OP_POT (297)
+A_LPAR (298) 8 9 28 30 31 35 36 37 46 60
+A_LKEY (299) 12 13 33
+A_RPAR (300) 8 9 28 30 31 32 46 60
+A_RKEY (301) 12 13 33
+A_SEMICOLON (302) 3 5 7 14 15 32 34 35 36 37
+A_COMMA (303) 10
+A_OUT (304)
+A_INP (305)
+A_HIGH (306)
+A_LOW (307)
+A_LOOP (308)
+A_SETUP (309)
+
+
+Não terminais com as regras onde eles aparecem
+
+$accept (55)
+    à esquerda: 0
+Program (56)
+    à esquerda: 1, à direita: 0
+MainBody (57)
+    à esquerda: 2 3 4 5, à direita: 1 2 3
+Function (58)
+    à esquerda: 6 7, à direita: 2 4
+Parameter (59)
+    à esquerda: 8 9, à direita: 6 7
+Parameters (60)
+    à esquerda: 10 11, à direita: 8 10
+Body (61)
+    à esquerda: 12 13, à direita: 6
+LocalBody (62)
+    à esquerda: 14 15, à direita: 12 14 33
+Line (63)
+    à esquerda: 16 17 18, à direita: 14 15 34
+Condiction (64)
+    à esquerda: 19 20 21, à direita: 18
+SelectionClause (65)
+    à esquerda: 22 23, à direita: 19
+ElseClauses (66)
+    à esquerda: 24 25, à direita: 23
+IfElseClauses (67)
+    à esquerda: 26 27, à direita: 24 26
+IfClause (68)
+    à esquerda: 28, à direita: 22 23
+ElseClause (69)
+    à esquerda: 29, à direita: 24 25
+IfElseClause (70)
+    à esquerda: 30, à direita: 26 27
+WhileClause (71)
+    à esquerda: 31, à direita: 20
+ForClause (72)
+    à esquerda: 32, à direita: 21
+Command (73)
+    à esquerda: 33 34, à direita: 28 29 30 31 32
+VarFor (74)
+    à esquerda: 35 36 37, à direita: 32
+LogicOperation (75)
+    à esquerda: 38 39, à direita: 28 30 31 32 41
+Operation (76)
+    à esquerda: 40 41 42, à direita: 16 35 36 69
+UnitaryOperators (77)
+    à esquerda: 43 44, à direita: 32 42
+LogicComp (78)
+    à esquerda: 45 46, à direita: 39 46
+BinaryCompOperator (79)
+    à esquerda: 47 48 49 50, à direita: 45
+LogicOP (80)
+    à esquerda: 51, à direita: 38
+Eq (81)
+    à esquerda: 52 53 54, à direita: 40 45 52 53 60
+Factor (82)
+    à esquerda: 55 56 57, à direita: 52 53 54 55 56
+Elem (83)
+    à esquerda: 58 59 60 61, à direita: 55 56 57 58 59
+Values (84)
+    à esquerda: 62 63 64 65 66 67, à direita: 43 44 61
+Var (85)
+    à esquerda: 68 69, à direita: 3 5 10 11 17
+VariablesTypes (86)
+    à esquerda: 70 71 72 73 74 75, à direita: 6 7 35 68 69
+
+
+Estado 0
+
+    0 $accept: . Program $end
+
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_FUNC    deslocar, e ir ao estado 7
+
+    Program         ir ao estado 8
+    MainBody        ir ao estado 9
+    Function        ir ao estado 10
+    Var             ir ao estado 11
+    VariablesTypes  ir ao estado 12
+
+
+Estado 1
+
+   75 VariablesTypes: T_BOOL .
+
+    $padrão  reduzir usando a regra 75 (VariablesTypes)
+
+
+Estado 2
+
+   71 VariablesTypes: T_INT .
+
+    $padrão  reduzir usando a regra 71 (VariablesTypes)
+
+
+Estado 3
+
+   70 VariablesTypes: T_DOUBLE .
+
+    $padrão  reduzir usando a regra 70 (VariablesTypes)
+
+
+Estado 4
+
+   72 VariablesTypes: T_FLOAT .
+
+    $padrão  reduzir usando a regra 72 (VariablesTypes)
+
+
+Estado 5
+
+   73 VariablesTypes: T_CHAR .
+
+    $padrão  reduzir usando a regra 73 (VariablesTypes)
+
+
+Estado 6
+
+   74 VariablesTypes: T_STRING .
+
+    $padrão  reduzir usando a regra 74 (VariablesTypes)
+
+
+Estado 7
+
+    6 Function: T_FUNC . VariablesTypes L_ID Parameter Body
+    7         | T_FUNC . VariablesTypes L_ID Parameter A_SEMICOLON
+
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+
+    VariablesTypes  ir ao estado 13
+
+
+Estado 8
+
+    0 $accept: Program . $end
+
+    $end  deslocar, e ir ao estado 14
+
+
+Estado 9
+
+    1 Program: MainBody .
+
+    $padrão  reduzir usando a regra 1 (Program)
+
+
+Estado 10
+
+    2 MainBody: Function . MainBody
+    4         | Function .
+
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_FUNC    deslocar, e ir ao estado 7
+
+    $padrão  reduzir usando a regra 4 (MainBody)
+
+    MainBody        ir ao estado 15
+    Function        ir ao estado 10
+    Var             ir ao estado 11
+    VariablesTypes  ir ao estado 12
+
+
+Estado 11
+
+    3 MainBody: Var . A_SEMICOLON MainBody
+    5         | Var . A_SEMICOLON
+
+    A_SEMICOLON  deslocar, e ir ao estado 16
+
+
+Estado 12
+
+   68 Var: VariablesTypes . L_ID
+   69    | VariablesTypes . L_ID OP_EQ Operation
+
+    L_ID  deslocar, e ir ao estado 17
+
+
+Estado 13
+
+    6 Function: T_FUNC VariablesTypes . L_ID Parameter Body
+    7         | T_FUNC VariablesTypes . L_ID Parameter A_SEMICOLON
+
+    L_ID  deslocar, e ir ao estado 18
+
+
+Estado 14
+
+    0 $accept: Program $end .
+
+    $padrão  aceitar
+
+
+Estado 15
+
+    2 MainBody: Function MainBody .
+
+    $padrão  reduzir usando a regra 2 (MainBody)
+
+
+Estado 16
+
+    3 MainBody: Var A_SEMICOLON . MainBody
+    5         | Var A_SEMICOLON .
+
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_FUNC    deslocar, e ir ao estado 7
+
+    $padrão  reduzir usando a regra 5 (MainBody)
+
+    MainBody        ir ao estado 19
+    Function        ir ao estado 10
+    Var             ir ao estado 11
+    VariablesTypes  ir ao estado 12
+
+
+Estado 17
+
+   68 Var: VariablesTypes L_ID .
+   69    | VariablesTypes L_ID . OP_EQ Operation
+
+    OP_EQ  deslocar, e ir ao estado 20
+
+    $padrão  reduzir usando a regra 68 (Var)
+
+
+Estado 18
+
+    6 Function: T_FUNC VariablesTypes L_ID . Parameter Body
+    7         | T_FUNC VariablesTypes L_ID . Parameter A_SEMICOLON
+
+    A_LPAR  deslocar, e ir ao estado 21
+
+    Parameter  ir ao estado 22
+
+
+Estado 19
+
+    3 MainBody: Var A_SEMICOLON MainBody .
+
+    $padrão  reduzir usando a regra 3 (MainBody)
+
+
+Estado 20
+
+   69 Var: VariablesTypes L_ID OP_EQ . Operation
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 34
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+
+
+Estado 21
+
+    8 Parameter: A_LPAR . Parameters A_RPAR
+    9          | A_LPAR . A_RPAR
+
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    A_RPAR    deslocar, e ir ao estado 42
+
+    Parameters      ir ao estado 43
+    Var             ir ao estado 44
+    VariablesTypes  ir ao estado 12
+
+
+Estado 22
+
+    6 Function: T_FUNC VariablesTypes L_ID Parameter . Body
+    7         | T_FUNC VariablesTypes L_ID Parameter . A_SEMICOLON
+
+    A_LKEY       deslocar, e ir ao estado 45
+    A_SEMICOLON  deslocar, e ir ao estado 46
+
+    Body  ir ao estado 47
+
+
+Estado 23
+
+   62 Values: L_INT .
+
+    $padrão  reduzir usando a regra 62 (Values)
+
+
+Estado 24
+
+   64 Values: L_DOUBLE .
+
+    $padrão  reduzir usando a regra 64 (Values)
+
+
+Estado 25
+
+   63 Values: L_FLOAT .
+
+    $padrão  reduzir usando a regra 63 (Values)
+
+
+Estado 26
+
+   65 Values: L_CHAR .
+
+    $padrão  reduzir usando a regra 65 (Values)
+
+
+Estado 27
+
+   66 Values: L_STRING .
+
+    $padrão  reduzir usando a regra 66 (Values)
+
+
+Estado 28
+
+   51 LogicOP: L_BOOL .
+
+    $padrão  reduzir usando a regra 51 (LogicOP)
+
+
+Estado 29
+
+   67 Values: L_ID .
+
+    $padrão  reduzir usando a regra 67 (Values)
+
+
+Estado 30
+
+   58 Elem: OP_SUM . Elem
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 48
+
+    Elem    ir ao estado 49
+    Values  ir ao estado 50
+
+
+Estado 31
+
+   59 Elem: OP_SUB . Elem
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 48
+
+    Elem    ir ao estado 51
+    Values  ir ao estado 50
+
+
+Estado 32
+
+   46 LogicComp: A_LPAR . LogicComp A_RPAR
+   60 Elem: A_LPAR . Eq A_RPAR
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    LogicComp  ir ao estado 52
+    Eq         ir ao estado 53
+    Factor     ir ao estado 39
+    Elem       ir ao estado 40
+    Values     ir ao estado 50
+
+
+Estado 33
+
+   41 Operation: LogicOperation .
+
+    $padrão  reduzir usando a regra 41 (Operation)
+
+
+Estado 34
+
+   69 Var: VariablesTypes L_ID OP_EQ Operation .
+
+    $padrão  reduzir usando a regra 69 (Var)
+
+
+Estado 35
+
+   42 Operation: UnitaryOperators .
+
+    $padrão  reduzir usando a regra 42 (Operation)
+
+
+Estado 36
+
+   39 LogicOperation: LogicComp .
+
+    $padrão  reduzir usando a regra 39 (LogicOperation)
+
+
+Estado 37
+
+   38 LogicOperation: LogicOP .
+
+    $padrão  reduzir usando a regra 38 (LogicOperation)
+
+
+Estado 38
+
+   40 Operation: Eq .
+   45 LogicComp: Eq . BinaryCompOperator Eq
+   52 Eq: Eq . OP_SUM Factor
+   53   | Eq . OP_SUB Factor
+
+    OP_BOOL_GRE     deslocar, e ir ao estado 54
+    OP_BOOL_EQGRE   deslocar, e ir ao estado 55
+    OP_BOOL_LESS    deslocar, e ir ao estado 56
+    OP_BOOL_EQLESS  deslocar, e ir ao estado 57
+    OP_SUM          deslocar, e ir ao estado 58
+    OP_SUB          deslocar, e ir ao estado 59
+
+    $padrão  reduzir usando a regra 40 (Operation)
+
+    BinaryCompOperator  ir ao estado 60
+
+
+Estado 39
+
+   54 Eq: Factor .
+   55 Factor: Factor . OP_DIV Elem
+   56       | Factor . OP_MUL Elem
+
+    OP_DIV  deslocar, e ir ao estado 61
+    OP_MUL  deslocar, e ir ao estado 62
+
+    $padrão  reduzir usando a regra 54 (Eq)
+
+
+Estado 40
+
+   57 Factor: Elem .
+
+    $padrão  reduzir usando a regra 57 (Factor)
+
+
+Estado 41
+
+   43 UnitaryOperators: Values . L_INC
+   44                 | Values . L_DEC
+   61 Elem: Values .
+
+    L_DEC  deslocar, e ir ao estado 63
+    L_INC  deslocar, e ir ao estado 64
+
+    $padrão  reduzir usando a regra 61 (Elem)
+
+
+Estado 42
+
+    9 Parameter: A_LPAR A_RPAR .
+
+    $padrão  reduzir usando a regra 9 (Parameter)
+
+
+Estado 43
+
+    8 Parameter: A_LPAR Parameters . A_RPAR
+
+    A_RPAR  deslocar, e ir ao estado 65
+
+
+Estado 44
+
+   10 Parameters: Var . A_COMMA Parameters
+   11           | Var .
+
+    A_COMMA  deslocar, e ir ao estado 66
+
+    $padrão  reduzir usando a regra 11 (Parameters)
+
+
+Estado 45
+
+   12 Body: A_LKEY . LocalBody A_RKEY
+   13     | A_LKEY . A_RKEY
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_IF      deslocar, e ir ao estado 67
+    T_WHI     deslocar, e ir ao estado 68
+    T_FOR     deslocar, e ir ao estado 69
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+    A_RKEY    deslocar, e ir ao estado 70
+
+    LocalBody         ir ao estado 71
+    Line              ir ao estado 72
+    Condiction        ir ao estado 73
+    SelectionClause   ir ao estado 74
+    IfClause          ir ao estado 75
+    WhileClause       ir ao estado 76
+    ForClause         ir ao estado 77
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 78
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+    Var               ir ao estado 79
+    VariablesTypes    ir ao estado 12
+
+
+Estado 46
+
+    7 Function: T_FUNC VariablesTypes L_ID Parameter A_SEMICOLON .
+
+    $padrão  reduzir usando a regra 7 (Function)
+
+
+Estado 47
+
+    6 Function: T_FUNC VariablesTypes L_ID Parameter Body .
+
+    $padrão  reduzir usando a regra 6 (Function)
+
+
+Estado 48
+
+   60 Elem: A_LPAR . Eq A_RPAR
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 48
+
+    Eq      ir ao estado 80
+    Factor  ir ao estado 39
+    Elem    ir ao estado 40
+    Values  ir ao estado 50
+
+
+Estado 49
+
+   58 Elem: OP_SUM Elem .
+
+    $padrão  reduzir usando a regra 58 (Elem)
+
+
+Estado 50
+
+   61 Elem: Values .
+
+    $padrão  reduzir usando a regra 61 (Elem)
+
+
+Estado 51
+
+   59 Elem: OP_SUB Elem .
+
+    $padrão  reduzir usando a regra 59 (Elem)
+
+
+Estado 52
+
+   46 LogicComp: A_LPAR LogicComp . A_RPAR
+
+    A_RPAR  deslocar, e ir ao estado 81
+
+
+Estado 53
+
+   45 LogicComp: Eq . BinaryCompOperator Eq
+   52 Eq: Eq . OP_SUM Factor
+   53   | Eq . OP_SUB Factor
+   60 Elem: A_LPAR Eq . A_RPAR
+
+    OP_BOOL_GRE     deslocar, e ir ao estado 54
+    OP_BOOL_EQGRE   deslocar, e ir ao estado 55
+    OP_BOOL_LESS    deslocar, e ir ao estado 56
+    OP_BOOL_EQLESS  deslocar, e ir ao estado 57
+    OP_SUM          deslocar, e ir ao estado 58
+    OP_SUB          deslocar, e ir ao estado 59
+    A_RPAR          deslocar, e ir ao estado 82
+
+    BinaryCompOperator  ir ao estado 60
+
+
+Estado 54
+
+   47 BinaryCompOperator: OP_BOOL_GRE .
+
+    $padrão  reduzir usando a regra 47 (BinaryCompOperator)
+
+
+Estado 55
+
+   49 BinaryCompOperator: OP_BOOL_EQGRE .
+
+    $padrão  reduzir usando a regra 49 (BinaryCompOperator)
+
+
+Estado 56
+
+   48 BinaryCompOperator: OP_BOOL_LESS .
+
+    $padrão  reduzir usando a regra 48 (BinaryCompOperator)
+
+
+Estado 57
+
+   50 BinaryCompOperator: OP_BOOL_EQLESS .
+
+    $padrão  reduzir usando a regra 50 (BinaryCompOperator)
+
+
+Estado 58
+
+   52 Eq: Eq OP_SUM . Factor
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 48
+
+    Factor  ir ao estado 83
+    Elem    ir ao estado 40
+    Values  ir ao estado 50
+
+
+Estado 59
+
+   53 Eq: Eq OP_SUB . Factor
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 48
+
+    Factor  ir ao estado 84
+    Elem    ir ao estado 40
+    Values  ir ao estado 50
+
+
+Estado 60
+
+   45 LogicComp: Eq BinaryCompOperator . Eq
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 48
+
+    Eq      ir ao estado 85
+    Factor  ir ao estado 39
+    Elem    ir ao estado 40
+    Values  ir ao estado 50
+
+
+Estado 61
+
+   55 Factor: Factor OP_DIV . Elem
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 48
+
+    Elem    ir ao estado 86
+    Values  ir ao estado 50
+
+
+Estado 62
+
+   56 Factor: Factor OP_MUL . Elem
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 48
+
+    Elem    ir ao estado 87
+    Values  ir ao estado 50
+
+
+Estado 63
+
+   44 UnitaryOperators: Values L_DEC .
+
+    $padrão  reduzir usando a regra 44 (UnitaryOperators)
+
+
+Estado 64
+
+   43 UnitaryOperators: Values L_INC .
+
+    $padrão  reduzir usando a regra 43 (UnitaryOperators)
+
+
+Estado 65
+
+    8 Parameter: A_LPAR Parameters A_RPAR .
+
+    $padrão  reduzir usando a regra 8 (Parameter)
+
+
+Estado 66
+
+   10 Parameters: Var A_COMMA . Parameters
+
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+
+    Parameters      ir ao estado 88
+    Var             ir ao estado 44
+    VariablesTypes  ir ao estado 12
+
+
+Estado 67
+
+   28 IfClause: T_IF . A_LPAR LogicOperation A_RPAR Command
+
+    A_LPAR  deslocar, e ir ao estado 89
+
+
+Estado 68
+
+   31 WhileClause: T_WHI . A_LPAR LogicOperation A_RPAR Command
+
+    A_LPAR  deslocar, e ir ao estado 90
+
+
+Estado 69
+
+   32 ForClause: T_FOR . VarFor LogicOperation A_SEMICOLON UnitaryOperators A_RPAR Command
+
+    A_LPAR  deslocar, e ir ao estado 91
+
+    VarFor  ir ao estado 92
+
+
+Estado 70
+
+   13 Body: A_LKEY A_RKEY .
+
+    $padrão  reduzir usando a regra 13 (Body)
+
+
+Estado 71
+
+   12 Body: A_LKEY LocalBody . A_RKEY
+
+    A_RKEY  deslocar, e ir ao estado 93
+
+
+Estado 72
+
+   14 LocalBody: Line . A_SEMICOLON LocalBody
+   15          | Line . A_SEMICOLON
+
+    A_SEMICOLON  deslocar, e ir ao estado 94
+
+
+Estado 73
+
+   18 Line: Condiction .
+
+    $padrão  reduzir usando a regra 18 (Line)
+
+
+Estado 74
+
+   19 Condiction: SelectionClause .
+
+    $padrão  reduzir usando a regra 19 (Condiction)
+
+
+Estado 75
+
+   22 SelectionClause: IfClause .
+   23                | IfClause . ElseClauses
+
+    T_ELSE    deslocar, e ir ao estado 95
+    T_IFELSE  deslocar, e ir ao estado 96
+
+    $padrão  reduzir usando a regra 22 (SelectionClause)
+
+    ElseClauses    ir ao estado 97
+    IfElseClauses  ir ao estado 98
+    ElseClause     ir ao estado 99
+    IfElseClause   ir ao estado 100
+
+
+Estado 76
+
+   20 Condiction: WhileClause .
+
+    $padrão  reduzir usando a regra 20 (Condiction)
+
+
+Estado 77
+
+   21 Condiction: ForClause .
+
+    $padrão  reduzir usando a regra 21 (Condiction)
+
+
+Estado 78
+
+   16 Line: Operation .
+
+    $padrão  reduzir usando a regra 16 (Line)
+
+
+Estado 79
+
+   17 Line: Var .
+
+    $padrão  reduzir usando a regra 17 (Line)
+
+
+Estado 80
+
+   52 Eq: Eq . OP_SUM Factor
+   53   | Eq . OP_SUB Factor
+   60 Elem: A_LPAR Eq . A_RPAR
+
+    OP_SUM  deslocar, e ir ao estado 58
+    OP_SUB  deslocar, e ir ao estado 59
+    A_RPAR  deslocar, e ir ao estado 82
+
+
+Estado 81
+
+   46 LogicComp: A_LPAR LogicComp A_RPAR .
+
+    $padrão  reduzir usando a regra 46 (LogicComp)
+
+
+Estado 82
+
+   60 Elem: A_LPAR Eq A_RPAR .
+
+    $padrão  reduzir usando a regra 60 (Elem)
+
+
+Estado 83
+
+   52 Eq: Eq OP_SUM Factor .
+   55 Factor: Factor . OP_DIV Elem
+   56       | Factor . OP_MUL Elem
+
+    OP_DIV  deslocar, e ir ao estado 61
+    OP_MUL  deslocar, e ir ao estado 62
+
+    $padrão  reduzir usando a regra 52 (Eq)
+
+
+Estado 84
+
+   53 Eq: Eq OP_SUB Factor .
+   55 Factor: Factor . OP_DIV Elem
+   56       | Factor . OP_MUL Elem
+
+    OP_DIV  deslocar, e ir ao estado 61
+    OP_MUL  deslocar, e ir ao estado 62
+
+    $padrão  reduzir usando a regra 53 (Eq)
+
+
+Estado 85
+
+   45 LogicComp: Eq BinaryCompOperator Eq .
+   52 Eq: Eq . OP_SUM Factor
+   53   | Eq . OP_SUB Factor
+
+    OP_SUM  deslocar, e ir ao estado 58
+    OP_SUB  deslocar, e ir ao estado 59
+
+    $padrão  reduzir usando a regra 45 (LogicComp)
+
+
+Estado 86
+
+   55 Factor: Factor OP_DIV Elem .
+
+    $padrão  reduzir usando a regra 55 (Factor)
+
+
+Estado 87
+
+   56 Factor: Factor OP_MUL Elem .
+
+    $padrão  reduzir usando a regra 56 (Factor)
+
+
+Estado 88
+
+   10 Parameters: Var A_COMMA Parameters .
+
+    $padrão  reduzir usando a regra 10 (Parameters)
+
+
+Estado 89
+
+   28 IfClause: T_IF A_LPAR . LogicOperation A_RPAR Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    LogicOperation  ir ao estado 101
+    LogicComp       ir ao estado 36
+    LogicOP         ir ao estado 37
+    Eq              ir ao estado 102
+    Factor          ir ao estado 39
+    Elem            ir ao estado 40
+    Values          ir ao estado 50
+
+
+Estado 90
+
+   31 WhileClause: T_WHI A_LPAR . LogicOperation A_RPAR Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    LogicOperation  ir ao estado 103
+    LogicComp       ir ao estado 36
+    LogicOP         ir ao estado 37
+    Eq              ir ao estado 102
+    Factor          ir ao estado 39
+    Elem            ir ao estado 40
+    Values          ir ao estado 50
+
+
+Estado 91
+
+   35 VarFor: A_LPAR . VariablesTypes L_ID OP_EQ Operation A_SEMICOLON
+   36       | A_LPAR . L_ID OP_EQ Operation A_SEMICOLON
+   37       | A_LPAR . A_SEMICOLON
+
+    L_ID         deslocar, e ir ao estado 104
+    T_BOOL       deslocar, e ir ao estado 1
+    T_INT        deslocar, e ir ao estado 2
+    T_DOUBLE     deslocar, e ir ao estado 3
+    T_FLOAT      deslocar, e ir ao estado 4
+    T_CHAR       deslocar, e ir ao estado 5
+    T_STRING     deslocar, e ir ao estado 6
+    A_SEMICOLON  deslocar, e ir ao estado 105
+
+    VariablesTypes  ir ao estado 106
+
+
+Estado 92
+
+   32 ForClause: T_FOR VarFor . LogicOperation A_SEMICOLON UnitaryOperators A_RPAR Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    LogicOperation  ir ao estado 107
+    LogicComp       ir ao estado 36
+    LogicOP         ir ao estado 37
+    Eq              ir ao estado 102
+    Factor          ir ao estado 39
+    Elem            ir ao estado 40
+    Values          ir ao estado 50
+
+
+Estado 93
+
+   12 Body: A_LKEY LocalBody A_RKEY .
+
+    $padrão  reduzir usando a regra 12 (Body)
+
+
+Estado 94
+
+   14 LocalBody: Line A_SEMICOLON . LocalBody
+   15          | Line A_SEMICOLON .
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_IF      deslocar, e ir ao estado 67
+    T_WHI     deslocar, e ir ao estado 68
+    T_FOR     deslocar, e ir ao estado 69
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    $padrão  reduzir usando a regra 15 (LocalBody)
+
+    LocalBody         ir ao estado 108
+    Line              ir ao estado 72
+    Condiction        ir ao estado 73
+    SelectionClause   ir ao estado 74
+    IfClause          ir ao estado 75
+    WhileClause       ir ao estado 76
+    ForClause         ir ao estado 77
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 78
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+    Var               ir ao estado 79
+    VariablesTypes    ir ao estado 12
+
+
+Estado 95
+
+   29 ElseClause: T_ELSE . Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_IF      deslocar, e ir ao estado 67
+    T_WHI     deslocar, e ir ao estado 68
+    T_FOR     deslocar, e ir ao estado 69
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+    A_LKEY    deslocar, e ir ao estado 109
+
+    Line              ir ao estado 110
+    Condiction        ir ao estado 73
+    SelectionClause   ir ao estado 74
+    IfClause          ir ao estado 75
+    WhileClause       ir ao estado 76
+    ForClause         ir ao estado 77
+    Command           ir ao estado 111
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 78
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+    Var               ir ao estado 79
+    VariablesTypes    ir ao estado 12
+
+
+Estado 96
+
+   30 IfElseClause: T_IFELSE . A_LPAR LogicOperation A_RPAR Command
+
+    A_LPAR  deslocar, e ir ao estado 112
+
+
+Estado 97
+
+   23 SelectionClause: IfClause ElseClauses .
+
+    $padrão  reduzir usando a regra 23 (SelectionClause)
+
+
+Estado 98
+
+   24 ElseClauses: IfElseClauses . ElseClause
+
+    T_ELSE  deslocar, e ir ao estado 95
+
+    ElseClause  ir ao estado 113
+
+
+Estado 99
+
+   25 ElseClauses: ElseClause .
+
+    $padrão  reduzir usando a regra 25 (ElseClauses)
+
+
+Estado 100
+
+   26 IfElseClauses: IfElseClause . IfElseClauses
+   27              | IfElseClause .
+
+    T_IFELSE  deslocar, e ir ao estado 96
+
+    $padrão  reduzir usando a regra 27 (IfElseClauses)
+
+    IfElseClauses  ir ao estado 114
+    IfElseClause   ir ao estado 100
+
+
+Estado 101
+
+   28 IfClause: T_IF A_LPAR LogicOperation . A_RPAR Command
+
+    A_RPAR  deslocar, e ir ao estado 115
+
+
+Estado 102
+
+   45 LogicComp: Eq . BinaryCompOperator Eq
+   52 Eq: Eq . OP_SUM Factor
+   53   | Eq . OP_SUB Factor
+
+    OP_BOOL_GRE     deslocar, e ir ao estado 54
+    OP_BOOL_EQGRE   deslocar, e ir ao estado 55
+    OP_BOOL_LESS    deslocar, e ir ao estado 56
+    OP_BOOL_EQLESS  deslocar, e ir ao estado 57
+    OP_SUM          deslocar, e ir ao estado 58
+    OP_SUB          deslocar, e ir ao estado 59
+
+    BinaryCompOperator  ir ao estado 60
+
+
+Estado 103
+
+   31 WhileClause: T_WHI A_LPAR LogicOperation . A_RPAR Command
+
+    A_RPAR  deslocar, e ir ao estado 116
+
+
+Estado 104
+
+   36 VarFor: A_LPAR L_ID . OP_EQ Operation A_SEMICOLON
+
+    OP_EQ  deslocar, e ir ao estado 117
+
+
+Estado 105
+
+   37 VarFor: A_LPAR A_SEMICOLON .
+
+    $padrão  reduzir usando a regra 37 (VarFor)
+
+
+Estado 106
+
+   35 VarFor: A_LPAR VariablesTypes . L_ID OP_EQ Operation A_SEMICOLON
+
+    L_ID  deslocar, e ir ao estado 118
+
+
+Estado 107
+
+   32 ForClause: T_FOR VarFor LogicOperation . A_SEMICOLON UnitaryOperators A_RPAR Command
+
+    A_SEMICOLON  deslocar, e ir ao estado 119
+
+
+Estado 108
+
+   14 LocalBody: Line A_SEMICOLON LocalBody .
+
+    $padrão  reduzir usando a regra 14 (LocalBody)
+
+
+Estado 109
+
+   33 Command: A_LKEY . LocalBody A_RKEY
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_IF      deslocar, e ir ao estado 67
+    T_WHI     deslocar, e ir ao estado 68
+    T_FOR     deslocar, e ir ao estado 69
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    LocalBody         ir ao estado 120
+    Line              ir ao estado 72
+    Condiction        ir ao estado 73
+    SelectionClause   ir ao estado 74
+    IfClause          ir ao estado 75
+    WhileClause       ir ao estado 76
+    ForClause         ir ao estado 77
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 78
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+    Var               ir ao estado 79
+    VariablesTypes    ir ao estado 12
+
+
+Estado 110
+
+   34 Command: Line . A_SEMICOLON
+
+    A_SEMICOLON  deslocar, e ir ao estado 121
+
+
+Estado 111
+
+   29 ElseClause: T_ELSE Command .
+
+    $padrão  reduzir usando a regra 29 (ElseClause)
+
+
+Estado 112
+
+   30 IfElseClause: T_IFELSE A_LPAR . LogicOperation A_RPAR Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    LogicOperation  ir ao estado 122
+    LogicComp       ir ao estado 36
+    LogicOP         ir ao estado 37
+    Eq              ir ao estado 102
+    Factor          ir ao estado 39
+    Elem            ir ao estado 40
+    Values          ir ao estado 50
+
+
+Estado 113
+
+   24 ElseClauses: IfElseClauses ElseClause .
+
+    $padrão  reduzir usando a regra 24 (ElseClauses)
+
+
+Estado 114
+
+   26 IfElseClauses: IfElseClause IfElseClauses .
+
+    $padrão  reduzir usando a regra 26 (IfElseClauses)
+
+
+Estado 115
+
+   28 IfClause: T_IF A_LPAR LogicOperation A_RPAR . Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_IF      deslocar, e ir ao estado 67
+    T_WHI     deslocar, e ir ao estado 68
+    T_FOR     deslocar, e ir ao estado 69
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+    A_LKEY    deslocar, e ir ao estado 109
+
+    Line              ir ao estado 110
+    Condiction        ir ao estado 73
+    SelectionClause   ir ao estado 74
+    IfClause          ir ao estado 75
+    WhileClause       ir ao estado 76
+    ForClause         ir ao estado 77
+    Command           ir ao estado 123
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 78
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+    Var               ir ao estado 79
+    VariablesTypes    ir ao estado 12
+
+
+Estado 116
+
+   31 WhileClause: T_WHI A_LPAR LogicOperation A_RPAR . Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_IF      deslocar, e ir ao estado 67
+    T_WHI     deslocar, e ir ao estado 68
+    T_FOR     deslocar, e ir ao estado 69
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+    A_LKEY    deslocar, e ir ao estado 109
+
+    Line              ir ao estado 110
+    Condiction        ir ao estado 73
+    SelectionClause   ir ao estado 74
+    IfClause          ir ao estado 75
+    WhileClause       ir ao estado 76
+    ForClause         ir ao estado 77
+    Command           ir ao estado 124
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 78
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+    Var               ir ao estado 79
+    VariablesTypes    ir ao estado 12
+
+
+Estado 117
+
+   36 VarFor: A_LPAR L_ID OP_EQ . Operation A_SEMICOLON
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 125
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+
+
+Estado 118
+
+   35 VarFor: A_LPAR VariablesTypes L_ID . OP_EQ Operation A_SEMICOLON
+
+    OP_EQ  deslocar, e ir ao estado 126
+
+
+Estado 119
+
+   32 ForClause: T_FOR VarFor LogicOperation A_SEMICOLON . UnitaryOperators A_RPAR Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_ID      deslocar, e ir ao estado 29
+
+    UnitaryOperators  ir ao estado 127
+    Values            ir ao estado 128
+
+
+Estado 120
+
+   33 Command: A_LKEY LocalBody . A_RKEY
+
+    A_RKEY  deslocar, e ir ao estado 129
+
+
+Estado 121
+
+   34 Command: Line A_SEMICOLON .
+
+    $padrão  reduzir usando a regra 34 (Command)
+
+
+Estado 122
+
+   30 IfElseClause: T_IFELSE A_LPAR LogicOperation . A_RPAR Command
+
+    A_RPAR  deslocar, e ir ao estado 130
+
+
+Estado 123
+
+   28 IfClause: T_IF A_LPAR LogicOperation A_RPAR Command .
+
+    $padrão  reduzir usando a regra 28 (IfClause)
+
+
+Estado 124
+
+   31 WhileClause: T_WHI A_LPAR LogicOperation A_RPAR Command .
+
+    $padrão  reduzir usando a regra 31 (WhileClause)
+
+
+Estado 125
+
+   36 VarFor: A_LPAR L_ID OP_EQ Operation . A_SEMICOLON
+
+    A_SEMICOLON  deslocar, e ir ao estado 131
+
+
+Estado 126
+
+   35 VarFor: A_LPAR VariablesTypes L_ID OP_EQ . Operation A_SEMICOLON
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 132
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+
+
+Estado 127
+
+   32 ForClause: T_FOR VarFor LogicOperation A_SEMICOLON UnitaryOperators . A_RPAR Command
+
+    A_RPAR  deslocar, e ir ao estado 133
+
+
+Estado 128
+
+   43 UnitaryOperators: Values . L_INC
+   44                 | Values . L_DEC
+
+    L_DEC  deslocar, e ir ao estado 63
+    L_INC  deslocar, e ir ao estado 64
+
+
+Estado 129
+
+   33 Command: A_LKEY LocalBody A_RKEY .
+
+    $padrão  reduzir usando a regra 33 (Command)
+
+
+Estado 130
+
+   30 IfElseClause: T_IFELSE A_LPAR LogicOperation A_RPAR . Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_IF      deslocar, e ir ao estado 67
+    T_WHI     deslocar, e ir ao estado 68
+    T_FOR     deslocar, e ir ao estado 69
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+    A_LKEY    deslocar, e ir ao estado 109
+
+    Line              ir ao estado 110
+    Condiction        ir ao estado 73
+    SelectionClause   ir ao estado 74
+    IfClause          ir ao estado 75
+    WhileClause       ir ao estado 76
+    ForClause         ir ao estado 77
+    Command           ir ao estado 134
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 78
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+    Var               ir ao estado 79
+    VariablesTypes    ir ao estado 12
+
+
+Estado 131
+
+   36 VarFor: A_LPAR L_ID OP_EQ Operation A_SEMICOLON .
+
+    $padrão  reduzir usando a regra 36 (VarFor)
+
+
+Estado 132
+
+   35 VarFor: A_LPAR VariablesTypes L_ID OP_EQ Operation . A_SEMICOLON
+
+    A_SEMICOLON  deslocar, e ir ao estado 135
+
+
+Estado 133
+
+   32 ForClause: T_FOR VarFor LogicOperation A_SEMICOLON UnitaryOperators A_RPAR . Command
+
+    L_INT     deslocar, e ir ao estado 23
+    L_DOUBLE  deslocar, e ir ao estado 24
+    L_FLOAT   deslocar, e ir ao estado 25
+    L_CHAR    deslocar, e ir ao estado 26
+    L_STRING  deslocar, e ir ao estado 27
+    L_BOOL    deslocar, e ir ao estado 28
+    L_ID      deslocar, e ir ao estado 29
+    T_BOOL    deslocar, e ir ao estado 1
+    T_INT     deslocar, e ir ao estado 2
+    T_DOUBLE  deslocar, e ir ao estado 3
+    T_FLOAT   deslocar, e ir ao estado 4
+    T_CHAR    deslocar, e ir ao estado 5
+    T_STRING  deslocar, e ir ao estado 6
+    T_IF      deslocar, e ir ao estado 67
+    T_WHI     deslocar, e ir ao estado 68
+    T_FOR     deslocar, e ir ao estado 69
+    OP_SUM    deslocar, e ir ao estado 30
+    OP_SUB    deslocar, e ir ao estado 31
+    A_LPAR    deslocar, e ir ao estado 32
+    A_LKEY    deslocar, e ir ao estado 109
+
+    Line              ir ao estado 110
+    Condiction        ir ao estado 73
+    SelectionClause   ir ao estado 74
+    IfClause          ir ao estado 75
+    WhileClause       ir ao estado 76
+    ForClause         ir ao estado 77
+    Command           ir ao estado 136
+    LogicOperation    ir ao estado 33
+    Operation         ir ao estado 78
+    UnitaryOperators  ir ao estado 35
+    LogicComp         ir ao estado 36
+    LogicOP           ir ao estado 37
+    Eq                ir ao estado 38
+    Factor            ir ao estado 39
+    Elem              ir ao estado 40
+    Values            ir ao estado 41
+    Var               ir ao estado 79
+    VariablesTypes    ir ao estado 12
+
+
+Estado 134
+
+   30 IfElseClause: T_IFELSE A_LPAR LogicOperation A_RPAR Command .
+
+    $padrão  reduzir usando a regra 30 (IfElseClause)
+
+
+Estado 135
+
+   35 VarFor: A_LPAR VariablesTypes L_ID OP_EQ Operation A_SEMICOLON .
+
+    $padrão  reduzir usando a regra 35 (VarFor)
+
+
+Estado 136
+
+   32 ForClause: T_FOR VarFor LogicOperation A_SEMICOLON UnitaryOperators A_RPAR Command .
+
+    $padrão  reduzir usando a regra 32 (ForClause)
